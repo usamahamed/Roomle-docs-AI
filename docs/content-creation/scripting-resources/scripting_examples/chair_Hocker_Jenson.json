@@ -1,0 +1,72 @@
+{
+    "id": "candy:Hocker_Jenson",
+    "labels": {
+        "en": "Hocker Jenson",
+        "de": "Hocker Jenson"
+    },
+    "parameters": [
+        {
+            "key": "material",
+            "sort": 0,
+            "global": "true",
+            "enabled": "true",
+            "visible": "false",
+            "labels": {
+                "de": "Bezug",
+                "en": "Bezug"
+            },
+            "defaultValue": "",
+            "type": "Material",
+            "validValues": [
+                "candy:florida_anthrazit",
+                "candy:florida_beige",
+                "candy:florida_chocolate",
+                "candy:florida_dark_grey",
+                "candy:florida_deep_ocean",
+                "candy:florida_espresso"
+            ],
+            "visibleInPartList": "true"
+        },
+        {
+            "key": "LegMaterial",
+            "sort": 0,
+            "global": "true",
+            "enabled": "true",
+            "visible": "false",
+            "labels": {
+                "en": "Füße",
+                "de": "Füße"
+            },
+            "defaultValue": "candy:EI_GE",
+            "type": "Material",
+            "valueObjects": [
+                {
+                    "value": "candy:BU_SCHW"
+                },
+                {
+                    "value": "candy:EI_GE"
+                }
+            ],
+            "visibleInPartList": "true"
+        }
+    ],
+    "geometry": "
+        AddExternalMesh('candy:Jenson_Hocker_base', Vector3f{510.8, 560, 165.2}, Vector3f{ -255.4, -280, 244.8});
+         SetObjSurface(material);
+
+        AddExternalMesh('candy:Jenson_Hocker_legs', Vector3f{550, 513.1, 262.4}, Vector3f{ -274.8, -258.9, 0});
+         SetObjSurface(LegMaterial);
+    ",
+    "childDockings": {
+        "points": [
+            {
+                "rotation": "{0, 0, 0}",
+                "mask": "candy:HockerJenson",
+                "position": "{0, -300, 0}"
+            }
+        ]
+    },
+    "articleNr": "
+        articleNr = '5442';
+    "
+}

@@ -1,0 +1,80 @@
+{
+    "id": "candy:Tiny_Hocker",
+    "labels": {
+        "en": "Tiny Hocker",
+        "de": "Tiny Hocker"
+    },
+    "parameters": [
+        {
+            "key": "Material",
+            "sort": 0,
+            "enabled": "true",
+            "visible": "true",
+            "labels": {
+                "de": "Bezug",
+                "en": "Bezug"
+            },
+            "defaultValue": "candy:florida_anthrazit",
+            "type": "Material",
+            "validValues": [
+                "candy:florida_anthrazit",
+                "candy:florida_beige",
+                "candy:florida_chocolate",
+                "candy:florida_dark_grey",
+                "candy:florida_deep_ocean",
+                "candy:florida_espresso",
+                "candy:florida_grey",
+                "candy:florida_light_blue",
+                "candy:florida_rot"
+            ],
+            "visibleInPartList": "true"
+        },
+        {
+            "key": "size",
+            "sort": 0,
+            "enabled": "true",
+            "visible": "true",
+            "labels": {
+                "en": "Höhe",
+                "de": "Höhe"
+            },
+            "defaultValue": "40",
+            "type": "String",
+            "valueObjects": [
+                {
+                    "value": "40",
+                    "labels": {
+                        "en": "40 cm",
+                        "de": "40 cm"
+                    }
+                },
+                {
+                    "value": "46",
+                    "labels": {
+                        "en": "46 cm",
+                        "de": "46 cm"
+                    }
+                }
+            ],
+            "visibleInPartList": "true"
+        }
+    ],
+    "geometry": "
+        if (size == '40') {
+            AddExternalMesh('candy:Tiny_40', Vector3f{350, 350, 400}, Vector3f{ -175, -175, 0});
+             SetObjSurface(Material);
+        }
+        if (size == '46') {
+            AddExternalMesh('candy:Tiny_46', Vector3f{350, 350, 460}, Vector3f{ -175, -175, 0});
+             SetObjSurface(Material);
+        }
+    ",
+    "articleNr": "
+        if (size == '40') {
+            articleNr = '8011';
+        }
+        if (size == '46') {
+            articleNr = '8087';
+        }
+    "
+}

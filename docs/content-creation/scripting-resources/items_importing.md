@@ -1,0 +1,9 @@
+Item definition
+
+This field is the item's configuration.
+
+Get it Interaction > Get current config or script snippet
+
+!escape double quiotes:
+
+{""children"": [{""children"": [],""componentId"":""rolfbenz:freistil135_master"",""dockChild"":""{0.00,200.00,0.00}"",""dockParent"":""[{-10.00,200.00,0.00}]"",""dockPosition"":""{-10.00,200.00,0.00}"",""parameters"": {""depth"":""1620"",""gewicht_kg"":""68 kg"",""hasChildOn"":""0"",""isChildOn"":""-1"",""korpusType"":""inline"",""label_DE"":""Anreihpolsterbank 162 x 162"",""label_EN"":""Sectional upholstered bench 162 x 162"",""legHeight"":""190"",""legMaterial"":""steel"",""legVersion"":""TubularLeg"",""materialCluster_global"":""Grau"",""materialFilter_global"":""all"",""materialType"":""fabric"",""material_global"":""rolfbenz:1026"",""material_upholstery_external"":""1026"",""material_upholstery_internal"":""10.026"",""modelNameLong"":""0001350380"",""modelNameShort"":""A-PB 135/162 x 162"",""modelNumber"":""0001350380"",""pricegroup"":""PG1000"",""seatingHeight"":""450.00"",""side"":""0"",""subComponent"":""INLINE"",""width"":""1620""} } ],""componentId"":""rolfbenz:freistil135_master"",""dockChild"":"""",""dockParent"":"""",""dockPosition"":"""",""parameters"": {""depth"":""1820"",""gewicht_kg"":""66 kg"",""hasChildOn"":""1"",""isChildOn"":""0"",""korpusType"":""armrest_l"",""label_DE"":""Anreihsofa links"",""label_EN"":""Sectional sofa left"",""legHeight"":""190"",""legMaterial"":""steel"",""legVersion"":""TubularLeg"",""materialCluster_global"":""Grau"",""materialFilter_global"":""all"",""materialType"":""fabric"",""material_global"":""rolfbenz:1026"",""material_upholstery_external"":""1026"",""material_upholstery_internal"":""10.026"",""modelNameLong"":""0001350180"",""modelNameShort"":""ASO 135/162 li"",""modelNumber"":""0001350180"",""pricegroup"":""PG1000"",""seatingHeight"":""450.00"",""side"":""-1"",""subComponent"":""ARMREST"",""width"":""1620""} }

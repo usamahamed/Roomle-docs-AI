@@ -1,0 +1,302 @@
+{
+    "id": "isdt:test1",
+    "parameters": [
+        {
+            "key": "pin_left_FT",
+            "type": "Boolean",
+            "enabled": false,
+            "visible": false,
+            "visibleInPartList": false
+        },
+        {
+            "key": "pin_left_FB",
+            "type": "Boolean",
+            "enabled": false,
+            "visible": false,
+            "visibleInPartList": false
+        },
+        {
+            "key": "pin_left_RT",
+            "type": "Boolean",
+            "enabled": false,
+            "visible": false,
+            "visibleInPartList": false
+        },
+        {
+            "key": "pin_left_RB",
+            "type": "Boolean",
+            "enabled": false,
+            "visible": false,
+            "visibleInPartList": false
+        },
+        {
+            "key": "pin_right_FT",
+            "type": "Boolean",
+            "enabled": false,
+            "visible": false,
+            "visibleInPartList": false
+        },
+        {
+            "key": "pin_right_FB",
+            "type": "Boolean",
+            "enabled": false,
+            "visible": false,
+            "visibleInPartList": false
+        },
+        {
+            "key": "pin_right_RT",
+            "type": "Boolean",
+            "enabled": false,
+            "visible": false,
+            "visibleInPartList": false
+        },
+        {
+            "key": "pin_right_RB",
+            "type": "Boolean",
+            "enabled": false,
+            "visible": false,
+            "visibleInPartList": false
+        }
+    ],
+    "subComponents": [
+        {
+            "internalId": "BACKREFERENCE",
+            "componentId": "isdt:test1",
+            "numberInPartList": "1"
+        },
+        {
+            "internalId": "ROD_FT",
+            "componentId": "isdt:rod",
+            "numberInPartList": "1",
+            "supersedings": [
+                {
+                    "type": "parameter",
+                    "key": "pin_left",
+                    "overrides": {
+                        "key": "pin_left_FT"
+                    }
+                },
+                {
+                    "type": "parameter",
+                    "key": "pin_right",
+                    "overrides": {
+                        "key": "pin_right_FT"
+                    }
+                }
+            ]
+        },
+        {
+            "internalId": "ROD_FB",
+            "componentId": "isdt:rod",
+            "numberInPartList": "1",
+            "supersedings": [
+                {
+                    "type": "parameter",
+                    "key": "pin_left",
+                    "overrides": {
+                        "key": "pin_left_FB"
+                    }
+                },
+                {
+                    "type": "parameter",
+                    "key": "pin_right",
+                    "overrides": {
+                        "key": "pin_right_FB"
+                    }
+                }
+            ]
+        },
+        {
+            "internalId": "ROD_RB",
+            "componentId": "isdt:rod",
+            "numberInPartList": "1",
+            "supersedings": [
+                {
+                    "type": "parameter",
+                    "key": "pin_left",
+                    "overrides": {
+                        "key": "pin_left_RB"
+                    }
+                },
+                {
+                    "type": "parameter",
+                    "key": "pin_right",
+                    "overrides": {
+                        "key": "pin_right_RB"
+                    }
+                }
+            ]
+        },
+        {
+            "internalId": "ROD_RT",
+            "componentId": "isdt:rod",
+            "numberInPartList": "1",
+            "supersedings": [
+                {
+                    "type": "parameter",
+                    "key": "pin_left",
+                    "overrides": {
+                        "key": "pin_left_RT"
+                    }
+                },
+                {
+                    "type": "parameter",
+                    "key": "pin_right",
+                    "overrides": {
+                        "key": "pin_right_RT"
+                    }
+                }
+            ]
+        }
+    ],
+    "geometry": "
+        AddCube(Vector3f{25, 500, 500});
+         SetObjSurface('isdt:gray');
+        Copy();
+         MoveMatrixBy(Vector3f{500 + 25, 0, 0});
+
+        SubComponent('ROD_FT');
+         MoveMatrixBy(Vector3f{25, 500 - 25, 500 - 25});
+
+        SubComponent('ROD_FB');
+         MoveMatrixBy(Vector3f{25, 500 - 25, 0});
+
+        SubComponent('ROD_RT');
+         MoveMatrixBy(Vector3f{25, 0, 500 - 25});
+
+        SubComponent('ROD_RB');
+         MoveMatrixBy(Vector3f{25, 0, 0});
+    ",
+    "siblings": [
+        {
+            "mask": "pin_rod",
+            "position": "{0, 0, 0}",
+            "maxConnections": "1",
+            "selfAssignments": {
+                "onDock": {
+                    "pin_left_RB": "'no'"
+                },
+                "onUnDock": {
+                    "pin_left_RB": "'end'"
+                }
+            }
+        },
+        {
+            "mask": "pin_rod",
+            "position": "{0, 525, 0}",
+            "maxConnections": "1",
+            "selfAssignments": {
+                "onDock": {
+                    "pin_left_FB": "'no'"
+                },
+                "onUnDock": {
+                    "pin_left_FB": "'end'"
+                }
+            }
+        },
+        {
+            "mask": "pin_rod",
+            "position": "{0, 0, 525}",
+            "maxConnections": "1",
+            "selfAssignments": {
+                "onDock": {
+                    "pin_left_RT": "'no'"
+                },
+                "onUnDock": {
+                    "pin_left_RT": "'end'"
+                }
+            }
+        },
+        {
+            "mask": "pin_rod",
+            "position": "{0, 525, 525}",
+            "maxConnections": "1",
+            "selfAssignments": {
+                "onDock": {
+                    "pin_left_FT": "'no'"
+                },
+                "onUnDock": {
+                    "pin_left_FT": "'end'"
+                }
+            }
+        },
+        {
+            "mask": "pin_rod",
+            "position": "{550, 0, 0}",
+            "maxConnections": "1",
+            "selfAssignments": {
+                "onDock": {
+                    "pin_right_RB": "'full'"
+                },
+                "onUnDock": {
+                    "pin_right_RB": "'end'"
+                }
+            }
+        },
+        {
+            "mask": "pin_rod",
+            "position": "{550, 525, 0}",
+            "maxConnections": "1",
+            "selfAssignments": {
+                "onDock": {
+                    "pin_right_FB": "'full'"
+                },
+                "onUnDock": {
+                    "pin_right_FB": "'end'"
+                }
+            }
+        },
+        {
+            "mask": "pin_rod",
+            "position": "{550, 0, 525}",
+            "maxConnections": "1",
+            "selfAssignments": {
+                "onDock": {
+                    "pin_right_RT": "'full'"
+                },
+                "onUnDock": {
+                    "pin_right_RT": "'end'"
+                }
+            }
+        },
+        {
+            "mask": "pin_rod",
+            "position": "{550, 525, 525}",
+            "maxConnections": "1",
+            "selfAssignments": {
+                "onDock": {
+                    "pin_right_FT": "'full'"
+                },
+                "onUnDock": {
+                    "pin_right_FT": "'end'"
+                }
+            }
+        }
+    ],
+    "parentDockings": {
+        "points": [
+            {
+                "mask": "cube",
+                "position": "{550, 0, 0}",
+                "rotation": "{0, 0, 0}",
+                "condition": "true"
+            }
+        ]
+    },
+    "childDockings": {
+        "points": [
+            {
+                "mask": "cube",
+                "position": "{0, 0, 0}",
+                "rotation": "{0, 0, 0}",
+                "condition": "true"
+            }
+        ]
+    },
+    "possibleChildren": [
+        {
+            "componentId": "isdt:test1"
+        }
+    ],
+    "articleNr": "'FRAME'"
+}

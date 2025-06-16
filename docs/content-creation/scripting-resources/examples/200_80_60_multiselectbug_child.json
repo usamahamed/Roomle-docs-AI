@@ -1,0 +1,36 @@
+{
+    "id": "demoCatalogId:example_multiselectbug_child",
+    "parameters": [
+        {
+            "key": "width",
+            "type": "Decimal",
+            "unitType": "length",
+            "defaultValue": 900,
+            "enabled": true,
+            "visible": true,
+            "visibleInPartList": true
+        }
+    ],
+    "geometry": "
+        AddExternalMesh('demoCatalogId:sofa_footstool_90', Vector3f{900, 600, 370}, Vector3f{ -450, -300, 50});
+         SetObjSurface('isdt:white');
+
+        BeginObjGroup();
+            AddCylinder(20, 20, 50, 12);
+             SetObjSurface('isdt:black');
+             MoveMatrixBy(Vector3f{(width / 2 - 100), -200, 0});
+            Copy();
+             MoveMatrixBy(Vector3f{0, 400, 0});
+        EndObjGroup();
+        Copy();
+         MoveMatrixBy(Vector3f{ -width + 200, 0, 0});
+    ",
+    "childDockings": {
+        "points": [
+            {
+                "mask": "stool",
+                "position": "{0, -300, 0}"
+            }
+        ]
+    }
+}

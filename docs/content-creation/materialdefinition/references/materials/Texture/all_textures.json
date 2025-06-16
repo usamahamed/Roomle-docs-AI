@@ -1,0 +1,23 @@
+{
+    "embeddedTextures": [
+        {
+            "height": 1024,
+            "mapping": "RGB",
+            "url": "albedo.jpg",
+            "width": 1024
+        },
+        {
+            "height": 1024,
+            "mapping": "ORM",
+            "url": "orm.jpg",
+            "width": 1024
+        },
+        {
+            "height": 1024,
+            "mapping": "XYZ",
+            "url": "normal.jpg",
+            "width": 1024
+        }
+    ],
+    "shading": {}
+}

@@ -1,0 +1,87 @@
+{
+    "id": "isdt:test1",
+    "parameters": [
+        {
+            "key": "width",
+            "type": "Decimal",
+            "unitType": "length",
+            "defaultValue": 100,
+            "validValues": [
+                200,
+                300,
+                400,
+                500,
+                600
+            ],
+            "enabled": true,
+            "visible": true,
+            "visibleInPartList": true
+        },
+        {
+            "key": "height",
+            "type": "Decimal",
+            "unitType": "length",
+            "defaultValue": 100,
+            "validValues": [
+                200,
+                300,
+                400,
+                500,
+                600
+            ],
+            "enabled": true,
+            "visible": true,
+            "visibleInPartList": true
+        }
+    ],
+    "onUpdate": "
+        if (ifnull(inited, false) == false) {
+            inited = true;
+            isRoot = true;
+            connectionIndex = 0;
+        }
+    ",
+    "geometry": "
+        AddCube(Vector3f{50, 10, 50});
+         SetObjSurface('isdt:red');
+         MoveMatrixBy(Vector3f{ -25, 0, -25});
+        for (_.i = 0; _.i < connectionIndex; _.i = _.i + 1) {
+            Copy();
+             SetObjSurface('isdt:black');
+             MoveMatrixBy(Vector3f{0, 20, 0});
+        }
+    ",
+    "parentDockings": {
+        "ranges": [
+            {
+                "mask": "mask",
+                "position": "{0, 0, 0}",
+                "stepEnd": "{width, 0, height}",
+                "rotation": "{0, 0, 0}",
+                "condition": "isRoot",
+                "stepX": 100,
+                "stepY": 0,
+                "stepZ": 100,
+                "assignmentsOnDock": {
+                    "isRoot": false
+                },
+                "assignmentsOnUpdate": {
+                    "connectionIndex": "connection.index"
+                }
+            }
+        ]
+    },
+    "childDockings": {
+        "points": [
+            {
+                "mask": "mask",
+                "position": "{0, 0, 0}"
+            }
+        ]
+    },
+    "possibleChildren": [
+        {
+            "componentId": "isdt:test1"
+        }
+    ]
+}

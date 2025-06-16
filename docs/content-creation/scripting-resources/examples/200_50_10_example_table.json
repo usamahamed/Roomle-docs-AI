@@ -1,0 +1,271 @@
+{
+    "id": "isdt:example_table",
+    "parameters": [
+        {
+            "key": "width",
+            "labels": {
+                "en": "Width"
+            },
+            "type": "Decimal",
+            "unitType": "length",
+            "defaultValue": 2000,
+            "valueObjects": [
+                {
+                    "value": 1200,
+                    "condition": "true"
+                },
+                {
+                    "value": 1400,
+                    "condition": "true"
+                },
+                {
+                    "value": 1600,
+                    "condition": "true"
+                },
+                {
+                    "value": 1800,
+                    "condition": "true"
+                },
+                {
+                    "value": 2000,
+                    "condition": "true"
+                }
+            ],
+            "enabled": true,
+            "visible": true,
+            "visibleInPartList": true
+        },
+        {
+            "key": "depth",
+            "labels": {
+                "en": "Depth"
+            },
+            "type": "Decimal",
+            "unitType": "length",
+            "defaultValue": 1000,
+            "valueObjects": [
+                {
+                    "value": 700,
+                    "condition": "in(width, 1200, 1400)"
+                },
+                {
+                    "value": 800,
+                    "condition": "in(width, 1200, 1400, 1600, 1800)"
+                },
+                {
+                    "value": 900,
+                    "condition": "width == 1800"
+                },
+                {
+                    "value": 1000,
+                    "condition": "width == 2000"
+                }
+            ],
+            "enabled": true,
+            "visible": true,
+            "visibleInPartList": true
+        },
+        {
+            "key": "materialTabletop",
+            "labels": {
+                "en": "Tabletop Surface"
+            },
+            "type": "Material",
+            "defaultValue": "isdt:surface_nut",
+            "validValues": [
+                "isdt:surface_cremewhite",
+                "isdt:surface_gray",
+                "isdt:surface_oak",
+                "isdt:surface_nut",
+                "isdt:surface_blue"
+            ],
+            "visible": true,
+            "visibleInPartList": true
+        },
+        {
+            "key": "materialFrame",
+            "labels": {
+                "en": "Frame Colour"
+            },
+            "type": "Material",
+            "defaultValue": "isdt:surface_chrome",
+            "validValues": [
+                "isdt:surface_chrome",
+                "isdt:surface_cremewhite",
+                "isdt:surface_black"
+            ],
+            "visible": true,
+            "visibleInPartList": true
+        },
+        {
+            "key": "legType",
+            "labels": {
+                "en": "Leg Type"
+            },
+            "type": "String",
+            "defaultValue": "fixed",
+            "valueObjects": [
+                {
+                    "value": "fixed",
+                    "labels": {
+                        "en": "Fixed length"
+                    }
+                },
+                {
+                    "value": "adjustable",
+                    "labels": {
+                        "en": "Telescopic, adjustable length"
+                    }
+                }
+            ],
+            "visible": true,
+            "visibleInPartList": true
+        },
+        {
+            "key": "totalHeight",
+            "labels": {
+                "en": "Tabletop Height"
+            },
+            "type": "Decimal",
+            "unitType": "length",
+            "defaultValue": 710,
+            "validRange": {
+                "valueFrom": 670,
+                "valueTo": 740,
+                "step": 10
+            },
+            "enabled": true,
+            "visible": "legType == 'adjustable'",
+            "visibleInPartList": false
+        }
+    ],
+    "onUpdate": "",
+    "geometry": "
+        if (ifnull(geometryInited, false) == false) {
+            geometryInited = true;
+            woodThickness = 40;
+            legBaseHeight = 12;
+            legBaseSide = 65;
+            frameWidth = 15;
+            frameHeight = 35;
+            frameOffset = 10;
+            legOffset = frameOffset + frameWidth + legBaseSide / 2;
+            endcapDiameter = 48;
+            endcapHeight = 5;
+            fixedLegDiameter = 50;
+            fixedLegTotalHeight = 670;
+            fixedLegHeight = fixedLegTotalHeight - legBaseHeight - endcapHeight;
+            adjLegBigDiameter = 60;
+            adjLegSmallDiameter = 50;
+            adjLegBigHeight = 500;
+            adjLegSmallHeight = 380;
+        }
+
+        /* compute the position of the tabletop base / frame top surface */
+        if (legType == 'fixed') { tabletopZ = fixedLegTotalHeight; }
+        else { tabletopZ = totalHeight - woodThickness; }
+
+        /* tabletop */
+        AddCube(Vector3f{width, depth, woodThickness});
+         SetObjSurface(materialTabletop);
+         MoveMatrixBy(Vector3f{ -width / 2, -depth / 2, tabletopZ});
+
+        /* Draw the legs, based on the legType setting. Pivot in the center of the leg's circle and under center of the base. */
+        if (legType == 'fixed') {
+            BeginObjGroup('FIXED_LEG');
+                AddCylinder(endcapDiameter / 2, endcapDiameter / 2, endcapHeight, 8);
+                 SetObjSurface('isdt:black');
+                AddCylinder(fixedLegDiameter / 2, fixedLegDiameter / 2, fixedLegHeight, 8);
+                 SetObjSurface(materialFrame);
+                 MoveMatrixBy(Vector3f{0, 0, endcapHeight});
+                AddCube(Vector3f{legBaseSide, legBaseSide, legBaseHeight});
+                 SetObjSurface(materialFrame);
+                 MoveMatrixBy(Vector3f{ -legBaseSide / 2, -legBaseSide / 2, endcapHeight + fixedLegHeight});
+            EndObjGroup('FIXED_LEG');
+        } else {
+            BeginObjGroup('ADJUSTABLE_LEG');
+                AddCylinder(endcapDiameter / 2, endcapDiameter / 2, endcapHeight, 8);
+                 SetObjSurface('isdt:black');
+                AddCylinder(adjLegSmallDiameter / 2, adjLegSmallDiameter / 2, adjLegSmallHeight, 8);
+                 SetObjSurface(materialFrame);
+                 MoveMatrixBy(Vector3f{0, 0, endcapHeight});
+
+                /* top adjustable part of the leg */
+                BeginObjGroup('ADJUSTABLE_LEG_TOP');
+                    AddCylinder(adjLegBigDiameter / 2, adjLegBigDiameter / 2, adjLegBigHeight, 8);
+                     SetObjSurface(materialFrame);
+                    AddCube(Vector3f{legBaseSide, legBaseSide, legBaseHeight});
+                     SetObjSurface(materialFrame);
+                     MoveMatrixBy(Vector3f{ -legBaseSide / 2, -legBaseSide / 2, adjLegBigHeight});
+                EndObjGroup('ADJUSTABLE_LEG_TOP');
+                 MoveMatrixBy(Vector3f{0, 0, tabletopZ - legBaseHeight - adjLegBigHeight});
+                /* the top part is moved, so that its top end meets the frame's top surface */
+
+            EndObjGroup('ADJUSTABLE_LEG');
+        }
+
+        /* move leg to the rear left corner */
+         MoveMatrixBy(Vector3f{ -width / 2 + legOffset, -depth / 2 + legOffset, 0});
+        Copy();
+        /* copy and move to the front left corner */
+         MoveMatrixBy(Vector3f{0, depth - 2 * legOffset, 0});
+        Copy();
+        /* front right */
+         MoveMatrixBy(Vector3f{width - 2 * legOffset, 0, 0});
+        Copy();
+        /* rear right */
+         MoveMatrixBy(Vector3f{0, -depth + 2 * legOffset, 0});
+
+        BeginObjGroup('FRAME');
+            /* long bars, width direction */
+            AddCube(Vector3f{width - 2 * frameOffset, frameWidth, frameHeight});
+             SetObjSurface(materialFrame);
+            /* move to the rear side, copy, move to front side */
+             MoveMatrixBy(Vector3f{ -width / 2 + frameOffset, -depth / 2 + frameOffset, 0});
+            Copy();
+             MoveMatrixBy(Vector3f{0, depth - 2 * frameOffset - frameWidth, 0});
+            /* short bars, depth direction, make them fit in between long bars without collision */
+            AddCube(Vector3f{frameWidth, depth - 2 * frameWidth - 2 * frameOffset, frameHeight});
+             SetObjSurface(materialFrame);
+            /* move to left, copy, move right */
+             MoveMatrixBy(Vector3f{ -width / 2 + frameOffset, -depth / 2 + frameOffset + frameWidth, 0});
+            Copy();
+             MoveMatrixBy(Vector3f{width - 2 * frameOffset - frameWidth, 0, 0});
+        EndObjGroup('FRAME');
+         MoveMatrixBy(Vector3f{0, 0, tabletopZ - frameHeight});
+    ",
+    "articleNr": "
+        if (width == 1200) {
+            if (depth == 700) { articleNr = '396.312.127'; }
+            if (depth == 800) { articleNr = '396.312.128'; }
+        }
+        if (width == 1400) {
+            if (depth == 700) { articleNr = '396.312.147'; }
+            if (depth == 800) { articleNr = '396.312.148'; }
+        }
+        if (width == 1600) {
+            if (depth == 900) { articleNr = '396.312.168'; }
+        }
+        if (width == 1800) {
+            if (depth == 800) { articleNr = '396.312.188'; }
+            if (depth == 900) { articleNr = '396.318.189'; }
+        }
+        if (width == 2000) {
+            if (depth == 1000) { articleNr = '396.641.891'; }
+        }
+
+        articleNr = articleNr | ' - ';
+        if (materialTabletop == 'isdt:surface_oak') { articleNr = articleNr | 'ECH'; }
+        if (materialTabletop == 'isdt:surface_cremewhite') { articleNr = articleNr | 'CRW'; }
+        if (materialTabletop == 'isdt:surface_nut') { articleNr = articleNr | 'NSS'; }
+        if (materialTabletop == 'isdt:surface_gray') { articleNr = articleNr | 'SGR'; }
+        if (materialTabletop == 'isdt:surface_blue') { articleNr = articleNr | 'KBL'; }
+
+        articleNr = articleNr | ' - ';
+        if (materialFrame == 'isdt:surface_chrome') { articleNr = articleNr | '731'; }
+        if (materialFrame == 'isdt:surface_cremewhite') { articleNr = articleNr | '121'; }
+        if (materialFrame == 'isdt:surface_black') { articleNr = articleNr | 'JBL'; }
+
+        if (legType == 'adjustable') { articleNr = articleNr | ' - ADJ'; }
+    "
+}

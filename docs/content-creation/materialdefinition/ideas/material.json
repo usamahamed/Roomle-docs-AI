@@ -1,0 +1,58 @@
+{
+    // Ideas
+
+    "emission": 0.0,
+    "emissionColor": {
+        "b": 1,
+        "g": 1,
+        "r": 1
+    },
+
+    "translucent": true,
+
+    "clearcoat": {
+    	"factor": 1,
+    	"roughness": 0.5
+    },
+
+    "sheen": {
+    	"factor": 0,
+    	"tint": 1
+    },
+
+    // anisotropic specular reflection
+    "anisotropy": 0.5,
+    "anisotropicRotation": 1,
+
+    // Right now it's always the basecolor
+    "transmissionColor": {
+        "r": 1,
+        "b": 0,
+        "g": 0
+    },
+
+    "volume": {
+    	"sss_color": {
+    		"b": 1,
+	        "g": 1,
+	        "r": 1
+    	},
+    	"absorption": {
+    		"b": 1,
+	        "g": 1,
+	        "r": 1
+    	}
+    },
+
+    // Real-time related
+
+    // custom blending equations
+    // probably too low level
+    "blend": {
+        "equation": "add", // none, normal, add, sub, reverseSub, min, max
+        "srcFactor": "One", // Zero, One, SrcColor, OneMinusSrcColor, SrcAlpha, OneMinusSrcAlpha, DstAlpha, OneMinusDstAlpha, DstColor, OneMinusDstColor, SrcAlphaSaturate
+        "destFactor": "OneMinusSrcAlpha"// Same, but not SrcAlphaSaturate
+    },
+
+    "alphaTest": "Greater", // Greater, GEqual, Less, LEqual, Equal, NotEqual, Always, Never
+}

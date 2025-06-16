@@ -1,0 +1,285 @@
+{
+    "id": "soulpepper:cutout_cabinet",
+    "labels":{
+        "en":"Cabinet",
+        "de":"Cabinet"
+    },
+    "parameters": [
+        {
+            "key": "ChangeStorage",
+            "labels": {
+                "en": "Change Storage Type"
+            },
+            "type": "String",
+            "sort": 1,
+            "defaultValue": "4dr",
+            "valueObjects": [
+                {
+                    "value": "4dr",
+                    "condition": true,
+                    "thumbnail": "https://catalog.roomle.com/3813453b-5eea-487c-8f62-c541aaf20eaf/items/cutout_cabinet_4dr/perspectiveimage.png?marker=1571400213",
+                    "labels": {
+                        "en": "4 Drawers"
+                    }
+                },
+                {
+                    "value": "2dr1f",
+                    "condition": true,
+                    "thumbnail": "https://catalog.roomle.com/3813453b-5eea-487c-8f62-c541aaf20eaf/items/cutout_cabinet_2dr1f/perspectiveimage.png?marker=1571400277",
+                    "labels": {
+                        "en": "2 Drawers + 1 File"
+                    }
+                },
+                {
+                    "value": "2f",
+                    "condition": true,
+                    "thumbnail": "https://catalog.roomle.com/3813453b-5eea-487c-8f62-c541aaf20eaf/items/cutout_cabinet_2f/perspectiveimage.png?marker=1571400329",
+                    "labels": {
+                        "en": "2 File Drawers"
+                    }
+                },
+                {
+                    "value": "door",
+                    "condition": true,
+                    "thumbnail": "https://catalog.roomle.com/3813453b-5eea-487c-8f62-c541aaf20eaf/items/cutout_cabinet_door/perspectiveimage.png?marker=1571400368",
+                    "labels": {
+                        "en": "Low Storage"
+                    }
+                }
+            ],
+            "enabled": true,
+            "visible": "!isChild",
+            "visibleInPartList": true
+        },
+        {
+            "key": "BoxMaterial",
+            "labels": {
+                "en": "Box Material"
+            },
+            "type": "Material",
+            "sort": 4,
+            "defaultValue": "soulpepper:dark_Wood_17B",
+            "validValues": [
+                "soulpepper:white_17A",
+                "soulpepper:foggy_Day_17A",
+                "soulpepper:mocka_17A",
+                "soulpepper:dusty_Noon_17A",
+                "soulpepper:bamboo_Style_17A",
+                "soulpepper:serious_Wood_17A",
+                "soulpepper:woodie_17B",
+                "soulpepper:dark_Wood_17B"
+            ],
+            "enabled": true,
+            "visible": "!isChild",
+            "visibleInPartList": true
+        },
+        {
+            "key": "FrontMaterial",
+            "labels": {
+                "en": "Front Material"
+            },
+            "type": "Material",
+            "sort": 5,
+            "defaultValue": "soulpepper:dark_Wood_17B",
+            "validValues": [
+                "soulpepper:white_17A",
+                "soulpepper:foggy_Day_17A",
+                "soulpepper:mocka_17A",
+                "soulpepper:dusty_Noon_17A",
+                "soulpepper:bamboo_Style_17A",
+                "soulpepper:serious_Wood_17A",
+                "soulpepper:woodie_17B",
+                "soulpepper:dark_Wood_17B"
+            ],
+            "enabled": true,
+            "visible": "!isChild",
+            "visibleInPartList": true
+        },
+        {
+            "key": "BaseMaterial",
+            "labels": {
+                "en": "Base Material"
+            },
+            "type": "Material",
+            "sort": 6,
+            "defaultValue": "soulpepper:dark_Wood_17B",
+            "validValues": [
+                "soulpepper:white_17A",
+                "soulpepper:foggy_Day_17A",
+                "soulpepper:mocka_17A",
+                "soulpepper:dusty_Noon_17A",
+                "soulpepper:bamboo_Style_17A",
+                "soulpepper:serious_Wood_17A",
+                "soulpepper:woodie_17B",
+                "soulpepper:dark_Wood_17B"
+            ],
+            "enabled": true,
+            "visible": "!isChild",
+            "visibleInPartList": true
+        },
+        {
+            "key": "side",
+            "type": "Integer",
+            "defaultValue": -1,
+            "validValues": [
+                -1,
+                1
+            ],
+            "enabled": true,
+            "visible": "!isChild",
+            "visibleInPartList": false
+        },
+        {
+            "key": "width",
+            "type": "Integer",
+            "defaultValue": 400,
+            "visible": false,
+            "visibleInPartList": false
+        }
+    ],
+    "subComponents": [
+        {
+            "internalId": "HANDLE",
+            "componentId": "soulpepper:cutout_handle",
+            "active": true,
+            "numberInPartList": "numberOfHandles",
+            "supersedings": [
+                {
+                    "key": "handleType",
+                    "type": "parameter"
+                },
+                {
+                    "key": "handleColor",
+                    "type": "parameter"
+                }
+            ]
+        },
+        {
+            "internalId": "BACKREF",
+            "componentId": "soulpepper:cutout_cabinet",
+            "numberInPartList": "1"
+        }
+    ],
+    "onUpdate": "
+        if (ifnull(inited, false) == false) {
+            inited = true;
+            baseHeight = 40;
+            wallThickness = 20;
+            height = 714.5 - baseHeight;
+            depth = 400 - wallThickness;
+            doorThickness = 20;
+            uScale = 1;
+            vScale = 1;
+            uvRotation = 0;
+            isChild = false;
+        }
+        numberOfHandles = 1 + 3 * in(ChangeStorage, '4dr') + 2 * in(ChangeStorage, '2dr1f') + 1 * in(ChangeStorage, '2f');
+    ",
+    "geometry": "
+        BeginObjGroup('wholeGeometry');
+
+            /* Sides */
+            AddCube(Vector3f{wallThickness, depth, height}, Vector2f{uScale, vScale}, uvRotation, Vector2f{0, 0});
+             SetObjSurface(BoxMaterial);
+            Copy();
+             MoveMatrixBy(Vector3f{width - wallThickness, 0, 0});
+            /* end sides; */
+
+            /* Bottom */
+            AddCube(Vector3f{width - wallThickness * 2, depth, wallThickness}, Vector2f{uScale, vScale}, uvRotation, Vector2f{0, 0});
+             SetObjSurface(BoxMaterial);
+             MoveMatrixBy(Vector3f{wallThickness, 0, 0});
+            /* end bottom; */
+
+            /* Top */
+            Copy();
+             MoveMatrixBy(Vector3f{0, 0, height - wallThickness});
+            /* end top; */
+
+            /* Back */
+            AddCube(Vector3f{width - wallThickness * 2, wallThickness, height - wallThickness * 2}, Vector2f{uScale, vScale}, 0, Vector2f{0, 0});
+             SetObjSurface(BoxMaterial);
+             MoveMatrixBy(Vector3f{wallThickness, 0, wallThickness});
+            /* end back; */
+
+            /* Base */
+            AddCube(Vector3f{width - 20, depth - 20, baseHeight}, Vector2f{uScale, vScale}, 0, Vector2f{0, 0});
+             SetObjSurface(BaseMaterial);
+             MoveMatrixBy(Vector3f{10, 10, -baseHeight});
+            /* end base; */
+
+            /* Drawers */
+            if (in(ChangeStorage, '2dr1f', '2f')) {
+                BeginObjGroup('fileDrawer');
+                    AddCube(Vector3f{width, doorThickness, height / 2 - 1}, Vector2f{uScale, vScale}, 0, Vector2f{0, 0});
+                     SetObjSurface(FrontMaterial);
+                    SubComponent(HANDLE);
+                     MoveMatrixBy(Vector3f{width / 2, doorThickness, height / 2 - 50});
+                EndObjGroup('fileDrawer');
+                 MoveMatrixBy(Vector3f{0, depth, 0});
+
+                if (ChangeStorage == '2f') {
+                    Copy();
+                     MoveMatrixBy(Vector3f{0, 0, height / 2});
+                } else {
+                    BeginObjGroup('drawer2x');
+                        AddCube(Vector3f{width, doorThickness, height / 4 - 1}, Vector2f{uScale, vScale}, 0, Vector2f{0, 0});
+                         SetObjSurface(FrontMaterial);
+                        SubComponent(HANDLE);
+                         MoveMatrixBy(Vector3f{width / 2, doorThickness, height / 4 - 50});
+                    EndObjGroup('drawer2x');
+                     MoveMatrixBy(Vector3f{0, depth, height / 2});
+
+                    Copy();
+                     MoveMatrixBy(Vector3f{0, 0, height / 4});
+                }
+            }
+
+            if (ChangeStorage == '4dr') {
+                BeginObjGroup('drawer4x');
+                    AddCube(Vector3f{width, doorThickness, height / 4 - 1}, Vector2f{uScale, vScale}, 0, Vector2f{0, 0});
+                     SetObjSurface(FrontMaterial);
+                    SubComponent(HANDLE);
+                     MoveMatrixBy(Vector3f{width / 2, doorThickness, height / 4 - 50});
+                EndObjGroup('drawer4x');
+                 MoveMatrixBy(Vector3f{0, depth, 0});
+                Copy();
+                 MoveMatrixBy(Vector3f{0, 0, height / 4});
+                Copy();
+                 MoveMatrixBy(Vector3f{0, 0, height / 4});
+                Copy();
+                 MoveMatrixBy(Vector3f{0, 0, height / 4});
+            }
+
+            if (ChangeStorage == 'door') {
+                BeginObjGroup('door');
+                    AddCube(Vector3f{width, doorThickness, height}, Vector2f{uScale, vScale}, 0, Vector2f{0, 0});
+                     SetObjSurface(FrontMaterial);
+                    SubComponent(HANDLE);
+                     RotateMatrixBy(Vector3f{0, 90, 0}, Vector3f{0, 0, 0}, 90);
+                    if (side == - 1) {
+                         MoveMatrixBy(Vector3f{width - 50, doorThickness, height - 140});
+                    } else {
+                         MoveMatrixBy(Vector3f{50, doorThickness, height - 140});
+                    }
+                EndObjGroup('door');
+                 MoveMatrixBy(Vector3f{0, depth, 0});
+            }
+            /* end drawers; */
+            
+        EndObjGroup('wholeGeometry');
+         MoveMatrixBy(Vector3f{ -width / 2, 0, baseHeight});
+    ",
+    "articleNr": "
+        if (ChangeStorage == '4dr') { articleNr = 'CB4D'}
+        if (ChangeStorage == '2dr1f') { articleNr = 'CB2D'}
+        if (ChangeStorage == '2f') { articleNr = 'CB2F'}
+        if (ChangeStorage == 'door') {
+            if (side == - 1) {
+                articleNr = 'CBDL'
+            } else {
+                articleNr = 'CBDR'
+            }
+        }
+    "
+}

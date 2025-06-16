@@ -1,0 +1,78 @@
+{
+    "id": "isdt:rod",
+    "parameters": [
+        {
+            "key": "pin_left",
+            "type": "String",
+            "defaultValue": "end",
+            "visible": false,
+            "visibleInPartList": true,
+            "valueObjects": [
+                {
+                    "value": "no"
+                },
+                {
+                    "value": "end"
+                },
+                {
+                    "value": "full"
+                }
+            ]
+        },
+        {
+            "key": "pin_right",
+            "type": "String",
+            "defaultValue": "end",
+            "visible": false,
+            "visibleInPartList": true,
+            "valueObjects": [
+                {
+                    "value": "no"
+                },
+                {
+                    "value": "end"
+                },
+                {
+                    "value": "full"
+                }
+            ]
+        }
+    ],
+    "geometry": "
+        AddCube(Vector3f{500, 25, 25});
+         SetObjSurface('isdt:gray');
+
+        BeginObjGroup('PINS');
+            if (pin_left == 'end') {
+                AddCylinder(5, 5, 51, 12);
+                 RotateMatrixBy(Vector3f{0, 1, 0}, Vector3f{0, 0, 0}, -90);
+                 MoveMatrixBy(Vector3f{25, 12.5, 12.5});
+                 SetObjSurface('isdt:white');
+            } else if (pin_left == 'full') {
+                AddCylinder(5, 5, 102, 12);
+                 RotateMatrixBy(Vector3f{0, 1, 0}, Vector3f{0, 0, 0}, -90);
+                 MoveMatrixBy(Vector3f{25, 12.5, 12.5});
+                 SetObjSurface('isdt:white');
+            }
+            if (pin_right == 'end') {
+                AddCylinder(5, 5, 51, 12);
+                 RotateMatrixBy(Vector3f{0, 1, 0}, Vector3f{0, 0, 0}, 90);
+                 MoveMatrixBy(Vector3f{500 - 25, 12.5, 12.5});
+                 SetObjSurface('isdt:white');
+            } else if (pin_right == 'full') {
+                AddCylinder(5, 5, 102, 12);
+                 RotateMatrixBy(Vector3f{0, 1, 0}, Vector3f{0, 0, 0}, 90);
+                 MoveMatrixBy(Vector3f{500 - 25, 12.5, 12.5});
+                 SetObjSurface('isdt:white');
+            }
+        EndObjGroup('PINS');
+    ",
+    "debugGeometry": "
+        /* move the pins in debugGeometry so that they are visible, allowing easier checking if they work properly. */
+         SetObjSurface('isdt:magenta');
+         MoveMatrixBy(Vector3f{0, 50, 50});
+    ",
+    "articleNr": "
+        articleNr = 'ROD-' | pin_left | '-' | pin_right;
+    "
+}

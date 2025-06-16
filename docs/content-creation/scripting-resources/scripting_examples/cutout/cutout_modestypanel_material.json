@@ -1,0 +1,49 @@
+{
+    "id": "soulpepper:cutout_modestypanel_material",
+    "labels": {
+        "en": "ModestyPanel Material",
+        "de": "ModestyPanel Material"
+    },
+    "parameters": [
+        {
+            "key": "ModestyMat",
+            "labels": {
+                "en": "Modesty Panel Mat"
+            },
+            "type": "String",
+            "defaultValue": "Wood",
+            "validValues": [
+                "Wood",
+                "Metal"
+            ],
+            "enabled": true,
+            "visible": false,
+            "visibleInPartList": false
+        },
+        {
+            "key": "ModestyLength",
+            "type": "Integer",
+            "defaultValue": 1100,
+            "enabled": true,
+            "visible": false,
+            "visibleInPartList": false
+        }
+    ],
+    "subComponents": [
+        {
+            "internalId": "BACKREF",
+            "componentId": "soulpepper:cutout_modestypanel_material",
+            "numberInPartList": "1"
+        }
+    ],
+    "onUpdate": "",
+    "geometry": "",
+    "articleNr": "
+        if (ModestyMat == 'Wood') {
+            articleNr = 'MPW'
+        }
+        if (ModestyMat == 'Metal') {
+            articleNr = 'MPM'
+        }
+    "
+}

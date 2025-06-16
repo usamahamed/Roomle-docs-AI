@@ -1,0 +1,534 @@
+{
+    "id": "usm:frame",
+    "parameters": [
+        {
+            "key": "width",
+            "labels": {
+                "de": "Breite",
+                "en": "Width"
+            },
+            "type": "Decimal",
+            "unitType": "length",
+            "defaultValue": 750,
+            "validValues": [
+                350,
+                395,
+                750
+            ],
+            "visible": "true"
+        },
+        {
+            "key": "depth",
+            "sort": 10,
+            "global": true,
+            "labels": {
+                "de": "Tiefe",
+                "en": "Depth"
+            },
+            "type": "Decimal",
+            "unitType": "length",
+            "defaultValue": 350,
+            "validValues": [
+                350,
+                500
+            ],
+            "visible": false
+        },
+        {
+            "sort": 10,
+            "key": "height",
+            "labels": {
+                "de": "Höhe",
+                "en": "Height"
+            },
+            "type": "Decimal",
+            "unitType": "length",
+            "defaultValue": 350,
+            "validValues": [
+                100,
+                175,
+                250,
+                350,
+                395
+            ],
+            "visible": "true"
+        },
+        {
+            "key": "elementType",
+            "defaultValue": "no_front",
+            "enabled": true,
+            "labels": {
+                "de": "Fachtyp ändern",
+                "en": "Change elementtype"
+            },
+            "type": "String",
+            "valueObjects": [
+                {
+                    "value": "no_front",
+                    "labels": {
+                        "en": "Without Doors",
+                        "de": "Ohne Tür"
+                    },
+                    "thumbnail": "https://storage.googleapis.com/roomle-catalogs/1e9dbe16-bb11-446a-a28d-1cc42a3c16e4/thumbnails/parameters/elementtype/usm_3.png"
+                },
+                {
+                    "value": "onlyTop",
+                    "labels": {
+                        "en": "Top only",
+                        "de": "Ohne Seitenwände"
+                    },
+                    "thumbnail": "https://storage.googleapis.com/roomle-catalogs/1e9dbe16-bb11-446a-a28d-1cc42a3c16e4/thumbnails/parameters/elementtype/onlyTop.png"
+                },
+                {
+                    "value": "skeleton",
+                    "labels": {
+                        "en": "Without walls",
+                        "de": "Ohne Wände"
+                    },
+                    "thumbnail": "https://storage.googleapis.com/roomle-catalogs/1e9dbe16-bb11-446a-a28d-1cc42a3c16e4/thumbnails/parameters/elementtype/skeleton.png"
+                }
+            ],
+            "visible": true
+        },
+        {
+            "key": "material",
+            "global": true,
+            "labels": {
+                "de": "Verkleidungsfarbe",
+                "en": "Color"
+            },
+            "type": "Material",
+            "defaultValue": "usm:RAL9010",
+            "validGroups": [
+                "usm:metalcolors"
+            ],
+            "visible": "true",
+            "onValueChange": "
+                if (parameter.userTriggeredChange) {
+                    material_rear = material;
+                    material_left = material;
+                    material_right = material;
+                    material_bottom = material;
+                    material_top = material;
+                }
+            "
+        },
+        {
+            "key": "material_rear",
+            "global": true,
+            "labels": {
+                "de": "Verkleidungsfarbe - hinten",
+                "en": "Color - rear"
+            },
+            "type": "Material",
+            "defaultValue": "usm:RAL9010",
+            "validGroups": [
+                "usm:metalcolors"
+            ],
+            "visible": "in(elementType, 'no_front')",
+            "visibleAsGlobal": "in(elementType, 'no_front')"
+        },
+        {
+            "key": "material_left",
+            "labels": {
+                "de": "Verkleidungsfarbe - links",
+                "en": "Color - left"
+            },
+            "type": "Material",
+            "defaultValue": "usm:RAL9010",
+            "validGroups": [
+                "usm:metalcolors"
+            ],
+            "visible": "in(elementType, 'no_front')"
+        },
+        {
+            "key": "material_right",
+            "labels": {
+                "de": "Verkleidungsfarbe - rechts",
+                "en": "Color - right"
+            },
+            "type": "Material",
+            "defaultValue": "usm:RAL9010",
+            "validGroups": [
+                "usm:metalcolors"
+            ],
+            "visible": "in(elementType, 'no_front')"
+        },
+        {
+            "key": "material_top",
+            "labels": {
+                "de": "Verkleidungsfarbe - oben",
+                "en": "Color - top"
+            },
+            "type": "Material",
+            "defaultValue": "usm:RAL9010",
+            "validGroups": [
+                "usm:metalcolors"
+            ],
+            "visible": " in(elementType, 'no_front', 'onlyTop')"
+        },
+        {
+            "key": "material_bottom",
+            "labels": {
+                "de": "Verkleidungsfarbe - unten",
+                "en": "Color - bottom"
+            },
+            "type": "Material",
+            "defaultValue": "usm:RAL9010",
+            "validGroups": [
+                "usm:metalcolors"
+            ],
+            "visible": "in(elementType, 'no_front')"
+        }
+    ],
+    "subComponents": [
+        {
+            "internalId": "HEAD",
+            "componentId": "usm:head",
+            "numberInPartList": "2 * (1 + hasBottomParts + hasLeftParts + hasBottomLeftParts)"
+        },
+        {
+            "internalId": "PIPE_HORIZONTAL",
+            "componentId": "usm:pipe",
+            "assignments": {
+                "length": "width"
+            },
+            "numberInPartList": "2 * (1 + hasBottomParts)"
+        },
+        {
+            "internalId": "PIPE_VERTICAL",
+            "componentId": "usm:pipe",
+            "assignments": {
+                "length": "height"
+            },
+            "numberInPartList": "2 * (1 + hasLeftParts)"
+        },
+        {
+            "internalId": "PIPE_FORWARD",
+            "componentId": "usm:pipe",
+            "assignments": {
+                "length": "depth"
+            },
+            "numberInPartList": "(1 + hasBottomParts + hasLeftParts + hasBottomLeftParts)"
+        },
+        {
+            "internalId": "FOOT",
+            "componentId": "usm:levelingfoot",
+            "numberInPartList": "2 * (1 + hasBottomLeftParts)"
+        },
+        {
+            "internalId": "PANEL_BOTTOM",
+            "componentId": "usm:metalelement",
+            "assignments": {
+                "width": "width",
+                "height": "depth",
+                "colorMaterial": "material_bottom"
+            },
+            "numberInPartList": "(in(elementType, 'no_front'))"
+        },
+        {
+            "internalId": "PANEL_TOP",
+            "componentId": "usm:metalelement",
+            "assignments": {
+                "width": "width",
+                "height": "depth",
+                "colorMaterial": "material_top"
+            },
+            "numberInPartList": "hasOwnTopPanel"
+        },
+        {
+            "internalId": "PANEL_LEFT",
+            "componentId": "usm:metalelement",
+            "assignments": {
+                "width": "depth",
+                "height": "height",
+                "colorMaterial": "material_left"
+            },
+            "numberInPartList": "hasOwnLeftPanel"
+        },
+        {
+            "internalId": "PANEL_RIGHT",
+            "componentId": "usm:metalelement",
+            "assignments": {
+                "width": "depth",
+                "height": "height",
+                "colorMaterial": "material_right"
+            },
+            "numberInPartList": "hasOwnRightPanel"
+        },
+        {
+            "internalId": "PANEL_REAR",
+            "componentId": "usm:metalelement",
+            "assignments": {
+                "width": "width",
+                "height": "height",
+                "colorMaterial": "material_rear"
+            },
+            "numberInPartList": "hasOwnRearPanel"
+        }
+    ],
+    "onUpdate": "
+        if (ifnull(inited, false) == false) {
+            inited = true;
+            hasLeftNeighbour = false;
+            hasRightNeighbour = false;
+            hasTopNeighbour = false;
+            hasBottomNeighbour = false;
+            hasLeftPanel = true;
+            hasRightPanel = true;
+            hasTopPanel = true;
+            hasBottomPanel = true;
+            leftNeighbourHasRightPanel = false;
+            bottomNeighbourHasTopPanel = false;
+            isRoot = true;
+        }
+
+        hasBottomParts = !hasBottomNeighbour;
+        hasLeftParts = !hasLeftNeighbour;
+        hasBottomLeftParts = hasBottomParts && hasLeftParts;
+
+        hasOwnLeftPanel = (!leftNeighbourHasRightPanel) && (in(elementType, 'no_front'));
+        hasOwnRightPanel = in(elementType, 'no_front');
+        hasOwnBottomPanel = (!bottomNeighbourHasTopPanel) && (in(elementType, 'no_front'));
+        hasOwnTopPanel = in(elementType, 'no_front', 'onlyTop');
+        hasOwnRearPanel = in(elementType, 'no_front');
+    ",
+    "geometry": "
+        if (hasLeftParts) {
+            BeginObjGroup();
+                SubComponent('PIPE_VERTICAL');
+                SubComponent('HEAD');
+                 MoveMatrixBy(Vector3f{0, 0, height});
+            EndObjGroup();
+             MoveMatrixBy(Vector3f{ -width / 2, 0, 0});
+            Copy();
+             MoveMatrixBy(Vector3f{0, depth, 0});
+            SubComponent('PIPE_FORWARD');
+             RotateMatrixBy(Vector3f{1, 0, 0}, Vector3f{0, 0, 0}, -90);
+             MoveMatrixBy(Vector3f{ -width / 2, 0, height});
+        }
+        if (hasBottomParts) {
+            BeginObjGroup();
+                SubComponent('HEAD');
+                SubComponent('PIPE_HORIZONTAL');
+                 RotateMatrixBy(Vector3f{0, 1, 0}, Vector3f{0, 0, 0}, -90);
+                SubComponent('FOOT');
+            EndObjGroup();
+             MoveMatrixBy(Vector3f{width / 2, 0, 0});
+            Copy();
+             MoveMatrixBy(Vector3f{0, depth, 0});
+            SubComponent('PIPE_FORWARD');
+             RotateMatrixBy(Vector3f{1, 0, 0}, Vector3f{0, 0, 0}, -90);
+             MoveMatrixBy(Vector3f{width / 2, 0, 0});
+        }
+        if (hasBottomLeftParts) {
+            SubComponent('HEAD');
+             MoveMatrixBy(Vector3f{ -width / 2, 0, 0});
+            Copy();
+             MoveMatrixBy(Vector3f{0, depth, 0});
+            SubComponent('FOOT');
+             MoveMatrixBy(Vector3f{ -width / 2, 0, 0});
+            Copy();
+             MoveMatrixBy(Vector3f{0, depth, 0});
+            SubComponent('PIPE_FORWARD');
+             RotateMatrixBy(Vector3f{1, 0, 0}, Vector3f{0, 0, 0}, -90);
+             MoveMatrixBy(Vector3f{ -width / 2, 0, 0});
+        }
+        BeginObjGroup();
+            SubComponent('HEAD');
+             MoveMatrixBy(Vector3f{width / 2, 0, height});
+            SubComponent('PIPE_HORIZONTAL');
+             RotateMatrixBy(Vector3f{0, 1, 0}, Vector3f{0, 0, 0}, 90);
+             MoveMatrixBy(Vector3f{ -width / 2, 0, height});
+            SubComponent('PIPE_VERTICAL');
+             MoveMatrixBy(Vector3f{width / 2, 0, 0});
+
+        EndObjGroup();
+        Copy();
+         MoveMatrixBy(Vector3f{0, depth, 0});
+        SubComponent('PIPE_FORWARD');
+         RotateMatrixBy(Vector3f{1, 0, 0}, Vector3f{0, 0, 0}, -90);
+         MoveMatrixBy(Vector3f{width / 2, 0, height});
+
+        if (hasOwnRearPanel) {
+            SubComponent('PANEL_REAR');
+             MoveMatrixBy(Vector3f{ -width / 2, 0, 0});
+             RotateMatrixBy(Vector3f{1, 0, 0}, Vector3f{0, 0, 0}, -90);
+        }
+        if (hasOwnLeftPanel) {
+            SubComponent('PANEL_LEFT');
+             RotateMatrixBy(Vector3f{1, 0, 0}, Vector3f{0, 0, 0}, -90);
+             RotateMatrixBy(Vector3f{0, 0, 1}, Vector3f{0, 0, 0}, 90);
+             MoveMatrixBy(Vector3f{ -width / 2, 0, 0});
+        }
+        if (hasOwnRightPanel) {
+            SubComponent('PANEL_RIGHT');
+             RotateMatrixBy(Vector3f{1, 0, 0}, Vector3f{0, 0, 0}, -90);
+             RotateMatrixBy(Vector3f{0, 0, 1}, Vector3f{0, 0, 0}, 90);
+             MoveMatrixBy(Vector3f{width / 2, 0, 0});
+        }
+        if (hasOwnBottomPanel) {
+            SubComponent('PANEL_BOTTOM');
+             MoveMatrixBy(Vector3f{ -width / 2, depth, 0});
+        }
+        if (hasOwnTopPanel) {
+            SubComponent('PANEL_TOP');
+             MoveMatrixBy(Vector3f{ -width / 2, depth, height});
+        }
+    ",
+    "siblings": [
+        {
+            "mask": "horizontalSibling",
+            "position": "{ -width / 2, 0, 50}",
+            "selfAssignments": {
+                "onDock": {
+                    "hasLeftNeighbour": true
+                },
+                "onUnDock": {
+                    "hasLeftNeighbour": false
+                }
+            },
+            "assignmentsOnUpdateSilent": {
+                "height": "height",
+                "material_right": "material_left"
+            },
+            "assignmentScripts": {
+                "onUpdate": "
+                    self.leftNeighbourHasRightPanel = other.hasRightPanel;
+                ",
+                "onUnDock": "
+                    self.leftNeighbourHasRightPanel = false;
+                "
+            }
+        },
+        {
+            "mask": "horizontalSibling",
+            "position": "{width / 2, 0, 50}",
+            "assignmentsOnUpdateSilent": {
+                "height": "height",
+                "material_left": "material_right"
+            },
+            "selfAssignments": {
+                "onDock": {
+                    "hasRightNeighbour": true
+                },
+                "onUnDock": {
+                    "hasRightNeighbour": false
+                }
+            }
+        },
+        {
+            "mask": "verticalSibling",
+            "position": "{0, 0, height}",
+            "assignmentsOnUpdateSilent": {
+                "width": "width",
+                "material_bottom": "material_top"
+            },
+            "selfAssignments": {
+                "onDock": {
+                    "hasTopNeighbour": true
+                },
+                "onUnDock": {
+                    "hasTopNeighbour": false
+                }
+            }
+        },
+        {
+            "mask": "verticalSibling",
+            "position": "{0, 0, 0}",
+            "assignmentsOnUpdateSilent": {
+                "width": "width",
+                "material_top": "material_bottom"
+            },
+            "selfAssignments": {
+                "onDock": {
+                    "hasBottomNeighbour": true
+                },
+                "onUnDock": {
+                    "hasBottomNeighbour": false
+                }
+            },
+            "assignmentScripts": {
+                "onUpdate": "
+                    self.bottomNeighbourHasTopPanel = other.hasTopPanel;
+                ",
+                "onUnDock": "
+                    self.bottomNeighbourHasTopPanel = false;
+                "
+            }
+        }
+    ],
+    "parentDockings": {
+        "points": [
+            {
+                "mask": "gridLeft",
+                "position": "{ -width / 2, 0, 0}",
+                "rotation": "{0, 0, 0}",
+                "condition": "(!hasBottomNeighbour) && ((!connection.isPreview) || (!hasLeftNeighbour))"
+            },
+            {
+                "mask": "gridRight",
+                "position": "{width / 2, 0, 0}",
+                "rotation": "{0, 0, 0}",
+                "condition": "(!hasBottomNeighbour) && ((!connection.isPreview) || (!hasRightNeighbour))"
+            },
+            {
+                "mask": "gridTop",
+                "position": "{0, 0, height}",
+                "rotation": "{0, 0, 0}",
+                "condition": "true"
+            }
+        ]
+    },
+    "childDockings": {
+        "points": [
+            {
+                "mask": "gridLeft",
+                "position": "{width / 2, 0, 0}",
+                "rotation": "{0, 0, 0}",
+                "condition": "true",
+                "selfAssignments": {
+                    "onDock": {
+                        "isRoot": false
+                    },
+                    "onUnDock": {
+                        "isRoot": true
+                    }
+                }
+            },
+            {
+                "mask": "gridRight",
+                "position": "{ -width / 2, 0, 0}",
+                "rotation": "{0, 0, 0}",
+                "condition": "true",
+                "selfAssignments": {
+                    "onDock": {
+                        "isRoot": false
+                    },
+                    "onUnDock": {
+                        "isRoot": true
+                    }
+                }
+            },
+            {
+                "mask": "gridTop",
+                "position": "{0, 0, 0}",
+                "rotation": "{0, 0, 0}",
+                "condition": "true",
+                "selfAssignments": {
+                    "onDock": {
+                        "isRoot": false
+                    },
+                    "onUnDock": {
+                        "isRoot": true
+                    }
+                }
+            }
+        ]
+    },
+    "possibleChildren": [
+        {
+            "componentId": "usm:frame"
+        }
+    ]
+}

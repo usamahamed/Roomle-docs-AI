@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI-Powered Documentation Assistant</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <!--  Syntax Highlighting CSS (Atom One Dark theme) -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css"
+    />
+    <style>
+      body {
+        font-family: 'Inter', sans-serif;
+      }
+      .message-bubble {
+        max-width: 75%;
+      }
+      .user-bubble {
+        background-color: #3b82f6; /* blue-500 */
+        color: white;
+        align-self: flex-end;
+        border-bottom-right-radius: 0.25rem;
+      }
+      .ai-bubble {
+        background-color: #f3f4f6; /* gray-100 */
+        color: #1f2937; /* gray-800 */
+        align-self: flex-start;
+        border-bottom-left-radius: 0.25rem;
+      }
+      /* Styling for code blocks */
+      .ai-bubble pre {
+        background-color: #282c34; /* atom one dark background */
+        color: #abb2bf;
+        padding: 1rem;
+        border-radius: 0.5rem;
+        margin: 0.75rem 0;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+      }
+      .ai-bubble pre code.hljs {
+        padding: 0;
+        background: transparent;
+      }
+      .loader {
+        border: 4px solid #f3f3f3;
+        border-top: 4px solid #3498db;
+        border-radius: 50%;
+        width: 24px;
+        height: 24px;
+        animation: spin 1s linear infinite;
+      }
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+      .sources-container summary {
+        cursor: pointer;
+        font-weight: 500;
+        outline: none;
+      }
+      .source-item {
+        border-left: 3px solid #d1d5db; /* gray-300 */
+        padding-left: 1rem;
+        margin-top: 0.5rem;
+      }
+      .source-content {
+        white-space: pre-wrap;
+        background-color: #f9fafb; /* gray-50 */
+        padding: 0.75rem;
+        border-radius: 0.5rem;
+        margin-top: 0.5rem;
+        font-size: 0.875rem;
+        max-height: 200px;
+        overflow-y: auto;
+      }
+    </style>
+  </head>
+  <body
+    class="bg-gray-100 flex flex-col items-center justify-center min-h-screen"
+  >
+    <div
+      class="w-full max-w-4xl mx-auto bg-white shadow-2xl rounded-2xl flex flex-col h-[90vh]"
+    >
+      <!-- Header -->
+      <header
+        class="bg-gray-800 text-white p-4 rounded-t-2xl flex items-center justify-between shadow-md"
+      >
+        <div>
+          <h1 class="text-2xl font-bold tracking-tight">
+            AI Documentation Assistant
+          </h1>
+          <p class="text-sm text-gray-400">Powered by Gemini & Your Docs</p>
+        </div>
+        <div class="flex items-center space-x-2">
+          <span
+            id="status-indicator"
+            class="h-3 w-3 rounded-full bg-yellow-400"
+            title="Connecting..."
+          ></span>
+          <span id="status-text" class="text-sm text-gray-300"
+            >Connecting...</span
+          >
+        </div>
+      </header>
+
+      <!-- Chat Area -->
+      <main
+        id="chat-area"
+        class="flex-1 p-6 overflow-y-auto bg-gray-50 space-y-4"
+      >
+        <!-- AI Welcome Message -->
+        <div class="flex justify-start">
+          <div class="message-bubble ai-bubble p-4 rounded-lg shadow">
+            <p class="font-medium">Hello!</p>
+            <p>
+              I'm your AI assistant. I've been trained on your company's
+              documentation. Ask me anything about it!
+            </p>
+          </div>
+        </div>
+        <!-- Chat messages will be appended here -->
+      </main>
+
+      <!-- Input Area -->
+      <footer class="p-4 bg-white border-t border-gray-200 rounded-b-2xl">
+        <form id="prompt-form" class="flex items-center space-x-4">
+          <input
+            type="text"
+            id="prompt-input"
+            placeholder="Ask a question about your documentation..."
+            class="flex-1 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none transition"
+            autocomplete="off"
+          />
+          <button
+            type="submit"
+            id="submit-button"
+            class="bg-blue-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition flex items-center justify-center disabled:bg-blue-300 disabled:cursor-not-allowed"
+          >
+            <span>Send</span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5 ml-2"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.428A1 1 0 0010 16h.008a1 1 0 00.724-.308l5-5.001a1 1 0 00-1.31-1.512l-3.356 3.356a1 1 0 01-1.414-1.414l3.356-3.356a1 1 0 00-1.414-1.414l-4.243 4.243V8.707a1 1 0 00-2 0v5.586l-1.293-1.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l9-9a1 1 0 00-.196-1.425l-9-7z"
+              />
+            </svg>
+          </button>
+        </form>
+      </footer>
+    </div>
+
+    <!-- Syntax Highlighting JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/javascript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/json.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/typescript.min.js"></script>
+    <script>
+      hljs.highlightAll();
+    </script>
+
+    <script>
+      const form = document.getElementById('prompt-form');
+      const input = document.getElementById('prompt-input');
+      const chatArea = document.getElementById('chat-area');
+      const submitButton = document.getElementById('submit-button');
+      const statusIndicator = document.getElementById('status-indicator');
+      const statusText = document.getElementById('status-text');
+
+      const API_URL = '';
+
+      const setStatus = (status, color) => {
+        statusIndicator.className = `h-3 w-3 rounded-full ${color}`;
+        statusText.textContent = status;
+      };
+
+      const checkBackendStatus = async () => {
+        setStatus('Connecting...', 'bg-yellow-400');
+        try {
+          const response = await fetch(`${API_URL}/api/status`);
+          if (!response.ok) throw new Error('Backend not responding');
+          const data = await response.json();
+          if (data.status === 'ready' && data.chainInitialized) {
+            setStatus('Ready', 'bg-green-500');
+          } else {
+            setStatus('Server Ready (Initializing...)', 'bg-yellow-500');
+            addMessage(
+              "Warning: The server is running, but the Q&A chain isn't ready. Please check the backend logs for errors.",
+              'ai',
+              true,
+            );
+          }
+        } catch (error) {
+          setStatus('Error', 'bg-red-500');
+          addMessage(
+            "Could not connect to the backend server. Please ensure it's running on " +
+              API_URL,
+            'ai',
+            true,
+          );
+          console.error('Backend status check failed:', error);
+        }
+      };
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const promptText = input.value.trim();
+        if (promptText === '') return;
+
+        addMessage(promptText, 'user');
+        input.value = '';
+
+        submitButton.disabled = true;
+        addLoader();
+
+        try {
+          const response = await fetch(`${API_URL}/api/prompt`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ prompt: promptText }),
+          });
+
+          if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.error || 'The server returned an error.');
+          }
+
+          const data = await response.json();
+          removeLoader();
+
+          addMessage(data.answer, 'ai');
+          if (data.context && data.context.length > 0) {
+            displaySources(data.context);
+          }
+        } catch (error) {
+          removeLoader();
+          addMessage(
+            `Oops! Something went wrong: ${error.message}`,
+            'ai',
+            true,
+          );
+          console.error('Error fetching response:', error);
+        } finally {
+          submitButton.disabled = false;
+          input.focus();
+        }
+      });
+
+      // *** UPDATED FUNCTION to handle code blocks ***
+      function addMessage(text, sender, isError = false) {
+        const bubbleSide = sender === 'user' ? 'justify-end' : 'justify-start';
+        const bubbleType = sender === 'user' ? 'user-bubble' : 'ai-bubble';
+        const errorClass = isError ? 'bg-red-100 text-red-800' : '';
+
+        const messageContainer = document.createElement('div');
+        messageContainer.className = `flex ${bubbleSide}`;
+
+        const bubble = document.createElement('div');
+        bubble.className = `message-bubble p-4 rounded-lg shadow ${bubbleType} ${errorClass}`;
+
+        // Parse the text for code blocks
+        const parts = (text || '').split(/(```[\s\S]*?```)/g);
+
+        parts.forEach((part) => {
+          if (part.startsWith('```') && part.endsWith('```')) {
+            const codeBlock = part.slice(3, -3); // Remove fences
+            const firstLineEnd = codeBlock.indexOf('\n');
+            const language = codeBlock.substring(0, firstLineEnd).trim();
+            const code = codeBlock.substring(firstLineEnd + 1).trim();
+
+            const pre = document.createElement('pre');
+            const codeEl = document.createElement('code');
+
+            if (language) {
+              codeEl.className = `language-${language}`;
+            }
+            codeEl.textContent = code; // Use textContent to prevent HTML injection
+
+            pre.appendChild(codeEl);
+            bubble.appendChild(pre);
+
+            // Tell highlight.js to format this new element
+            hljs.highlightElement(codeEl);
+          } else if (part.trim() !== '') {
+            const p = document.createElement('p');
+            p.innerHTML = part.replace(/\n/g, '<br>');
+            bubble.appendChild(p);
+          }
+        });
+
+        if (bubble.hasChildNodes()) {
+          messageContainer.appendChild(bubble);
+          chatArea.appendChild(messageContainer);
+          chatArea.scrollTop = chatArea.scrollHeight;
+        }
+      }
+
+      function displaySources(context) {
+        const sourcesContainer = document.createElement('div');
+        sourcesContainer.className = 'flex justify-start';
+
+        const bubble = document.createElement('div');
+        bubble.className =
+          'message-bubble p-4 rounded-lg shadow ai-bubble sources-container';
+
+        const details = document.createElement('details');
+        const summary = document.createElement('summary');
+        summary.textContent = `Sources (${context.length})`;
+        details.appendChild(summary);
+
+        context.forEach((source) => {
+          const sourceItem = document.createElement('div');
+          sourceItem.className = 'source-item';
+
+          const sourcePath = document.createElement('div');
+          sourcePath.className = 'font-mono text-xs text-gray-500';
+          sourcePath.textContent =
+            source.metadata.source.split('docs/')[1] || source.metadata.source;
+
+          const sourceContent = document.createElement('pre');
+          sourceContent.className = 'source-content text-gray-700';
+          sourceContent.textContent = source.pageContent;
+
+          sourceItem.appendChild(sourcePath);
+          sourceItem.appendChild(sourceContent);
+          details.appendChild(sourceItem);
+        });
+
+        bubble.appendChild(details);
+        sourcesContainer.appendChild(bubble);
+        chatArea.appendChild(sourcesContainer);
+        chatArea.scrollTop = chatArea.scrollHeight;
+      }
+
+      function addLoader() {
+        const loaderContainer = document.createElement('div');
+        loaderContainer.id = 'loader-container';
+        loaderContainer.className = 'flex justify-start';
+
+        const bubble = document.createElement('div');
+        bubble.className =
+          'message-bubble ai-bubble p-4 rounded-lg shadow flex items-center';
+
+        const loader = document.createElement('div');
+        loader.className = 'loader';
+
+        bubble.appendChild(loader);
+        loaderContainer.appendChild(bubble);
+        chatArea.appendChild(loaderContainer);
+        chatArea.scrollTop = chatArea.scrollHeight;
+      }
+
+      function removeLoader() {
+        const loader = document.getElementById('loader-container');
+        if (loader) {
+          loader.remove();
+        }
+      }
+
+      document.addEventListener('DOMContentLoaded', checkBackendStatus);
+    </script>
+  </body>
+</html>

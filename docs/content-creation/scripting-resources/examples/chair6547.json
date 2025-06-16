@@ -1,0 +1,78 @@
+{
+    "id": "isdt:chair6547",
+    "parameters": [
+        {
+            "key": "material_upholstery",
+            "type": "Material",
+            "labels": {
+                "en": "Cover color",
+                "de": "Bezugsfarbe"
+            },
+            "visible": true,
+            "visibleInPartList": true,
+            "validValues": [
+                "isdt:fabric_blue",
+                "isdt:fabric_beige",
+                "isdt:fabric_curry"
+            ]
+        },
+        {
+            "key": "material_base",
+            "type": "Material",
+            "labels": {
+                "en": "Base color",
+                "de": "Gestellfarbe"
+            },
+            "visible": true,
+            "visibleInPartList": true,
+            "validValues": [
+                "isdt:surface_chrome",
+                "isdt:surface_black"
+            ]
+        }
+    ],
+    "geometry": "
+        AddExternalMesh('isdt:chair6547_Corpus594SE1', Vector3f{820, 886.4, 838.3}, Vector3f{ -410, -455.1, 240.2});
+         SetObjSurface(material_upholstery);
+
+        AddExternalMesh('isdt:chair6547_Corpus594SEseam', Vector3f{820.2, 196.8, 70.5}, Vector3f{ -410.1, -412.9, 831.1});
+         SetObjSurface('isdt:fabric_grey');
+
+        AddExternalMesh('isdt:chair6547_Corpus594SE', Vector3f{817.8, 902.2, 793.4}, Vector3f{ -408.9, -447.1, 295});
+         SetObjSurface(material_upholstery);
+
+        AddExternalMesh('isdt:chair6547_Corpus594SEzipper', Vector3f{4.4, 355.5, 580.9}, Vector3f{ -2.5, -410.9, 249.6});
+         SetObjSurface('isdt:black_plastic');
+
+        AddExternalMesh('isdt:chair6547_Corpus594SE2', Vector3f{553.6, 609.2, 161.1}, Vector3f{ -275, -154.1, 312.8});
+         SetObjSurface(material_upholstery);
+
+        AddExternalMesh('isdt:chair6547_Gilders594SE', Vector3f{567.4, 629.4, 13}, Vector3f{ -285.9, -208.7, -2});
+         SetObjSurface('isdt:black_plastic');
+
+        AddExternalMesh('isdt:chair6547_Fourfoodmetal594SE', Vector3f{570.5, 631, 297.5}, Vector3f{ -287.5, -208.8, 4.6});
+         SetObjSurface(material_base);
+    ",
+    "articleNr": "
+        articleNr = 'error1';
+        if (material_base == 'isdt:surface_black') {
+            articleNr = 'error2';
+            if (material_upholstery == 'isdt:fabric_beige') {
+                articleNr = '6547.435.653';
+            } else if (material_upholstery == 'isdt:fabric_blue') {
+                articleNr = '6547.435.435';
+            } else if (material_upholstery == 'isdt:fabric_curry') {
+                articleNr = '6547.435.766';
+            }
+        } else if (material_base == 'isdt:surface_chrome') {
+            articleNr = 'error3';
+            if (material_upholstery == 'isdt:fabric_beige') {
+                articleNr = '6547.435.286';
+            } else if (material_upholstery == 'isdt:fabric_blue') {
+                articleNr = '6547.435.651';
+            } else if (material_upholstery == 'isdt:fabric_curry') {
+                articleNr = '6547.435.562';
+            }
+        }
+    "
+}

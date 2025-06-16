@@ -1,0 +1,2 @@
+# RoomleCatalog.framework - missing
+

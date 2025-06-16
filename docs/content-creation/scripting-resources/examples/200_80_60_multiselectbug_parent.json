@@ -1,0 +1,48 @@
+{
+    "id": "demoCatalogId:example_multiselectbug_parent",
+    "parameters": [
+        {
+            "key": "width",
+            "type": "Decimal",
+            "unitType": "length",
+            "defaultValue": "1850",
+            "validValues": [
+                "1600",
+                "1850",
+                "2100"
+            ],
+            "enabled": true,
+            "visible": true,
+            "visibleInPartList": true
+        }
+    ],
+    "geometry": "
+        if (width == 1600) { AddExternalMesh('demoCatalogId:sofa_160', Vector3f{1600, 1000, 770}, Vector3f{ -800, 0, 50}); }
+        if (width == 1850) { AddExternalMesh('demoCatalogId:sofa_185', Vector3f{1850, 1000, 770}, Vector3f{ -925, 0, 50}); }
+        if (width == 2100) { AddExternalMesh('demoCatalogId:sofa_210', Vector3f{2100, 1000, 770}, Vector3f{ -1050, 0, 50}); }
+         SetObjSurface('isdt:white');
+
+        BeginObjGroup();
+            AddCylinder(20, 20, 50, 12);
+             SetObjSurface('isdt:black');
+             MoveMatrixBy(Vector3f{(width / 2 - 100), 100, 0});
+            Copy();
+             MoveMatrixBy(Vector3f{0, 800, 0});
+        EndObjGroup();
+        Copy();
+         MoveMatrixBy(Vector3f{ -width + 200, 0, 0});
+    ",
+    "parentDockings": {
+        "points": [
+            {
+                "mask": "stool",
+                "position": "{0, 1200, 0}"
+            }
+        ]
+    },
+    "possibleChildren": [
+        {
+            "componentId": "demoCatalogId:example_multiselectbug_child"
+        }
+    ]
+}

@@ -1,0 +1,211 @@
+{
+    "id": "rolfbenz:freistil138_master",
+    "parameters": [
+        {
+            "key": "width",
+            "type": "Integer",
+            "sort": 220,
+            "labels": {
+                "en": "Width",
+                "de": "Breite"
+            },
+            "defaultValue": "760",
+            "unitType": "length",
+            "enabled": "false",
+            "visible": "false",
+            "visibleInPartList": "true"
+        },
+        {
+            "key": "depth",
+            "type": "Integer",
+            "sort": 230,
+            "labels": {
+                "en": "Depth",
+                "de": "Tiefe"
+            },
+            "defaultValue": "830",
+            "unitType": "length",
+            "enabled": "false",
+            "visible": "false",
+            "visibleInPartList": "true"
+        },
+        {
+            "key": "seatingHeight",
+            "type": "Decimal",
+            "sort": 240,
+            "labels": {
+                "en": "Seat height",
+                "de": "Sitzhöhe"
+            },
+            "defaultValue": "440",
+            "unitType": "length",
+            "enabled": "false",
+            "visible": "false",
+            "visibleInPartList": "true"
+        },
+        {
+            "key": "Gewicht",
+            "type": "String",
+            "sort": 280,
+            "labels": {
+                "en": "Weight",
+                "de": "Gewicht"
+            },
+            "defaultValue": "17 kg",
+            "enabled": "false",
+            "visible": "false",
+            "visibleInPartList": "true"
+        },
+        {
+            "key": "modelNameLong",
+            "type": "String",
+            "sort": 10,
+            "labels": {
+                "en": "Long model designations",
+                "de": "Modellbezeichnung lang"
+            },
+            "enabled": "false",
+            "visible": "false",
+            "visibleInPartList": "true",
+            "valueObjects": [
+                {
+                    "value": "sessel",
+                    "labels": {
+                        "en": "Armchair",
+                        "de": "Sessel"
+                    },
+                    "condition": ""
+                }
+            ]
+        },
+        {
+            "key": "modelNameShortDE",
+            "type": "String",
+            "sort": 20,
+            "labels": {
+                "en": "Short model designations",
+                "de": "Modellbezeichnung kurz"
+            },
+            "defaultValue": "SE 138",
+            "enabled": "false",
+            "visible": "false",
+            "visibleInPartList": "true"
+        },
+        {
+            "key": "modelNumber",
+            "type": "String",
+            "sort": 30,
+            "labels": {
+                "en": "Model Number",
+                "de": "Modellnummer"
+            },
+            "defaultValue": "0001380180",
+            "enabled": "false",
+            "visible": "false",
+            "visibleInPartList": "true"
+        },
+        {
+            "key": "Stoffbedarf",
+            "type": "String",
+            "sort": 430,
+            "labels": {
+                "en": "Fabric requirements (for 1,40 m wide)",
+                "de": "Stoffbedarf (bei 1,40 m Stoffbreite)"
+            },
+            "defaultValue": "2,6 m",
+            "enabled": "false",
+            "visible": "false",
+            "visibleInPartList": "true"
+        },
+        {
+            "key": "material",
+            "group": "materials",
+            "type": "Material",
+            "sort": 410,
+            "labels": {
+                "de": "Bezug",
+                "en": "Cover"
+            },
+            "defaultValue": "rolfbenz:1026",
+            "enabled": "true",
+            "visible": "true",
+            "validValues": [
+                "rolfbenz:1026",
+                "rolfbenz:1030",
+                "rolfbenz:1031",
+                "rolfbenz:1032"
+            ]
+        }
+    ],
+    "onUpdate": "
+        if (ifnull(inited, false) == false) {
+            inited = true;
+            isRightChild = 0;
+            isLeftChild = 0;
+            gapSize = 400;
+        }
+    ",
+    "label": "
+        label = 'Armchair';
+        if (language == 'de') { label = 'Sessel'; }
+    ",
+    "geometry": "
+        BeginObjGroup();
+            AddExternalMesh('rolfbenz:freistil138_se_76x83', Vector3f{764.4, 840.6, 598}, Vector3f{ -382.2, -420.3, 209.5});
+            AddExternalMesh('rolfbenz:freistil138_se_76x83_seam', Vector3f{756.9, 832.5, 574.8}, Vector3f{ -378.4, -414.9, 212.5});
+            AddExternalMesh('rolfbenz:freistil138_se_76x83_zip_fastener02', Vector3f{16, 201.6, 488.1}, Vector3f{ -7.9, -411, 212.4});
+            AddExternalMesh('rolfbenz:freistil138_se_76x83_zip_fastener01', Vector3f{6.4, 201.3, 492}, Vector3f{ -2.7, -412.2, 211.6});
+        EndObjGroup();
+         SetObjSurface(material);
+         MoveMatrixBy(Vector3f{0, 0, -2});
+        AddExternalMesh('rolfbenz:freistil138_se_76x83_legs', Vector3f{528.7, 634.1, 275.8}, Vector3f{ -263.9, -265.6, 0});
+         SetObjSurface('rolfbenz:leg_tiefschwarz');
+    ",
+    "parentDockings": {
+        "points": [
+            {
+                "mask": "leftGap",
+                "position": "{ -width - gapSize, 0, 0}",
+                "condition": "isLeftChild == 0",
+                "assignmentsOnDock": {
+                    "isRightChild": "1"
+                },
+                "assignmentsOnUnDock": {
+                    "isRightChild": "0"
+                }
+            },
+            {
+                "mask": "rightGap",
+                "position": "{width + gapSize, 0, 0}",
+                "condition": "isRightChild == 0",
+                "assignmentsOnDock": {
+                    "isLeftChild": "1"
+                },
+                "assignmentsOnUnDock": {
+                    "isLeftChild": "0"
+                }
+            }
+        ]
+    },
+    "childDockings": {
+        "points": [
+            {
+                "mask": "leftGap",
+                "position": "{0, 0, 0}"
+            },
+            {
+                "mask": "rightGap",
+                "position": "{0, 0, 0}"
+            }
+        ]
+    },
+    "possibleChildren": [
+        {
+            "itemId": "rolfbenz:freistil138_armchair",
+            "condition": "true"
+        }
+    ],
+    "articleNr": "
+        articleNr = modelNumber;
+    "
+}

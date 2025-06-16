@@ -1,0 +1,55 @@
+{
+    "id": "isdt:example_externalcomputation",
+    "parameters": [
+        {
+            "key": "articleNumber",
+            "type": "String",
+            "defaultValue": "value",
+            "validValues": [
+                "771.005.120",
+                "771.005.130",
+                "771.005.140",
+                "771.005.150"
+            ],
+            "visible": true,
+            "visibleInPartList": false
+        }
+    ],
+    "subComponents": [
+        {
+            "internalId": "backreference",
+            "componentId": "isdt:example_externalcomputation",
+            "numberInPartList": "1",
+            "assignments": {
+                "articleNumber": "articleNumber"
+            }
+        },
+        {
+            "internalId": "partlist",
+            "componentId": "isdt:example_partlistpattern",
+            "numberInPartList": "0",
+            "assignments": {
+                "articleNumber": "articleNumber"
+            },
+            "active": true,
+            "supersedings": [
+                {
+                    "type": "parameter",
+                    "key": "width"
+                },
+                {
+                    "type": "parameter",
+                    "key": "height"
+                },
+                {
+                    "type": "parameter",
+                    "key": "depth"
+                }
+            ]
+        }
+    ],
+    "geometry": "
+        AddCube(Vector3f{width, depth, height});
+         SetObjSurface('isdt:black');
+    "
+}

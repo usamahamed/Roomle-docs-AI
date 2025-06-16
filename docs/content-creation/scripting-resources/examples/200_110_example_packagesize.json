@@ -1,0 +1,40 @@
+{
+    "id": "demoCatalogId:example_packagesize",
+    "parameters": [
+        {
+            "key": "count",
+            "defaultValue": 0,
+            "type": "Integer",
+            "validRange": {
+                "valueFrom": 0,
+                "valueTo": 100,
+                "step": 1
+            },
+            "enabled": true,
+            "visible": true,
+            "visibleInPartList": true
+        }
+    ],
+    "subComponents": [
+        {
+            "internalId": "SELF",
+            "componentId": "demoCatalogId:example_packagesize",
+            "numberInPartList": "count"
+        }
+    ],
+    "packageSizes": [
+        1,
+        5,
+        10
+    ],
+    "articleNr": "
+        if (packageSize == 1) { articleNr = '120.079.031'; }
+        if (packageSize == 5) { articleNr = '120.079.785'; }
+        if (packageSize == 10) { articleNr = '120.079.310'; }
+    ",
+    "label": "
+        if (articleNr == '120.079.031') { label = 'example_packageSize'; }
+        if (articleNr == '120.079.785') { label = 'example_packageSize' | ', blister of 5'; }
+        if (articleNr == '120.079.310') { label = 'example_packageSize' | ', box of 10'; }
+    "
+}

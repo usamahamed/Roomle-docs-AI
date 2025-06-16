@@ -1,0 +1,15 @@
+{
+    "basecolor": {
+        "b": 0.9,
+        "g": 0.9,
+        "r": 0.9
+    },
+    "roughness": 0.85,
+    "metallic": 0,
+    "alpha": 1.0,
+    "transmission": 1.0,
+    "transmissionIOR": 1.52,
+    "alphaCutoff": 0.5,
+    "doubleSided": true,
+    "occlusion": 1.0
+}

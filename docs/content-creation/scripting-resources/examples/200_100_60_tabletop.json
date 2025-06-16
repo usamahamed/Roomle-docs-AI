@@ -1,0 +1,259 @@
+{
+    "id": "demoCatalogId:example_tablewithcableholes",
+    "parameters": [
+        {
+            "key": "width",
+            "type": "Decimal",
+            "unitType": "length",
+            "labels": {
+                "en": "Width",
+                "de": "Breite"
+            },
+            "visible": "true",
+            "enabled": "true",
+            "visibleInPartList": "true",
+            "sort": 10,
+            "defaultValue": 1400,
+            "validValues": [
+                1400,
+                1600,
+                1800,
+                2000,
+                2200
+            ]
+        },
+        {
+            "key": "depth",
+            "type": "Decimal",
+            "unitType": "length",
+            "labels": {
+                "en": "Depth",
+                "de": "Tiefe"
+            },
+            "visible": "true",
+            "enabled": "true",
+            "visibleInPartList": "true",
+            "sort": 20,
+            "defaultValue": 800,
+            "validValues": [
+                800,
+                900,
+                1000
+            ]
+        },
+        {
+            "key": "height",
+            "type": "Decimal",
+            "unitType": "length",
+            "labels": {
+                "en": "Height",
+                "de": "Höhe"
+            },
+            "visible": "false",
+            "enabled": "false",
+            "visibleInPartList": "true",
+            "sort": 25,
+            "defaultValue": 700,
+            "validValues": [
+                700
+            ]
+        },
+        {
+            "key": "woodType",
+            "type": "Material",
+            "labels": {
+                "en": "Wood type",
+                "de": "Holzart"
+            },
+            "visible": "true",
+            "enabled": "true",
+            "visibleInPartList": "true",
+            "sort": 40,
+            "defaultValue": "isdt:surface_oak",
+            "validValues": [
+                "isdt:surface_oak"
+            ]
+        }
+    ],
+    "subComponents": [
+        {
+            "internalId": "cableHole1",
+            "componentId": "demoCatalogId:example_rescalablehole",
+            "assignments": {
+                "uOffset": "uOffset1",
+                "vOffset": "vOffset1",
+                "leftX": "- holeOffsetX / 2",
+                "rightX": "holeOffsetX / 2",
+                "rearY": "- holeOffsetY / 2",
+                "frontY": "holeOffsetY / 2",
+                "diameter": "65",
+                "height": "tableTopWidth",
+                "surface_quad": "woodType",
+                "surface_hole": "isdt:black"
+            }
+        },
+        {
+            "internalId": "cableHole2",
+            "componentId": "demoCatalogId:example_rescalablehole",
+            "assignments": {
+                "uOffset": "uOffset2",
+                "vOffset": "vOffset1",
+                "leftX": "- holeOffsetX / 2",
+                "rightX": "holeOffsetX / 2",
+                "rearY": "- holeOffsetY / 2",
+                "frontY": "holeOffsetY / 2",
+                "diameter": "65",
+                "height": "tableTopWidth",
+                "surface_quad": "woodType",
+                "surface_hole": "isdt:black"
+            }
+        },
+        {
+            "internalId": "cableHole3",
+            "componentId": "demoCatalogId:example_rescalablehole",
+            "assignments": {
+                "uOffset": "uOffset3",
+                "vOffset": "vOffset1",
+                "leftX": "- holeOffsetX / 2",
+                "rightX": "holeOffsetX / 2",
+                "rearY": "- holeOffsetY / 2",
+                "frontY": "holeOffsetY / 2",
+                "diameter": "65",
+                "height": "tableTopWidth",
+                "surface_quad": "woodType",
+                "surface_hole": "isdt:black"
+            }
+        }
+    ],
+    "onUpdate": "
+        if (ifnull(inited, false) == false) {
+            inited = true;
+            tableTopWidth = 20;
+            tableTopDepth = 800;
+            tableTopFrameOffset = 1;
+            tableTopOffset = 0;
+            outletOffset = 100;
+            holeOffsetX = 105;
+            holeOffsetY = 105;
+            cornerBoardWidth = 60;
+            cornerBoardDepth = 105;
+            frameTextureOffset = 0;
+            tableTopOffset = 105;
+        }
+
+        /* compute uv offsets for holes 1,2,3 */
+        uOffset1 = 112.5;
+        vOffset2 = -32.5;
+        if (width == '1400') {
+            uOffset2 = -101;
+            uOffset3 = -314.5;
+        }
+        if (width == '1600') {
+            uOffset2 = -1;
+            uOffset3 = -114.5;
+        }
+        if (width == '1800') {
+            uOffset2 = 99;
+            uOffset3 = 85.5;
+        }
+        if (width == '2000') {
+            uOffset2 = 199;
+            uOffset3 = 285.5;
+        }
+        if (width == '2200') {
+            uOffset2 = 299;
+            uOffset3 = -314.5;
+        }
+    ",
+    "geometry": "
+        BeginObjGroup(tableTop);
+            AddCube(Vector3f{width - tableTopFrameOffset * 2, depth - tableTopOffset - tableTopFrameOffset * 2, tableTopWidth}, Vector2f{1, 1}, 0, Vector2f{0, tableTopDepth - depth + tableTopFrameOffset * 2}, 0);
+             MoveMatrixBy(Vector3f{tableTopFrameOffset, tableTopOffset + tableTopFrameOffset, height - tableTopWidth});
+             SetObjSurface(woodType);
+        EndObjGroup(tableTop);
+
+        BeginObjGroup('TABLE_TOP_FRAME');
+            AddPlainCube(Vector3f{width, 1, tableTopWidth});
+             MoveMatrixBy(Vector3f{0, 0, height - tableTopWidth});
+
+            AddPlainCube(Vector3f{width, 1, tableTopWidth});
+             MoveMatrixBy(Vector3f{0, depth - 1, height - tableTopWidth});
+
+            AddCube(Vector3f{1, tableTopWidth, depth - tableTopFrameOffset * 2}, Vector2f{1, 1}, 0, Vector2f{ -43, tableTopDepth - depth + 21}, 0);
+             MoveMatrixBy(Vector3f{0, depth, height - tableTopWidth + tableTopFrameOffset});
+             RotateMatrixBy(Vector3f{1, 0, 0}, Vector3f{0, depth, height - tableTopWidth}, 90);
+
+            if (width == '1400') {
+                frameTextureOffset = -221;
+            }
+            if (width == '1600') {
+                frameTextureOffset = -21;
+            }
+            if (width == '1800') {
+                frameTextureOffset = 179;
+            }
+            if (width == '2000') {
+                frameTextureOffset = 379;
+            }
+            if (width == '2200') {
+                frameTextureOffset = 579;
+            }
+
+            AddCube(Vector3f{1, tableTopWidth, depth - tableTopFrameOffset * 2}, Vector2f{1, 1}, 0, Vector2f{frameTextureOffset, tableTopDepth - depth + 21}, 0);
+             RotateMatrixBy(Vector3f{0, 0, 1}, Vector3f{0, 0, 0}, 90);
+             RotateMatrixBy(Vector3f{1, 0, 0}, Vector3f{0, 0, 0}, 90);
+             MoveMatrixBy(Vector3f{width, depth - tableTopFrameOffset, height});
+             RotateMatrixBy(Vector3f{0, 1, 0}, Vector3f{width, depth - tableTopFrameOffset, height}, 270);
+        EndObjGroup('TABLE_TOP_FRAME');
+         SetObjSurface('isdt:black');
+
+
+        BeginObjGroup('CABLE_HOLES');
+            SubComponent('cableHole1');
+             MoveMatrixBy(Vector3f{holeOffsetX / 2 + tableTopFrameOffset + cornerBoardWidth, holeOffsetX / 2 + tableTopFrameOffset, height - tableTopWidth});
+            SubComponent('cableHole3');
+             MoveMatrixBy(Vector3f{width - tableTopFrameOffset - cornerBoardWidth - holeOffsetX / 2, holeOffsetX / 2 + tableTopFrameOffset, height - tableTopWidth});
+
+            /* LEFT CORNER BOARD */
+            AddCube(Vector3f{cornerBoardWidth, cornerBoardDepth, tableTopWidth}, Vector2f{1, 1}, 0, Vector2f{0, -holeOffsetY}, 0);
+             MoveMatrixBy(Vector3f{tableTopFrameOffset, tableTopFrameOffset, height - tableTopWidth});
+             SetObjSurface(woodType);
+
+            /* RIGHT CORNER BOARD */
+            AddCube(Vector3f{cornerBoardWidth, cornerBoardDepth, tableTopWidth}, Vector2f{1, 1}, 0, Vector2f{width - cornerBoardWidth - tableTopFrameOffset * 2, -holeOffsetY}, 0);
+             MoveMatrixBy(Vector3f{width - cornerBoardWidth - tableTopFrameOffset, tableTopFrameOffset, height - tableTopWidth});
+             SetObjSurface(woodType);
+
+
+            SubComponent('cableHole2');
+             MoveMatrixBy(Vector3f{width / 2, holeOffsetX / 2 + tableTopFrameOffset, height - tableTopWidth});
+
+            /* LEFT BOARD */
+            AddCube(Vector3f{width / 2 - holeOffsetX * 1.5 - cornerBoardWidth - tableTopFrameOffset, holeOffsetX, tableTopWidth}, Vector2f{1, 1}, 0, Vector2f{165, -holeOffsetY}, 0);
+             MoveMatrixBy(Vector3f{holeOffsetX + tableTopFrameOffset + cornerBoardWidth, tableTopFrameOffset, height - tableTopWidth});
+             SetObjSurface(woodType);
+
+            /* RIGHT BOARD */
+            AddCube(Vector3f{width / 2 - holeOffsetX * 1.5 - cornerBoardWidth - tableTopFrameOffset, holeOffsetX, tableTopWidth}, Vector2f{1, 1}, 0, Vector2f{width / 2 + holeOffsetX / 2 - tableTopFrameOffset, -holeOffsetY}, 0);
+             MoveMatrixBy(Vector3f{width / 2 + holeOffsetX / 2, tableTopFrameOffset, height - tableTopWidth});
+             SetObjSurface(woodType);
+
+        EndObjGroup('CABLE_HOLES');
+
+
+        if (cableOutletType == '2') {
+            BeginObjGroup('CABLE_OUTLET');
+                SubComponent('cableOutlet');
+                 MoveMatrixBy(Vector3f{outletOffset, outletOffset / 2, height + 0.2});
+                SubComponent('cableOutlet');
+                 MoveMatrixBy(Vector3f{width - outletOffset, outletOffset / 2, height + 0.2});
+                if (outletCount == '3') {
+                    SubComponent('cableOutletBig');
+                     MoveMatrixBy(Vector3f{width / 2, outletOffset / 2, height + 0.2});
+                }
+            EndObjGroup('CABLE_OUTLET');
+             SetObjSurface(outletColor);
+        }
+    ",
+    "articleNr": ""
+}

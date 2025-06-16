@@ -1,0 +1,1075 @@
+{
+    "activeGroupInView": {
+        "body": [
+            "activeGroupInView()"
+        ],
+        "description": "activeGroupInView() : string\nreturns current group key",
+        "prefix": "activeGroupInView"
+    },
+    "AddCube": {
+        "body": [
+            "AddCube(Vector3f{${1:1000, 1000, 1000}});"
+        ],
+        "description": "<geometry>\nAdd Cube\nsize : Vector3f",
+        "prefix": "AddCube"
+    },
+    "AddCubeUVs": {
+        "body": [
+            "AddCube(Vector3f{${1:1000, 1000, 1000}}, Vector2f{1, 1}, 0, Vector2f{0, 0}, 2);"
+        ],
+        "description": "<geometry>\nAdd Cube with UV settings and bevel\nsize : Vector3f\n*uvScale : Vector2f\n*uvRotation : float\n*uvOffset : Vector2f\n**bevelSize : float",
+        "prefix": "AddCubeWithUvSettingsAndBevel"
+    },
+    "AddCylinder": {
+        "body": [
+            "AddCylinder(1000, 1000, 2000, 16);"
+        ],
+        "description": "<geometry>\nAdd Cylinder\nradiusBottom : float\nradiusTop : float\ncircleSegments : float",
+        "prefix": "AddCylinder"
+    },
+    "AddCylinderUVs": {
+        "body": [
+            "AddCylinder(1000, 1000, 2000, 16, Vector2f{1, 1}, 0, Vector2f{0, 0}, 2);"
+        ],
+        "description": "<geometry>\nAdd Cylinder with UV settings and bevel\nradiusBottom : float\nradiusTop : float\ncircleSegments : float\n*uvScale : Vector2f\n*uvRotation : float\n*uvOffset : Vector2f\n**bevelSize : float",
+        "prefix": "AddCylinderWithUvSettingsAndBevel"
+    },
+    "AddMesh": {
+        "body": [
+            "AddMesh(Vector3f[{0, 0, 0}, {1000, 0, 0}, {0, 1000, 0}], [0, 1, 2], Vector2f[{0, 0}, {0, 1000}, {1000, 0}], Vector3f[{0, 0, 1}, {0, 0, 1}, {0, 0, 1}]);"
+        ],
+        "description": "<geometry>\nAdd scripted or internal mesh\nvertices : Vector3f[]\ntriangles : float, float, float\nuVs : Vector2f[]\n*normals : Vector3f[]",
+        "prefix": "AddMesh"
+    },
+    "AddPlainCube": {
+        "body": [
+            "AddPlainCube(Vector3f{${1:1000, 1000, 1000}});"
+        ],
+        "description": "<geometry>\nAdd Cube\nsize : Vector3f",
+        "prefix": "AddPlainCube"
+    },
+    "AddPrism": {
+        "body": [
+            "AddPrism(100, Vector2f[{0, 0}, {100, 0}, {0, 100}]);"
+        ],
+        "description": "<geometry>\nAdd Prism\nextrusionLength : float\nvertices : Vector2f[]\nDefines a sketch in the ground plane and extrudes in Z+ direction",
+        "prefix": "AddPrism"
+    },
+    "AddPrismWithUvSettingsAndBevel": {
+        "body": [
+            "AddPrism(100, Vector2f[{0, 0}, {100, 0}, {0, 100}], Vector2f{1, 1}, 0, Vector2f{0, 0}, 2);"
+        ],
+        "description": "<geometry>\nAdd Prism\nextrusionLength : float\nvertices : Vector2f[]\n*uvScale : Vector2f\n*uvRotation : float\n*uvOffset : Vector2f\n**bevelSize : float\nDefines a sketch in the ground plane and extrudes in Z+ direction",
+        "prefix": "AddPrismWithUvSettingsAndBevel"
+    },
+    "AddRectangle": {
+        "body": [
+            "AddRectangle(Vector2f{${1:100, 100}}, Vector2f{1, 1}, 0, Vector2f{0, 0});"
+        ],
+        "description": "<geometry>\nAdd Rectangle in ground plane, with UV settings\nsize : Vector2f\n*uvScale : Vector2f\n*uvRotation : float\n*uvOffset : Vector2f\n",
+        "prefix": "AddRectangleQuadSquare"
+    },
+    "AddSphere": {
+        "body": [
+            "AddSphere(Vector3f{${1:1000, 1000, 1000}});"
+        ],
+        "description": "<geometry>\nAdd Sphere\nsize : Vector3f",
+        "prefix": "AddSphere"
+    },
+    "AddSphereUVs": {
+        "body": [
+            "AddSphere(Vector3f{${1:1000, 1000, 1000}}, Vector2f{1, 1}, 0, Vector2f{0, 0});"
+        ],
+        "description": "<geometry>\nAdd Sphere with UV settings possibilities\nsize : Vector3f\n*uvScale : Vector2f\n*uvRotation : float\n*uvOffset : Vector2f",
+        "prefix": "AddSphereWithUvSettings"
+    },
+    "BeginEndObjGroup": {
+        "body": [
+            "BeginObjGroup('${1}');",
+            "\t${TM_SELECTED_TEXT}",
+            "EndObjGroup('${1}');"
+        ],
+        "description": "<geometry>\nPair of begin and end object group\nUse a string value as a label for the group.",
+        "prefix": "BeginEndObjGroup"
+    },
+    "BeginObjGroup": {
+        "body": [
+            "BeginObjGroup(${1});"
+        ],
+        "description": "<geometry>\nBegins geometry object group\nUse a string value as a label for the group.",
+        "prefix": "BeginObjGroup"
+    },
+    "ceil": {
+        "body": [
+            "ceil(${1:value},0)"
+        ],
+        "description": "ceil\nreturns the next bigger integer with the given digits",
+        "prefix": "ceil"
+    },
+    "Commentary": {
+        "body": [
+            "/* ${1} */"
+        ],
+        "description": "Commentary",
+        "prefix": "/**/"
+    },
+    "Coordinate System Axes": {
+        "body": [
+            "if (true) {",
+            "    coordSystemAxesLength = 1000;",
+            "    coordSystemAxesThickness = 10;",
+            "    BeginObjGroup();",
+            "        AddPlainCube(Vector3f{coordSystemAxesThickness, coordSystemAxesThickness, coordSystemAxesLength}); SetObjSurface('demoCatalogId:test_crazy_gree');                ",
+            "        AddPlainCube(Vector3f{coordSystemAxesThickness, coordSystemAxesLength, coordSystemAxesThickness}); SetObjSurface('demoCatalogId:cyan');",
+            "        AddPlainCube(Vector3f{coordSystemAxesLength, coordSystemAxesThickness, coordSystemAxesThickness}); SetObjSurface('demoCatalogId:red');",
+            "    EndObjGroup();",
+            "}"
+        ],
+        "description": "<geometry>Coordinate System Axes\nAdds a debug coordinate system visualization.",
+        "prefix": "coordinateSystemAxes"
+    },
+    "Copy": {
+        "body": [
+            "Copy();"
+        ],
+        "description": "<geometry>\nCopy last geometry object or group",
+        "prefix": "Copy"
+    },
+    "EndObjGroup": {
+        "body": [
+            "EndObjGroup();"
+        ],
+        "description": "<geometry>\nEnds geometry object group\nUse a string value as a label for the group.",
+        "prefix": "EndObjGroup"
+    },
+    "floor": {
+        "body": [
+            "floor( ${1:value} ,0)"
+        ],
+        "description": "floor\nreturns the next lower integer with the given digits",
+        "prefix": "floor"
+    },
+    "fmod": {
+        "body": [
+            "fmod( ${1:dividend} , ${2:divisor}) "
+        ],
+        "description": "fmod\nreturns the floating point remainder of a/b",
+        "prefix": "fmod"
+    },
+    "for i++": {
+        "body": [
+            "for (${1:_.i} = 0; ${1:_.i} < ${2:length}; ${1:_.i} = ${1:_.i} + ${3:1}) {",
+            "\t${4}",
+            "}"
+        ],
+        "description": "For-loop\nstarting initialization\ncontinue condition\nincrement step",
+        "prefix": "forI"
+    },
+    "get Value From Array": {
+        "body": [
+            "get( ${1:arrayName} , 0)"
+        ],
+        "description": "Get Value From Array\narray : float[]\nindex : integer\nreturns float",
+        "prefix": "getValueFromArray"
+    },
+    "getDockPosition": {
+        "body": [
+            "getDockPosition()"
+        ],
+        "description": "getDockPosition() : Vector3f\nReturns the current position of the childDockPoint of this component in the coordinate system of the parent.",
+        "prefix": "getDockPosition"
+    },
+    "getDockPositionRelativeToParentDock": {
+        "body": [
+            "getDockPositionRelativeToParentDock()"
+        ],
+        "description": "GetDockPositionRelativeToParentDock() : Vector3f\nReturns the current position of the childDockPoint of this component relative to the parentDock in the coordinate system of the parent. The reference is the point for dockpoints and the starting point for docklines.",
+        "prefix": "getDockPositionRelativeToParentDock"
+    },
+    "getMaterialProperty": {
+        "body": [
+            "getMaterialProperty(${1:materialId}, 'material_property_key', 'NULL')"
+        ],
+        "description": "getMaterialProperty\nmaterialId : Material\nmaterial_property_key : string - set in Rubens Admin\nfallback value : string\nreturns material property value for a material or the fallback value if failed",
+        "prefix": "getMaterialProperty"
+    },
+    "getPosition": {
+        "body": [
+            "getPosition()"
+        ],
+        "description": "GetPosition() : Vector3f\nReturns the current position of the component in the coordinate system of the parent.",
+        "prefix": "getPosition"
+    },
+    "getUniqueRuntimeId": {
+        "body": [
+            "getUniqueRuntimeId()"
+        ],
+        "description": "GetUniqueRuntimeId() : int\nReturns a unique runtimeId for the component. This id is unique in the session and wont change for this component (during this session).",
+        "prefix": "getUniqueRuntimeId"
+    },
+    "if": {
+        "body": [
+            "if ( ${1:true} ) {",
+            "\t${2}",
+            "}"
+        ],
+        "description": "if statement",
+        "prefix": "if"
+    },
+    "ifelse": {
+        "body": [
+            "if ( ${1:true} ) {",
+            "\t${2}",
+            "} else {",
+            "\t",
+            "}"
+        ],
+        "description": "if - else statement",
+        "prefix": "if else"
+    },
+    "in": {
+        "body": [
+            "in( ${1:variable} , ${2} )"
+        ],
+        "description": "in(variable, constant1, constant2, ...)\nReturns true if variable equals one of values",
+        "prefix": "in"
+    },
+    "inArray": {
+        "body": [
+            "inArray( ${1:value} , ${2:array} )"
+        ],
+        "description": "inArray\nreturns true if the first Parameter is equal to any of the elements in the array",
+        "prefix": "inArray"
+    },
+    "indexOf": {
+        "body": [
+            "indexOf( ${1:searchedValue} , ${2:array} )"
+        ],
+        "description": "indexOf\nReturns index of value in array. Returns -1 if not found.",
+        "prefix": "indexOf"
+    },
+    "isEnabled": {
+        "body": [
+            "isEnabled(${1:parameterKey})"
+        ],
+        "description": "isEnabled\nreturns true if the parameter is enabled",
+        "prefix": "isEnabled"
+    },
+    "isVisible": {
+        "body": [
+            "isVisible(${1:parameterKey})"
+        ],
+        "description": "isVisible\nreturns true if the parameter is visible",
+        "prefix": "isVisible"
+    },
+    "length": {
+        "body": [
+            "length( ${1:array} )"
+        ],
+        "description": "length\nreturns the current length of the array",
+        "prefix": "length"
+    },
+    "MeasuringTool": {
+        "body": [
+            "{",
+            "    \"internalId\": \"TOOL\",",
+            "    \"componentId\": \"demoCatalogId:measuringTool\",",
+            "    \"numberInPartList\": 0,",
+            "    \"active\": 1,",
+            "    \"supersedings\": [",
+            "        {",
+            "            \"type\": \"parameter\",",
+            "            \"key\": \"measuringToolX\"",
+            "        },",
+            "        {",
+            "            \"type\": \"parameter\",",
+            "            \"key\": \"measuringToolY\"",
+            "        },",
+            "        {",
+            "            \"type\": \"parameter\",",
+            "            \"key\": \"measuringToolZ\"",
+            "        },",
+            "        {",
+            "            \"type\": \"parameter\",",
+            "            \"key\": \"measuringToolLength\"",
+            "        },",
+            "        {",
+            "            \"type\": \"parameter\",",
+            "            \"key\": \"measuringToolRotationZ\"",
+            "        }",
+            "    ]",
+            "}"
+        ],
+        "description": "MeasuringTool",
+        "prefix": "utilityMeasuringTool"
+    },
+    "MoveMatrixBy": {
+        "body": [
+            "MoveMatrixBy(Vector3f{ ${1:0} , ${2:0} , ${3:0} });"
+        ],
+        "description": "<geometry>\nMoveMatrixBy\nposition : Vector3f\nMoves last geometry object or group in direction of the vector",
+        "prefix": "MoveMatrixBy"
+    },
+    "MoveWithMeasuringTool": {
+        "body": [
+            "MoveMatrixBy(Vector3f{${1:measuringToolX},${2:measuringToolY},${3:measuringToolZ}}); RotateMatrixBy(Vector3f{0,0,1},Vector3f{0,0,0},${7:measuringToolRotationZ});"
+        ],
+        "description": "<geometry>\nMoveWithMeasuringTool\nRequirest subcomponent measuring tool\nDebug tool used for moving geometry object using sliders in the UI",
+        "prefix": "MoveWithMeasuringTool"
+    },
+    "Point2D": {
+        "body": [
+            "{ ${1:0} , ${2:0} }"
+        ],
+        "description": "Point 2D or Vector2f",
+        "prefix": "point2d{}vector2f"
+    },
+    "Point3D": {
+        "body": [
+            "{ ${1:0} , ${2:0} , ${3:0} }"
+        ],
+        "description": "Point 3D or Vector3f",
+        "prefix": "point3d{}vector3f"
+    },
+    "popBack": {
+        "body": [
+            "popBack( ${1:array} );"
+        ],
+        "description": "popBack\nremoves and returns the last element of the array",
+        "prefix": "popBack"
+    },
+    "pushBack": {
+        "body": [
+            "pushBack( ${1:array} , ${2:value} );"
+        ],
+        "description": "pushBack\nadds the value at the end of the array",
+        "prefix": "pushBack"
+    },
+    "Roomle Component Full": {
+        "body": [
+            "{",
+            "\t\"id\":\"catalogId:${TM_FILENAME_BASE}\",",
+            "\t\"label\":\"\",",
+            "\t\"parameterGroups\":[],",
+            "\t\"parameters\":[],",
+            "\t\"subComponents\":[],",
+            "\t\"onUpdate\":\"\",",
+            "\t\"valid\":\"\",",
+            "\t\"previewGeometry\":\"\",",
+            "\t\"geometry\":\"\",",
+            "\t\"geometryHD\":\"\",",
+            "\t\"siblings\":[],",
+            "\t\"addOnSpots\":[],",
+            "\t\"parentDockings\":{",
+            "\t\t\"points\":[],",
+            "\t\t\"ranges\":[],",
+            "\t\t\"lines\":[]",
+            "\t},",
+            "\t\"childDockings\":{",
+            "\t\t\"points\":[]",
+            "\t},",
+            "\t\"articleNr\":\"\",",
+            "\t\"packageSizes\":[],",
+            "\t\"packaging\":[],",
+            "\t\"dimensionings\":[],",
+            "\t\"pricing\":[],",
+            "\t\"possibleChildren\":[]",
+            "}"
+        ],
+        "description": "Roomle Component Full",
+        "prefix": "roomleComponentFull"
+    },
+    "Roomle Component Simple": {
+        "body": [
+            "{",
+            "\t\"id\":\"catalogId:${TM_FILENAME_BASE}\",",
+            "\t\"parameters\":[${30}],",
+            "\t\"onUpdate\":\"\",",
+            "\t\"geometry\":\"AddCube(Vector3f{1000, 1000, 1000});\",",
+            "\t\"articleNr\":\"'123.465'\"",
+            "}"
+        ],
+        "description": "Roomle Component Simple",
+        "prefix": "roomleComponentSimple"
+    },
+    "Roomle Configuration": {
+        "body": [
+            "{",
+            "\t\"componentId\":\"${0}:${1}\"",
+            "}"
+        ],
+        "description": "Roomle configuration",
+        "prefix": "roomleConfig"
+    },
+    "Roomle Decimal Constant": {
+        "body": [
+            "{",
+            "\t\"key\":\"${1:number}\",",
+            "\t\"type\":\"Decimal\",",
+            "\t\"defaultValue\":${2:0},",
+            "\t\"visible\": false,",
+            "\t\"visibleInPartList\": false",
+            "}"
+        ],
+        "description": "Roomle Decimal Constant",
+        "prefix": "roomleDecimalConstant"
+    },
+    "Roomle Decimal Parameter": {
+        "body": [
+            "{",
+            "\t\"key\":\"${10:name}\",",
+            "\t\"type\":\"Decimal\",",
+            "\t\"unitType\":\"length\",",
+            "\t\"defaultValue\":100,",
+            "\t\"valueObjects\":[],",
+            "\t\"enabled\": ${100:true},",
+            "\t\"visible\": ${100:true},",
+            "\t\"visibleInPartList\": ${100:true}",
+            "}"
+        ],
+        "description": "Roomle Component Parameter - Decimal",
+        "prefix": "roomleDecimalParameter"
+    },
+    "Roomle Dimensioning": {
+        "body": [
+            "{",
+            "\t\"labels\": {},",
+            "\t\"type\": \"z\",",
+            "\t\"from\": \"0\",",
+            "\t\"to\": \"200\",",
+            "\t\"level\": 1,",
+            "\t\"visble\": \"true\"",
+            "}"
+        ],
+        "description": "Roomle Dimensioning",
+        "prefix": "roomleDimensioning"
+    },
+    "Roomle Docking": {
+        "body": [
+            "\"subComponents\":[],",
+            "\"siblings\":[],",
+            "\"parentDockings\":{",
+            "\t\"points\":[],",
+            "\t\"ranges\":[],",
+            "\t\"lines\":[]",
+            "},",
+            "\"childDockings\":{",
+            "\t\"points\":[]",
+            "},",
+            "\"possibleChildren\":[]"
+        ],
+        "description": "Roomle Docking",
+        "prefix": "roomleDocking"
+    },
+    "Roomle Docking Assignments": {
+        "body": [
+            "\"assignmentsOnDock\": {},",
+            "\"assignmentsOnUpdate\": {},",
+            "\"assignmentsOnUpdateSilent\": {},",
+            "\"assignmentsOnUnDock\": {},",
+            "\"selfAssignments\": {",
+            "\t\"onDock\": {},",
+            "\t\"onUpdate\": {},",
+            "\t\"onUnDock\": {}",
+            "},",
+            "\"assignmentScripts\": {",
+            "\t\"onDock\": \"\",",
+            "\t\"onUpdate\": \"\",",
+            "\t\"onUnDock\": \"\"",
+            "}"
+        ],
+        "description": "Roomle Docking Assignments",
+        "prefix": "roomleDockingAssignments"
+    },
+    "Roomle Docking Line": {
+        "body": [
+            "{",
+            "\t\"mask\": \"${1:mask}\",",
+            "\t\"position\": \"{0, 0, 0}\",",
+            "\t\"positionTo\": \"{0, 0, 0}\",",
+            "\t\"rotation\": \"{0, 0, 0}\",",
+            "\t\"condition\": \"true\",",
+            "\t\"maxChildren\": \"1\"",
+            "}"
+        ],
+        "description": "Roomle Docking Line",
+        "prefix": "roomleDockingLine"
+    },
+    "Roomle Docking Point": {
+        "body": [
+            "{",
+            "\t\"mask\": \"${1:mask}\",",
+            "\t\"position\": \"{0, 0, 0}\",",
+            "\t\"rotation\": \"{0, 0, 0}\",",
+            "\t\"condition\": \"true\"",
+            "}"
+        ],
+        "description": "Roomle Docking Point",
+        "prefix": "roomleDockingPoint"
+    },
+    "Roomle Docking Range": {
+        "body": [
+            "{",
+            "\t\"mask\": \"${1:mask}\",",
+            "\t\"position\": \"{0, 0, 0}\",",
+            "\t\"stepEnd\": \"{0, 0, 1000}\",",
+            "\t\"rotation\": \"{0, 0, 0}\",",
+            "\t\"condition\": \"true\",",
+            "\t\"stepX\": 0,",
+            "\t\"stepY\": 0,",
+            "\t\"stepZ\": 100",
+            "}"
+        ],
+        "description": "Roomle Docking Range",
+        "prefix": "roomleDockingRange"
+    },
+    "Roomle Init": {
+        "body": [
+            "if(ifnull(inited, false) == false) {inited=true;}"
+        ],
+        "description": "Roomle Docking Point",
+        "prefix": "roomleInit"
+    },
+    "Roomle Integer Constant": {
+        "body": [
+            "{",
+            "\t\"key\":\"${1:number}\",",
+            "\t\"type\":\"Integer\",",
+            "\t\"defaultValue\":${2:0},",
+            "\t\"visible\": false,",
+            "\t\"visibleInPartList\": false",
+            "}"
+        ],
+        "description": "Roomle Integer Constant",
+        "prefix": "roomleIntegerConstant"
+    },
+    "Roomle Integer Parameter": {
+        "body": [
+            "{",
+            "\t\"key\":\"${10:name}\",",
+            "\t\"type\":\"Integer\",",
+            "\t\"defaultValue\":${20:0},",
+            "\t\"valueObjects\":[],",
+            "\t\"enabled\": ${100:true},",
+            "\t\"visible\": ${100:true},",
+            "\t\"visibleInPartList\": ${100:true}",
+            "}"
+        ],
+        "description": "Roomle Component Parameter - Integer",
+        "prefix": "roomleIntegerParameter"
+    },
+    "Roomle Label": {
+        "body": [
+            "\"${1:en}\":\"${2}\""
+        ],
+        "description": "Roomle Label",
+        "prefix": "roomleLabel"
+    },
+    "Roomle Labels": {
+        "body": [
+            "\"labels\":{",
+            "\t\"en\":\"${0}\",",
+            "\t\"de\":\"${0}\"",
+            "}"
+        ],
+        "description": "Roomle Labels",
+        "prefix": "roomleLabels"
+    },
+    "Roomle Material Constant": {
+        "body": [
+            "{",
+            "\t\"key\":\"${1:materialConstant}\",",
+            "\t\"type\":\"Material\",",
+            "\t\"defaultValue\":\"${2:value}\",",
+            "\t\"visible\": false,",
+            "\t\"visibleInPartList\": false",
+            "}"
+        ],
+        "description": "Roomle Material Constant",
+        "prefix": "roomleMaterialConstant"
+    },
+    "Roomle Material Parameter": {
+        "body": [
+            "{",
+            "\t\"key\":\"${1:material}\",",
+            "\t\"type\":\"Material\",",
+            "\t\"defaultValue\":\"${2:value}\",",
+            "\t\"validValues\":[",
+            "\t\t\"isdt:red\",",
+            "\t\t\"isdt:green\",",
+            "\t\t\"isdt:blue\",",
+            "\t\t\"isdt:cyan\",",
+            "\t\t\"isdt:magenta\",",
+            "\t\t\"isdt:yellow\",",
+            "\t\t\"isdt:black\",",
+            "\t\t\"isdt:white\",",
+            "\t\t\"isdt:black_transparent\",",
+            "\t\t\"isdt:white_transparent\",",
+            "\t\t\"demoCatalogId:reference1\"",
+            "\t],",
+            "\t\"visible\": true,",
+            "\t\"visibleInPartList\": true",
+            "}"
+        ],
+        "description": "Roomle Material Parameter",
+        "prefix": "roomleMaterialParameter"
+    },
+    "Roomle Packaging": {
+        "body": [
+            "{",
+            "\t\"size\": 1,",
+            "\t\"condition\": \"true\"",
+            "}"
+        ],
+        "description": "Roomle Packaging",
+        "prefix": "roomlePackaging"
+    },
+    "Roomle Parameter Boolean": {
+        "body": [
+            "{",
+            "\t\"key\":\"${10:name}\",",
+            "\t\"type\":\"Boolean\",",
+            "\t\"defaultValue\":${20:false},",
+            "\t\"enabled\": ${100:false},",
+            "\t\"visible\": ${100:false},",
+            "\t\"visibleInPartList\": ${100:false}",
+            "}"
+        ],
+        "description": "Roomle Parameter - Boolean",
+        "prefix": "roomleParameterBoolean"
+    },
+    "Roomle Parameter Boolean Interactable": {
+        "body": [
+            "{",
+            "\t\"key\": \"${1}\",",
+            "\t\"defaultValue\": true,",
+            "\t\"type\": \"Boolean\",",
+            "\t\"valueObjects\": [",
+            "\t\t{",
+            "\t\t\t\"value\": true,",
+            "\t\t\t\"condition\": true",
+            "\t\t},",
+            "\t\t{",
+            "\t\t\t\"value\": false,",
+            "\t\t\t\"condition\": true",
+            "\t\t}",
+            "\t],",
+            "\t\"visible\": true,",
+            "\t\"enabled\": true",
+            "},"
+        ],
+        "description": "Roomle Parameter Boolean Interactable",
+        "prefix": "roomleParameterBooleanInteractable"
+    },
+    "Roomle Parameter Full": {
+        "body": [
+            "{",
+            "\t\"key\":\"${10:name}\",",
+            "\t${15:\"global\":true,}",
+            "\t\"sort\":0,",
+            "\t\"group\":\"\",",
+            "\t\"labels\":{",
+            "\t\t\"en\":\"${20}\",",
+            "\t\t\"de\":\"${20}\"",
+            "\t},",
+            "\t\"type\":\"${30:Decimal}\",",
+            "${40:\t\"unitType\":\"length\",}",
+            "\t\"defaultValue\":\"${50}\",",
+            "\t\"highlighted\":\"false\",",
+            "\t\"enabled\": \"${100:true}\",",
+            "\t\"visible\": \"${100:true}\",",
+            "\t\"visibleInPartList\": \"${100:true}\",",
+            "\t\"visibleAsGlobal\": \"false\",",
+            "\t\"onValueChange\":\"\",",
+            "\t\"validValues\":[],",
+            "\t\"validGroups\":[],",
+            "\t\"valueObjects\":[],",
+            "\t\"validRange\":{",
+            "\t\t\"valueFrom\":0,",
+            "\t\t\"valueTo\":100,",
+            "\t\t\"step\":1",
+            "\t}",
+            "}"
+        ],
+        "description": "Roomle Component Parameter Full",
+        "prefix": "roomleParameterFull"
+    },
+    "Roomle Possible Child": {
+        "body": [
+            "{",
+            "\t\"componentId\":\"\",",
+            "\t\"itemId\":\"\",",
+            "\t\"group\":\"\",",
+            "\t\"condition\":\"true\"",
+            "}"
+        ],
+        "description": "Roomle Possible Child",
+        "prefix": "roomlePossibleChild"
+    },
+    "Roomle Range Parameter": {
+        "body": [
+            "{",
+            "\t\"key\": \"${1:range}\",",
+            "\t\"defaultValue\": ${2:0},",
+            "\t\"type\": \"Decimal\",",
+            "\t\"validRange\": {",
+            "\t\t\"valueFrom\": ${3:0},",
+            "\t\t\"valueTo\": ${4:100},",
+            "\t\t\"step\": ${5:1}",
+            "\t},",
+            "\t\"enabled\": ${100:true},",
+            "\t\"visible\": ${100:true},",
+            "\t\"visibleInPartList\": ${100:true}",
+            "}"
+        ],
+        "description": "Roomle Range Parameter",
+        "prefix": "roomleRangeParameter"
+    },
+    "Roomle Sibling Point": {
+        "body": [
+            "{",
+            "\t\"mask\": \"${1:mask}\",",
+            "\t\"position\": \"{0, 0, 0}\",",
+            "\t\"maxConnections\": \"1\",",
+            "\t\"selfAssignments\": {}",
+            "}"
+        ],
+        "description": "Roomle Sibling Point",
+        "prefix": "roomleSiblingPoint"
+    },
+    "Roomle String Constant": {
+        "body": [
+            "{",
+            "\t\"key\":\"${1:stringConst}\",",
+            "\t\"type\":\"String\",",
+            "\t\"defaultValue\":\"${2:value}\",",
+            "\t\"visible\": false,",
+            "\t\"visibleInPartList\": false",
+            "}"
+        ],
+        "description": "Roomle String Constant",
+        "prefix": "roomleStringConstant"
+    },
+    "Roomle String Parameter": {
+        "body": [
+            "{",
+            "\t\"key\":\"${1:stringParam}\",",
+            "\t\"type\":\"String\",",
+            "\t\"defaultValue\":\"${2:value}\",",
+            "\t\"valueObjects\": [",
+            "\t\t{",
+            "\t\t\t\"value\": \"value1\",",
+            "\t\t\t\"condition\": true",
+            "\t\t},",
+            "\t\t{",
+            "\t\t\t\"value\": \"value1\",",
+            "\t\t\t\"condition\": true",
+            "\t\t}",
+            "\t],",
+            "\t\"visible\": true,",
+            "\t\"visibleInPartList\": true",
+            "}"
+        ],
+        "description": "Roomle String Parameter",
+        "prefix": "roomleStringParameter"
+    },
+    "Roomle Subcomponent": {
+        "body": [
+            "{",
+            "\t\"internalId\": \"$1\",",
+            "\t\"componentId\": \"${2:id}\",",
+            "\t\"numberInPartList\": \"1\",",
+            "\t\"assignments\": {}",
+            "}"
+        ],
+        "description": "Roomle Subcomponent",
+        "prefix": "roomleSubcomponent"
+    },
+    "Roomle Superseding": {
+        "body": [
+            "{",
+            "\t\"type\": \"parameter\",",
+            "\t\"key\": \"${0}\"",
+            "}"
+        ],
+        "description": "Roomle Subcomponent Superseding",
+        "prefix": "roomleSuperseding"
+    },
+    "Roomle Supersedings": {
+        "body": [
+            "\"active\": \"true\",",
+            "\"supersedings\": [",
+            "  {",
+            "    \"type\": \"parameter\",",
+            "    \"key\": \"${0}\"",
+            "  }",
+            "]"
+        ],
+        "description": "Roomle Subcomponent Supersedings",
+        "prefix": "roomleSupersedings"
+    },
+    "Roomle Value Object": {
+        "body": [
+            "{",
+            "\t\"value\":\"${1}\",",
+            "\t\"condition\":\"true\",",
+            "\t\"thumbnail\":\"\",",
+            "\t\"labels\":{",
+            "\t\t\"en\":\"${3}\",",
+            "\t}",
+            "}"
+        ],
+        "description": "Roomle Label",
+        "prefix": "roomleValueObject"
+    },
+    "roomleParameterGroup": {
+        "body": [
+            "{",
+            "  \"key\":\"grp${0:key}\",",
+            "  \"labels\":{\"en\":\"Group\"},",
+            "  \"collapsed\":false,",
+            "  \"sort\":0",
+            "}"
+        ],
+        "description": "roomleParameterGroup",
+        "prefix": "roomleParameterGroup"
+    },
+    "roomlePlaceHolderDock": {
+        "body": [
+            "{",
+            "    \"mask\": \"placeholder\",",
+            "    \"position\": \"{0,0,0}\",",
+            "    \"rotation\": \"{0,0,0}\",",
+            "    \"condition\": \"true\",",
+            "    \"assignmentsOnDock\": {        ",
+            "        \"width\":300,",
+            "        \"height\":800,",
+            "        \"depth\":50,",
+            "        \"material\":\"demoCatalogId:reference1\",",
+            "        \"pivotPosition\":\"centerBottom\"",
+            "    }",
+            "}"
+        ],
+        "description": "roomlePlaceHolderDock",
+        "prefix": "roomlePlaceHolderDock"
+    },
+    "roomleSubcomponentPlaceHolder": {
+        "body": [
+            "{",
+            "    \"internalId\": \"PLACEHOLDER\",",
+            "    \"componentId\": \"demoCatalogId:Placeholder_Cube\",",
+            "    \"numberInPartList\": \"1\",",
+            "    \"assignments\": {",
+            "        \"width\":300,",
+            "        \"height\":800,",
+            "        \"depth\":50,",
+            "        \"material\":\"demoCatalogId:reference1\",",
+            "        \"pivotPosition\":\"centerBottom\"",
+            "    }",
+            "}"
+        ],
+        "description": "roomleSubcomponentPlaceHolder",
+        "prefix": "roomleSubcomponentPlaceHolder"
+    },
+    "Rotate Materix By": {
+        "body": [
+            "RotateMatrixBy(Vector3f{${1:0},${2:0},${3:1}},Vector3f{${4:0},${5:0},${6:0}},${7:90});"
+        ],
+        "description": "<geometry>\nRotate Materix By\naxis : Vector3f\norigin : Vector3f\nangle : float\nRotates last object around an axis going through an origin by the value in angles, lefthand around the axis.",
+        "prefix": "roomleRotateMatrixBy"
+    },
+    "round": {
+        "body": [
+            "round(${1:value},0)"
+        ],
+        "description": "round\nrounds to the nearest number with the given digits",
+        "prefix": "round"
+    },
+    "Selectable Subcomponent": {
+        "body": [
+            "{",
+            "\t\"internalId\": \"${1}\",",
+            "\t\"componentId\": \"${3}:${1}\",",
+            "\t\"numberInPartList\": \"${2:subcomponentType} == '${1}'\",",
+            "\t\"assignments\": {},",
+            "\t\"active\": \"${2:subcomponentType} == '${1}'\",",
+            "\t\"supersedings\": [",
+            "\t\t{",
+            "\t\t\t\"type\": \"parameter\",",
+            "\t\t\t\"key\": \"\"",
+            "\t\t}",
+            "\t]",
+            "}"
+        ],
+        "description": "Roomle Subcomponent for Selectable Item",
+        "prefix": "roomleSubcomponentSelectable"
+    },
+    "Set Value In Array": {
+        "body": [
+            "set(${1:arrayName},${2:index},${3:value})${4:;}"
+        ],
+        "description": "Set Value In Array",
+        "prefix": "setValueInArray"
+    },
+    "setBoxForMeasurement": {
+        "body": [
+            "setBoxForMeasurement(Vector3f{${1:width},${2:depth},${3:height}},Vector3f{${4:offset},${5:0},${6:0}});"
+        ],
+        "description": "setBoxForMeasurement\ndefines the box to be used for calculating the measurements of this component",
+        "prefix": "setBoxForMeasurement"
+    },
+    "SetDebugBlackSurface": {
+        "body": [
+            "SetObjSurface('isdt:black');"
+        ],
+        "description": "<geometry>\nSetObjSurface('isdt:black');",
+        "prefix": "SetObjSurfaceDebugIsdtBlack"
+    },
+    "SetDebugBlueSurface": {
+        "body": [
+            "SetObjSurface('isdt:blue');"
+        ],
+        "description": "<geometry>\nSetObjSurface('isdt:blue');",
+        "prefix": "SetObjSurfaceDebugIsdtBlue"
+    },
+    "SetDebugCyanSurface": {
+        "body": [
+            "SetObjSurface('isdt:cyan');"
+        ],
+        "description": "<geometry>\nSetObjSurface('isdt:cyan');",
+        "prefix": "SetObjSurfaceDebugIsdtCyan"
+    },
+    "SetDebugGreenSurface": {
+        "body": [
+            "SetObjSurface('isdt:green');"
+        ],
+        "description": "<geometry>\nSetObjSurface('isdt:green');",
+        "prefix": "SetObjSurfaceDebugIsdtGreen"
+    },
+    "SetDebugMagentaSurface": {
+        "body": [
+            "SetObjSurface('isdt:magenta');"
+        ],
+        "description": "<geometry>\nSetObjSurface('isdt:magenta');",
+        "prefix": "SetObjSurfaceDebugIsdtMagenta"
+    },
+    "SetDebugRedSurface": {
+        "body": [
+            "SetObjSurface('isdt:red');"
+        ],
+        "description": "<geometry>\nSetObjSurface('isdt:red');",
+        "prefix": "SetObjSurfaceDebugIsdtRed"
+    },
+    "SetDebugTransparentBlackSurface": {
+        "body": [
+            "SetObjSurface('isdt:black');"
+        ],
+        "description": "<geometry>\nSetObjSurface('isdt:black_transparent');",
+        "prefix": "SetObjSurfaceDebugIsdtBlackTransparent"
+    },
+    "SetDebugTransparentWhiteSurface": {
+        "body": [
+            "SetObjSurface('isdt:white');"
+        ],
+        "description": "<geometry>\nSetObjSurface('isdt:white_transparent');",
+        "prefix": "SetObjSurfaceDebugIsdtWhiteTransparent"
+    },
+    "SetDebugWhiteSurface": {
+        "body": [
+            "SetObjSurface('isdt:white');"
+        ],
+        "description": "<geometry>\nSetObjSurface('isdt:white');",
+        "prefix": "SetObjSurfaceDebugIsdtWhite"
+    },
+    "SetDebugYellowSurface": {
+        "body": [
+            "SetObjSurface('isdt:yellow');"
+        ],
+        "description": "<geometry>\nSetObjSurface('isdt:yellow');",
+        "prefix": "SetObjSurfaceDebugIsdtYellow"
+    },
+    "setEnabled": {
+        "body": [
+            "setEnabled(${1:parameterKey},${2:true});"
+        ],
+        "description": "setEnabled\nsets the enabled-property of the parameter to the given value",
+        "prefix": "setEnabled"
+    },
+    "SetObjSurface": {
+        "body": [
+            "SetObjSurface( ${1:material} );"
+        ],
+        "description": "<geometry>\nSetObjSurface",
+        "prefix": "SetObjSurface"
+    },
+    "SetReferenceSurface": {
+        "body": [
+            "SetObjSurface(${1:'demoCatalogId:reference1'});"
+        ],
+        "description": "SetReferenceSurface",
+        "prefix": "SetReferenceSurface"
+    },
+    "setVisible": {
+        "body": [
+            "setVisible(${1:parameterKey},${2:true});"
+        ],
+        "description": "setVisible\nsets the visible-property of the parameter to the given value",
+        "prefix": "setVisible"
+    },
+    "sizeLengthOfString": {
+        "body": [
+            "size{ 1:stringValue} )"
+        ],
+        "description": "sizeLengthOfString : integer\nReturns length of a string (watch out - length is for array length).",
+        "prefix": "sizeLengthOfString"
+    },
+    "SubComponent": {
+        "body": [
+            "SubComponent( ${1:subcomponentType});"
+        ],
+        "description": "<geometry>SubComponent\nid : string\nInjects the geometry of the given Subcomponent as a geometry object",
+        "prefix": "SubComponent"
+    },
+    "substring": {
+        "body": [
+            "substring( ${1:'stringValue'} , ${2:0} , ${size( ${1:'stringValue'} ) - 4})"
+        ],
+        "description": "substring\nSubstring of another string. In the default shapee, this snippet cuts decimal spaces of number.",
+        "prefix": "substring"
+    },
+    "toFloat": {
+        "body": [
+            "float( ${1:value} )"
+        ],
+        "description": "toFloat",
+        "prefix": "toFloat"
+    },
+    "toString": {
+        "body": [
+            "string( ${1:value} )"
+        ],
+        "description": "toString",
+        "prefix": "toString"
+    },
+    "xFromVector": {
+        "body": [
+            "xFromVector( ${1:getPosition()} )"
+        ],
+        "description": "xFromVector",
+        "prefix": "xFromVector"
+    },
+    "yFromVector": {
+        "body": [
+            "yFromVector( ${1:getPosition()} )"
+        ],
+        "description": "yFromVector",
+        "prefix": "yFromVector"
+    },
+    "zFromVector": {
+        "body": [
+            "zFromVector( ${1:getPosition()} )"
+        ],
+        "description": "zFromVector",
+        "prefix": "zFromVector"
+    }
+}

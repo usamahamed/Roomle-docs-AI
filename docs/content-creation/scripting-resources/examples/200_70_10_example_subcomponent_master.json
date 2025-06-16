@@ -1,0 +1,22 @@
+{
+    "id": "isdt:example_subcomponent_master",
+    "subComponents": [
+        {
+            "internalId": "SUBCOMPONENT",
+            "componentId": "isdt:example_subcomponent_subcomponent",
+            "numberInPartList": "1",
+            "assignments": {
+                "material": "isdt:cyan"
+            },
+            "active": true,
+            "supersedings": [
+                {
+                    "type": "parameter",
+                    "key": "width"
+                }
+            ]
+        }
+    ],
+    "geometry": "SubComponent('SUBCOMPONENT');",
+    "articleNr": "'123.456'"
+}

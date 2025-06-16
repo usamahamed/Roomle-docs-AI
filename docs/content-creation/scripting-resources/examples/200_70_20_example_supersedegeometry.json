@@ -1,0 +1,78 @@
+{
+    "id": "isdt:example_part",
+    "parameters": [
+        {
+            "key": "width",
+            "defaultValue": 400,
+            "type": "Decimal",
+            "unitType": "length",
+            "validRange": {
+                "valueFrom": 200,
+                "valueTo": 1000,
+                "step": 1
+            },
+            "enabled": true,
+            "visible": true,
+            "visibleInPartList": true
+        },
+        {
+            "key": "height",
+            "defaultValue": 800,
+            "type": "Decimal",
+            "unitType": "length",
+            "validRange": {
+                "valueFrom": 200,
+                "valueTo": 1000,
+                "step": 1
+            },
+            "enabled": true,
+            "visible": true,
+            "visibleInPartList": true
+        }
+    ],
+    "subComponents": [
+        {
+            "internalId": "FOLDS",
+            "componentId": "massjalousien:plissee_trapezoid",
+            "numberInPartList": "1",
+            "assignments": {
+                "width": "width",
+                "position": 100,
+                "height": "height",
+                "material": "isdt:alpha100"
+            }
+        },
+        {
+            "internalId": "TOP_RAIL",
+            "componentId": "massjalousien:Rail_225x185",
+            "numberInPartList": "1",
+            "assignments": {
+                "Length": "width"
+            },
+            "supersedings": [
+                {
+                    "type": "parameter",
+                    "key": "RailHeight"
+                }
+            ]
+        },
+        {
+            "internalId": "BOTTOM_RAIL",
+            "componentId": "massjalousien:Rail_225x185",
+            "numberInPartList": "1",
+            "assignments": {
+                "Length": "width",
+                "place": -1
+            }
+        }
+    ],
+    "geometry": "
+        SubComponent('FOLDS');
+
+        SubComponent('BOTTOM_RAIL');
+         MoveMatrixBy(Vector3f{0, 0, -RailHeight});
+
+        SubComponent('TOP_RAIL');
+         MoveMatrixBy(Vector3f{0, 0, height});
+    "
+}

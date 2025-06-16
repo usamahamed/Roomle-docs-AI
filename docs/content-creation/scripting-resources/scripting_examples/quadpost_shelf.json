@@ -1,0 +1,304 @@
+{
+    "id": "demoCatalogId:quadpost_shelf",
+    "parameters": [
+        {
+            "key": "frameMaterial",
+            "type": "Material",
+            "labels": {
+                "en": "Frame Material",
+                "de": "Rahmen Material"
+            },
+            "defaultValue": "demoCatalogId:darkgrey_metallic",
+            "validValues": [
+                "demoCatalogId:silver_metallic",
+                "demoCatalogId:darkgrey_metallic",
+                "demoCatalogId:lightblue_metallic",
+                "demoCatalogId:white_metallic"
+            ],
+            "enabled": true,
+            "visible": true,
+            "visibleInPartList": true
+        },
+        {
+            "key": "shelfMaterial",
+            "labels": {
+                "en": "Shelf Material",
+                "de": "Regal Material"
+            },
+            "type": "String",
+            "defaultValue": "frame",
+            "valueObjects": [
+                {
+                    "value": "frame",
+                    "labels": {
+                        "en": "Frame",
+                        "de": "Rahmen"
+                    }
+                },
+                {
+                    "value": "glass",
+                    "labels": {
+                        "en": "Glass",
+                        "de": "Glas"
+                    }
+                },
+                {
+                    "value": "wood",
+                    "labels": {
+                        "en": "Wood",
+                        "de": "Holz"
+                    }
+                },
+                {
+                    "value": "metal",
+                    "labels": {
+                        "en": "Metal",
+                        "de": "Metall"
+                    }
+                }
+            ],
+            "enabled": true,
+            "visible": true,
+            "visibleInPartList": false
+        },
+        {
+            "key": "metalMaterial",
+            "type": "Material",
+            "labels": {
+                "en": "Metal Material",
+                "de": "Metall Material"
+            },
+            "defaultValue": "demoCatalogId:darkgrey_metallic",
+            "validValues": [
+                "demoCatalogId:silver_metallic",
+                "demoCatalogId:darkgrey_metallic",
+                "demoCatalogId:lightblue_metallic",
+                "demoCatalogId:white_metallic"
+            ],
+            "enabled": "(shelfMaterial == 'metal')",
+            "visible": "(shelfMaterial == 'metal')",
+            "visibleInPartList": "(shelfMaterial == 'metal')"
+        },
+        {
+            "key": "woodType",
+            "global": false,
+            "labels": {
+                "en": "Wood Type",
+                "de": "Holzart"
+            },
+            "type": "Material",
+            "defaultValue": "visplay:H1180_Eiche_Natur",
+            "validValues": [
+                "visplay:H1180_Eiche_Natur",
+                "visplay:H3734_Dijon_Nussbaum_natur",
+                "visplay:H3711_Carini_Nussbaum_Tabak",
+                "visplay:H1615_Kirschbaum_Verona",
+                "visplay:H1582_Ellmau_Buche",
+                "visplay:H1387_Denver_Eiche_graphit",
+                "visplay:U899_ST9_Kossmosgrau",
+                "visplay:W1000_ST9_Premiumweiss",
+                "visplay:U708_ST9_Hellgrau"
+            ],
+            "enabled": true,
+            "visible": "(shelfMaterial == 'wood')",
+            "visibleAsGlobal": "(shelfMaterial == 'wood')",
+            "visibleInPartList": "(shelfMaterial == 'wood')"
+        },
+        {
+            "key": "glassType",
+            "global": false,
+            "labels": {
+                "en": "Glass Type",
+                "de": "Glasart"
+            },
+            "type": "Material",
+            "defaultValue": "visplay:glass",
+            "validValues": [
+                "visplay:glass",
+                "visplay:glass_satinato"
+            ],
+            "enabled": true,
+            "visible": "(shelfMaterial == 'glass')",
+            "visibleAsGlobal": "(shelfMaterial == 'glass')",
+            "visibleInPartList": "(shelfMaterial == 'glass')"
+        },
+        {
+            "key": "width",
+            "labels": {
+                "en": "Width",
+                "de": "Breite"
+            },
+            "type": "Decimal",
+            "unitType": "length",
+            "defaultValue": 0,
+            "validValues": [
+                400,
+                600,
+                800,
+                1200,
+                1600
+            ],
+            "enabled": false,
+            "visible": false,
+            "visibleInPartList": true
+        },
+        {
+            "key": "depth",
+            "labels": {
+                "en": "Depth",
+                "de": "Tiefe"
+            },
+            "type": "Decimal",
+            "unitType": "length",
+            "defaultValue": 400,
+            "validValues": [
+                400,
+                600,
+                800,
+                1200
+            ],
+            "enabled": false,
+            "visible": false,
+            "visibleInPartList": true
+        },
+        {
+            "key": "spaceBelow",
+            "type": "Decimal",
+            "unitType": "length",
+            "defaultValue": 0,
+            "enabled": false,
+            "visible": false,
+            "visibleInPartList": false
+        },
+        {
+            "key": "visible",
+            "type": "Boolean",
+            "defaultValue": true,
+            "enabled": false,
+            "visible": false,
+            "visibleInPartList": false
+        }
+    ],
+    "dimensionings": [
+        {
+            "level": 1,
+            "type": "z",
+            "from": "0",
+            "to": "-spaceBelow",
+            "visible": "spaceBelow > 0"
+        }
+    ],
+    "geometry": "
+        if (visible) {
+            BeginObjGroup();
+                AddCube(Vector3f{width, depth, 26.5});
+                 MoveMatrixBy(Vector3f{0, 0, -26.5});
+                 SetObjSurface(frameMaterial);
+                if (shelfMaterial == 'wood') {
+                    AddCube(Vector3f{width, depth, 8});
+                     SetObjSurface(woodType);
+                }
+                if (shelfMaterial == 'metal') {
+                    AddCube(Vector3f{width, depth, 4});
+                     SetObjSurface(metalMaterial);
+                }
+                if (shelfMaterial == 'glass') {
+                    AddCube(Vector3f{width, depth, 6});
+                     SetObjSurface(glassType);
+                }
+            EndObjGroup();
+             MoveMatrixBy(Vector3f{ -width / 2, -depth / 2, 0});
+        }
+    ",
+    "childDockings": {
+        "points": [
+            {
+                "position": "{0, 0, 0}",
+                "rotation": "{0, 0, 0}",
+                "condition": "true",
+                "mask": "shelf"
+            }
+        ]
+    },
+    "parentDockings": {
+        "points": [
+            {
+                "position": "{0, depth / 2, -panel_height}",
+                "rotation": "{0, 0, 180}",
+                "condition": "((!connection.isPreview) || visible) && spaceBelow >= 300 && spaceBelow <= 400",
+                "mask": "front_panel",
+                "assignmentsOnDock": {
+                    "width": "width",
+                    "height": "panel_height"
+                },
+                "assignmentsOnUpdate": {
+                    "visible": "visible",
+                    "width": "width",
+                    "height": "panel_height"
+                },
+                "assignmentsOnUnDock": {}
+            },
+            {
+                "position": "{0, -depth / 2, -panel_height}",
+                "rotation": "{0, 0, 0}",
+                "condition": "((!connection.isPreview) || visible) && spaceBelow >= 300 && spaceBelow <= 400",
+                "mask": "back_panel",
+                "assignmentsOnDock": {
+                    "width": "width",
+                    "height": "panel_height"
+                },
+                "assignmentsOnUpdate": {
+                    "visible": "visible",
+                    "width": "width",
+                    "height": "panel_height"
+                },
+                "assignmentsOnUnDock": {}
+            },
+            {
+                "position": "{width / 2, 0, -panel_height}",
+                "rotation": "{0, 0, 90}",
+                "condition": "((!connection.isPreview) || visible) && spaceBelow >= 300 && spaceBelow <= 400",
+                "mask": "side_panel_right",
+                "assignmentsOnDock": {
+                    "width": "depth",
+                    "height": "panel_height"
+                },
+                "assignmentsOnUpdate": {
+                    "visible": "visible",
+                    "width": "depth",
+                    "height": "panel_height"
+                },
+                "assignmentsOnUnDock": {}
+            },
+            {
+                "position": "{ -width / 2, 0, -panel_height}",
+                "rotation": "{0, 0, -90}",
+                "condition": "((!connection.isPreview) || visible) && spaceBelow >= 300 && spaceBelow <= 400",
+                "mask": "side_panel_left",
+                "assignmentsOnDock": {
+                    "width": "depth",
+                    "height": "panel_height"
+                },
+                "assignmentsOnUpdate": {
+                    "visible": "visible",
+                    "width": "depth",
+                    "height": "panel_height"
+                },
+                "assignmentsOnUnDock": {}
+            }
+        ]
+    },
+    "possibleChildren": [
+        {
+            "itemId": "demoCatalogId:quadpost_panel",
+            "condition": "visible"
+        }
+    ],
+    "onUpdate": "
+        if (spaceBelow == 300) {
+            panel_height = 300;
+        } else {
+            panel_height = 400;
+        }
+    "
+}

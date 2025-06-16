@@ -1,0 +1,121 @@
+{
+    "id": "isdt:example_partlistpattern",
+    "label": "label = name_english;",
+    "parameters": [
+        {
+            "key": "articleNumber",
+            "type": "String",
+            "defaultValue": "value",
+            "validValues": [
+                "ERROR",
+                "771.005.120",
+                "771.005.130",
+                "771.005.140",
+                "771.005.150",
+                "771.015.160",
+                "771.015.180",
+                "771.025.100",
+                "771.025.120",
+                "771.025.140",
+                "771.055.120",
+                "771.055.130",
+                "771.055.140",
+                "771.055.150",
+                "771.065.160",
+                "771.065.180",
+                "771.075.100",
+                "771.075.120",
+                "771.075.140",
+                "771.105.110",
+                "771.105.150"
+            ],
+            "visible": true,
+            "visibleInPartList": false
+        },
+        {
+            "key": "productCode",
+            "labels": {
+                "en": "Product Code"
+            },
+            "type": "String",
+            "defaultValue": "value",
+            "visible": false,
+            "visibleInPartList": true
+        },
+        {
+            "key": "width",
+            "labels": {
+                "en": "Width"
+            },
+            "type": "Decimal",
+            "unitType": "length",
+            "defaultValue": 0,
+            "visible": false,
+            "visibleInPartList": true
+        },
+        {
+            "key": "height",
+            "labels": {
+                "en": "Height"
+            },
+            "type": "Decimal",
+            "unitType": "length",
+            "defaultValue": 0,
+            "visible": false,
+            "visibleInPartList": true
+        },
+        {
+            "key": "depth",
+            "labels": {
+                "en": "Depth"
+            },
+            "type": "Decimal",
+            "unitType": "length",
+            "defaultValue": 0,
+            "visible": false,
+            "visibleInPartList": true
+        },
+        {
+            "key": "weight",
+            "labels": {
+                "en": "Weight"
+            },
+            "type": "String",
+            "defaultValue": 0,
+            "visible": false,
+            "visibleInPartList": true
+        }
+    ],
+    "onUpdate": "
+        productCode = 'n/a';
+        name_english = 'n/a';
+        width = 999;
+        depth = 999;
+        height = 999;
+        weight = 999;
+
+        if (articleNumber == '771.005.120') { productCode = 'SZ-KA-1500-800'; name_english = 'Straight Seater 150 cm'; width = 1500; depth = 800; height = 760; weight = '41'; }
+        if (articleNumber == '771.005.130') { productCode = 'SZ-KA-1700-800'; name_english = 'Straight Seater 170 cm'; width = 1700; depth = 800; height = 760; weight = '43'; }
+        if (articleNumber == '771.005.140') { productCode = 'SZ-KA-1900-800'; name_english = 'Straight Seater 190 cm'; width = 1900; depth = 800; height = 760; weight = '47'; }
+        if (articleNumber == '771.005.150') { productCode = 'SZ-KA-2100-800'; name_english = 'Straight Seater 210 cm'; width = 2100; depth = 800; height = 760; weight = '49'; }
+        if (articleNumber == '771.015.160') { productCode = 'SZ-AL-1750-800'; name_english = 'Seater with Left Armrest 175'; width = 1750; depth = 800; height = 760; weight = '48'; }
+        if (articleNumber == '771.015.180') { productCode = 'SZ-AL-1950-800'; name_english = 'Seater with Left Armrest 195'; width = 1950; depth = 800; height = 760; weight = '49'; }
+        if (articleNumber == '771.025.100') { productCode = 'SZ-AL-2150-800'; name_english = 'Seater with Left Armrest 215'; width = 2150; depth = 800; height = 760; weight = '53'; }
+        if (articleNumber == '771.025.120') { productCode = 'SZ-AL-2250-800'; name_english = 'Seater with Left Armrest 225'; width = 2250; depth = 800; height = 760; weight = '55'; }
+        if (articleNumber == '771.025.140') { productCode = 'SZ-AR-1750-800'; name_english = 'Seater with Right Armrest 175'; width = 1750; depth = 800; height = 760; weight = '48'; }
+        if (articleNumber == '771.055.120') { productCode = 'SZ-AR-1950-800'; name_english = 'Seater with Right Armrest 195'; width = 1950; depth = 800; height = 760; weight = '49'; }
+        if (articleNumber == '771.055.130') { productCode = 'SZ-AR-2150-800'; name_english = 'Seater with Right Armrest 215'; width = 2150; depth = 800; height = 760; weight = '53'; }
+        if (articleNumber == '771.055.140') { productCode = 'SZ-AR-2250-800'; name_english = 'Seater with Right Armrest 225'; width = 2250; depth = 800; height = 760; weight = '55'; }
+        if (articleNumber == '771.055.150') { productCode = 'LC-L-1400-1415'; name_english = 'Longchair with Left Armrest'; width = 140; depth = 1415; height = 760; weight = '92'; }
+        if (articleNumber == '771.065.160') { productCode = 'LC-L-1900-1415'; name_english = 'Longchair with Left Armrest'; width = 190; depth = 1415; height = 760; weight = '98'; }
+        if (articleNumber == '771.065.180') { productCode = 'LC-R-1400-1415'; name_english = 'Longchair with Right Armrest'; width = 140; depth = 1415; height = 760; weight = '92'; }
+        if (articleNumber == '771.075.100') { productCode = 'LC-R-1900-1415'; name_english = 'Longchair with Right Armrest'; width = 190; depth = 1415; height = 760; weight = '98'; }
+        if (articleNumber == '771.075.120') { productCode = 'LCXL-L-1400-1715'; name_english = 'Longchair XL with Left Armrest'; width = 140; depth = 1715; height = 760; weight = '122'; }
+        if (articleNumber == '771.075.140') { productCode = 'LCXL-L-1900-1715'; name_english = 'Longchair XL with Left Armrest'; width = 190; depth = 1715; height = 760; weight = '128'; }
+        if (articleNumber == '771.105.110') { productCode = 'LCXL-R-1400-1715'; name_english = 'Longchair XL with Right Armrest'; width = 140; depth = 1715; height = 760; weight = '122'; }
+        if (articleNumber == '771.105.150') { productCode = 'LCXL-R-1900-1715'; name_english = 'Longchair XL with Right Armrest'; width = 190; depth = 1715; height = 760; weight = '128'; }
+
+        weight = weight | ' kg';
+    ",
+    "articleNr": "articleNr = articleNumber;"
+}

@@ -1,0 +1,28 @@
+{
+    "id": "catalogId:40_helloworld",
+    "parameters": [
+        {
+            "key": "width",
+            "type": "Decimal",
+            "defaultValue": 800,
+            "valueObjects": [
+                {
+                    "value": "800",
+                    "condition": "depth < 600"
+                },
+                {
+                    "value": "1200",
+                    "condition": true
+                },
+                {
+                    "value": "1600",
+                    "condition": "depth == 800"
+                }
+            ],
+            "enabled": true,
+            "visible": "height > 400",
+            "visibleInPartList": "height > 400"
+        }
+    ],
+    "articleNr": "'500.' | widthCode | '.' | materialCode"
+}

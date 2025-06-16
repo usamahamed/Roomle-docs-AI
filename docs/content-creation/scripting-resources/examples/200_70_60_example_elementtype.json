@@ -1,0 +1,114 @@
+{
+    "id": "isdt:example_elementtype",
+    "parameters": [
+        {
+            "key": "elementType",
+            "type": "String",
+            "defaultValue": "2seatNA",
+            "valueObjects": [
+                {
+                    "value": "1seatNA",
+                    "thumbnail": "https://catalog.roomle.com/22ca18b4-3ef6-45d6-899d-246902b4a7c5/items/inspiration_master_1seatNA/perspectiveimage.png?marker=1570181527"
+                },
+                {
+                    "value": "2seatNA",
+                    "thumbnail": "https://catalog.roomle.com/22ca18b4-3ef6-45d6-899d-246902b4a7c5/items/inspiration_master_2seatNA/perspectiveimage.png?marker=1570181546"
+                },
+                {
+                    "value": "2seatLA",
+                    "thumbnail": "https://catalog.roomle.com/22ca18b4-3ef6-45d6-899d-246902b4a7c5/items/inspiration_master_2seatLA/perspectiveimage.png?marker=1570180818"
+                },
+                {
+                    "value": "2seatRA",
+                    "thumbnail": "https://catalog.roomle.com/22ca18b4-3ef6-45d6-899d-246902b4a7c5/items/inspiration_master_2seatRA/perspectiveimage.png?marker=1570181288"
+                }
+            ],
+            "enabled": true,
+            "visible": true,
+            "visibleInPartList": true
+        },
+        {
+            "key": "subcomponentType",
+            "type": "String",
+            "defaultValue": "MIDDLE_2",
+            "visible": false,
+            "visibleInPartList": false
+        }
+    ],
+    "subComponents": [
+        {
+            "internalId": "MIDDLE_1",
+            "componentId": "jab:inspiration_1seat",
+            "numberInPartList": "subcomponentType == 'MIDDLE_1'",
+            "active": "subcomponentType == 'MIDDLE_1'",
+            "assignments": {
+                "bezug": "isdt:upholstery_green"
+            },
+            "supersedings": [
+                {
+                    "type": "parameter",
+                    "key": "sitztiefe"
+                },
+                {
+                    "type": "parameter",
+                    "key": "sitzbreite"
+                }
+            ]
+        },
+        {
+            "internalId": "MIDDLE_2",
+            "componentId": "jab:inspiration_2seat",
+            "numberInPartList": "subcomponentType == 'MIDDLE_2'",
+            "active": "subcomponentType == 'MIDDLE_2'",
+            "assignments": {
+                "bezug": "isdt:upholstery_green"
+            },
+            "supersedings": [
+                {
+                    "type": "parameter",
+                    "key": "sitztiefe"
+                },
+                {
+                    "type": "parameter",
+                    "key": "sitzbreite"
+                }
+            ]
+        },
+        {
+            "internalId": "STRAIGHT_END_2",
+            "componentId": "jab:inspiration_2seat_l_r",
+            "numberInPartList": "subcomponentType == 'STRAIGHT_END_2'",
+            "active": "subcomponentType == 'STRAIGHT_END_2'",
+            "assignments": {
+                "bezug": "isdt:upholstery_green",
+                "side": "subcomponentSide"
+            },
+            "supersedings": [
+                {
+                    "type": "parameter",
+                    "key": "sitztiefe"
+                },
+                {
+                    "type": "parameter",
+                    "key": "sitzbreite"
+                }
+            ]
+        }
+    ],
+    "onUpdate": "
+        if (ifnull(inited, false) == false) {
+            inited = true;
+            subcomponentSide = 0;
+            sitztiefe = 560;
+            sitzbreite = 1850;
+        }
+
+        if (elementType == '1seatNA') { subcomponentType = 'MIDDLE_1'; subcomponentSide = 0; }
+        if (elementType == '2seatNA') { subcomponentType = 'MIDDLE_2'; subcomponentSide = 0; }
+        if (elementType == '2seatLA') { subcomponentType = 'STRAIGHT_END_2'; subcomponentSide = -1; }
+        if (elementType == '2seatRA') { subcomponentType = 'STRAIGHT_END_2'; subcomponentSide = 1; }
+    ",
+    "geometry": "
+        SubComponent(subcomponentType);
+    "
+}

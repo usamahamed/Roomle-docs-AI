@@ -1,0 +1,436 @@
+{
+    "id": "soulpepper:cutout_table",
+    "parameters": [
+        {
+            "key": "SurfaceMaterial",
+            "labels": {
+                "en": "Surface Material"
+            },
+            "sort": 1,
+            "type": "Material",
+            "defaultValue": "soulpepper:serious_Wood_28A",
+            "valueObjects": [
+                {
+                    "value": "soulpepper:white_28A",
+                    "condition": ""
+                },
+                {
+                    "value": "soulpepper:foggy_Day_28A",
+                    "condition": ""
+                },
+                {
+                    "value": "soulpepper:mocka_28A",
+                    "condition": ""
+                },
+                {
+                    "value": "soulpepper:dusty_Noon_28A",
+                    "condition": ""
+                },
+                {
+                    "value": "soulpepper:bamboo_Style_28A",
+                    "condition": ""
+                },
+                {
+                    "value": "soulpepper:serious_Wood_28A",
+                    "condition": ""
+                },
+                {
+                    "value": "soulpepper:woodie_28B",
+                    "condition": "Edge != 'Thin'"
+                },
+                {
+                    "value": "soulpepper:dark_Wood_28B",
+                    "condition": "Edge != 'Thin'"
+                }
+            ],
+            "enabled": true,
+            "visible": true,
+            "visibleInPartList": true
+        },
+        {
+            "key": "Edge",
+            "labels": {
+                "en": "Surface Edge Type"
+            },
+            "sort": 2,
+            "type": "String",
+            "defaultValue": "Standard",
+            "valueObjects": [
+                {
+                    "value": "Standard",
+                    "condition": true,
+                    "thumbnail": "https://catalog.roomle.com/3813453b-5eea-487c-8f62-c541aaf20eaf/items/cutout_tabletop_standard/perspectiveimage.png?marker=1571327642"
+                },
+                {
+                    "value": "Thin",
+                    "condition": "!in(SurfaceMaterial, 'soulpepper:woodie_28B', 'soulpepper:woodie_17B', 'soulpepper:dark_Wood_17B', 'soulpepper:dark_Wood_28B')",
+                    "thumbnail": "https://catalog.roomle.com/3813453b-5eea-487c-8f62-c541aaf20eaf/items/cutout_tabletop_thin/perspectiveimage.png?marker=1571327697"
+                }
+            ],
+            "enabled": true,
+            "visible": true,
+            "visibleInPartList": true
+        },
+        {
+            "key": "Width",
+            "labels": {
+                "en": "Width"
+            },
+            "sort": 4,
+            "type": "Integer",
+            "unitType": "length",
+            "defaultValue": 1400,
+            "validValues": [
+                1200,
+                1300,
+                1400,
+                1500,
+                1600,
+                1700,
+                1800,
+                1900,
+                2000
+            ],
+            "enabled": true,
+            "visible": true,
+            "visibleInPartList": true
+        },
+        {
+            "key": "Depth",
+            "labels": {
+                "en": "Depth"
+            },
+            "sort": 5,
+            "type": "Integer",
+            "unitType": "length",
+            "defaultValue": 700,
+            "validValues": [
+                700,
+                800,
+                900,
+                1000
+            ],
+            "enabled": true,
+            "visible": true,
+            "visibleInPartList": true
+        },
+        {
+            "key": "LegMaterial",
+            "labels": {
+                "en": "Leg Material"
+            },
+            "sort": 3,
+            "type": "Material",
+            "defaultValue": "soulpepper:salt",
+            "validValues": [
+                "soulpepper:salt",
+                "soulpepper:sage",
+                "soulpepper:clove",
+                "soulpepper:anise",
+                "soulpepper:turmeric",
+                "soulpepper:blueberry",
+                "soulpepper:paprica",
+                "soulpepper:sumac"
+            ],
+            "enabled": true,
+            "visible": true,
+            "visibleInPartList": true
+        },
+        {
+            "key": "ModestyMaterial",
+            "type": "String",
+            "defaultValue": "Wood",
+            "validValues": [
+                "Wood",
+                "Metal"
+            ],
+            "enabled": true,
+            "visible": false,
+            "visibleInPartList": false
+        },
+        {
+            "key": "ModestyLength",
+            "type": "Integer",
+            "defaultValue": 1100,
+            "enabled": true,
+            "visible": false,
+            "visibleInPartList": false
+        }
+    ],
+    "subComponents": [
+        {
+            "internalId": "TABLETOP",
+            "componentId": "soulpepper:cutout_tabletop",
+            "numberInPartList": "1",
+            "assignments": {
+                "Width": "Width",
+                "Depth": "Depth",
+                "Edge": "Edge",
+                "SurfaceMaterial": "SurfaceMaterial"
+            }
+        },
+        {
+            "internalId": "WIREOPENING",
+            "componentId": "soulpepper:cutout_wireopening",
+            "numberInPartList": "wireCount",
+            "assignments": {
+                "tableWidth": "Width",
+                "tableDepth": "Depth"
+            },
+            "active": "true",
+            "supersedings": [
+                {
+                    "key": "WireOpening",
+                    "type": "parameter"
+                },
+                {
+                    "key": "SecondWireOpening",
+                    "type": "parameter"
+                },
+                {
+                    "key": "WireOpeningPosition",
+                    "type": "parameter"
+                },
+                {
+                    "key": "WireOpeningColor",
+                    "type": "parameter"
+                }
+            ]
+        },
+        {
+            "internalId": "SECONRDWIRE",
+            "componentId": "soulpepper:cutout_wireopening",
+            "numberInPartList": "hasSecondWire && (WireOpening != SecondWireOpening)",
+            "assignments": {
+                "WireOpening": "SecondWireOpening"
+            }
+        },
+        {
+            "internalId": "LEGSINGLE",
+            "componentId": "soulpepper:cutout_legsingle",
+            "numberInPartList": "singleLegCount",
+            "assignments": {
+                "LegMaterial": "LegMaterial"
+            }
+        },
+        {
+            "internalId": "FRAME",
+            "componentId": "soulpepper:cutout_frame",
+            "numberInPartList": "1",
+            "assignments": {
+                "Frame": "Edge"
+            }
+        },
+        {
+            "internalId": "BEAM",
+            "componentId": "soulpepper:cutout_beam",
+            "numberInPartList": "1 + (Depth >= 900) * 1",
+            "assignments": {
+                "size": "Width"
+            }
+        },
+        {
+            "internalId": "MODESTYMATERIAL",
+            "componentId": "soulpepper:cutout_modestypanel_material",
+            "numberInPartList": "hasModestyPanel",
+            "assignments": {
+                "ModestyMat": "ModestyMaterial",
+                "ModestyLength": "ModestyLength"
+            }
+        }
+    ],
+    "onUpdate": "
+        if (ifnull(inited, false) == false) {
+            inited = true;
+            hasAddon = false;
+            addonOnLeft = false;
+            addonOnRight = false;
+            credenzaOnLeft = false;
+            credenzaOnRight = false;
+            extensionOnLeft = false;
+            extensionOnRight = false;
+            hasModestyPanel = false;
+            hasSecondWire = false;
+        }
+
+        addonOnLeft = credenzaOnLeft || extensionOnLeft;
+        addonOnRight = credenzaOnRight || extensionOnRight;
+        hasAddon = addonOnLeft || addonOnRight;
+        singleLegCount = 2 - 1 * (credenzaOnLeft || credenzaOnRight);
+        wireCount = (WireOpening != None) + 1 * ((WireOpeningPosition == 'BothSides') && (WireOpening == SecondWireOpening));
+        hasSecondWire = WireOpeningPosition == 'BothSides';
+    ",
+    "geometry": "
+        SubComponent(TABLETOP);
+         SetObjSurface(SurfaceMaterial);
+         MoveMatrixBy(Vector3f{ -Width / 2, -Depth / 2, 0})
+
+        SubComponent(WIREOPENING);
+         MoveMatrixBy(Vector3f{0, 0, 744.6});
+
+        BeginObjGroup('legs');
+            if (!credenzaOnLeft) {
+                SubComponent(LEGSINGLE);
+                 RotateMatrixBy(Vector3f{0, 0, 1}, Vector3f{0, 0, 0}, 135);
+                 MoveMatrixBy(Vector3f{ -Width / 2 + 520.5 / 2 + 60, 0, 0});
+            }
+
+            if (!credenzaOnRight) {
+                SubComponent(LEGSINGLE);
+                 RotateMatrixBy(Vector3f{0, 0, 1}, Vector3f{0, 0, 0}, -45);
+                 MoveMatrixBy(Vector3f{Width / 2 - 520.5 / 2 - 60, 0, 0});
+            }
+        EndObjGroup('legs');
+         SetObjSurface(LegMaterial);
+    ",
+    "parentDockings": {
+        "points": [
+            {
+                "mask": "credenza",
+                "position": "{ -Width / 2, -Depth / 2, 0}",
+                "rotation": "{0, 0, -90}",
+                "condition": "(!addonOnRight) && (Width >= 1500)",
+                "maxChildren": "1",
+                "assignmentsOnDock": {
+                    "side": -1,
+                    "parentSurface": "SurfaceMaterial",
+                    "handleColor": "LegMaterial",
+                    "connectorMaterial": "LegMaterial"
+                },
+                "assignmentsOnUpdate": {
+                    "connectorMaterial": "LegMaterial"
+                },
+                "selfAssignments": {
+                    "onDock": {
+                        "credenzaOnLeft": true
+                    },
+                    "onUnDock": {
+                        "credenzaOnLeft": false
+                    }
+                }
+            },
+            {
+                "mask": "credenza",
+                "position": "{Width / 2, -Depth / 2, 0}",
+                "rotation": "{0, 0, 90}",
+                "condition": "(!addonOnLeft) && (Width >= 1500)",
+                "maxChildren": "1",
+                "assignmentsOnDock": {
+                    "side": 1,
+                    "parentSurface": "SurfaceMaterial",
+                    "handleColor": "LegMaterial",
+                    "connectorMaterial": "LegMaterial"
+                },
+                "assignmentsOnUpdate": {
+                    "connectorMaterial": "LegMaterial"
+                },
+                "selfAssignments": {
+                    "onDock": {
+                        "credenzaOnRight": true
+                    },
+                    "onUnDock": {
+                        "credenzaOnRight": false
+                    }
+                }
+            },
+            {
+                "mask": "extension",
+                "position": "{ -Width / 2, Depth / 2, 0}",
+                "rotation": "{0, 0, -90}",
+                "condition": "(!addonOnRight) && (Width >= 1400)",
+                "maxChildren": "1",
+                "assignmentsOnDock": {
+                    "side": -1,
+                    "tableSurface": "SurfaceMaterial",
+                    "Edge": "Edge",
+                    "parentSurface": "SurfaceMaterial",
+                    "handleColor": "LegMaterial"
+                },
+                "assignmentsOnUpdate": {
+                    "Edge": "Edge",
+                    "tableSurface": "SurfaceMaterial"
+                },
+                "selfAssignments": {
+                    "onDock": {
+                        "extensionOnLeft": true
+                    },
+                    "onUnDock": {
+                        "extensionOnLeft": false
+                    }
+                }
+            },
+            {
+                "mask": "extension",
+                "position": "{Width / 2, Depth / 2, 0}",
+                "rotation": "{0, 0, 90}",
+                "condition": "(!addonOnLeft) && (Width >= 1400)",
+                "maxChildren": "1",
+                "assignmentsOnDock": {
+                    "side": 1,
+                    "tableSurface": "SurfaceMaterial",
+                    "Edge": "Edge",
+                    "parentSurface": "SurfaceMaterial",
+                    "handleColor": "LegMaterial"
+                },
+                "assignmentsOnUpdate": {
+                    "Edge": "Edge",
+                    "tableSurface": "SurfaceMaterial"
+                },
+                "selfAssignments": {
+                    "onDock": {
+                        "extensionOnRight": true
+                    },
+                    "onUnDock": {
+                        "extensionOnRight": false
+                    }
+                }
+            },
+            {
+                "mask": "modesty",
+                "position": "{0, 0, 714.6}",
+                "rotation": "{0, 0, 0}",
+                "condition": "true",
+                "maxChildren": "1",
+                "assignmentsOnDock": {
+                    "tableWidth": "Width",
+                    "tableDepth": "Depth",
+                    "credenzaOnLeft": "credenzaOnLeft",
+                    "credenzaOnRight": "credenzaOnRight",
+                    "MetalModesMat": "LegMaterial"
+                },
+                "assignmentsOnUpdate": {
+                    "tableWidth": "Width",
+                    "tableDepth": "Depth",
+                    "credenzaOnLeft": "credenzaOnLeft",
+                    "credenzaOnRight": "credenzaOnRight"
+                },
+                "selfAssignments": {
+                    "onDock": {
+                        "hasModestyPanel": true
+                    },
+                    "onUnDock": {
+                        "hasModestyPanel": false
+                    }
+                }
+            }
+        ]
+    },
+    "articleNr": "",
+    "possibleChildren": [
+        {
+            "componentId": "soulpepper:cutout_credenza",
+            "condition": "(!hasAddon) && (Width >= 1500)",
+            "thumbnails": "https://catalog.roomle.com/3813453b-5eea-487c-8f62-c541aaf20eaf/components/cutout_credenza/perspectiveImage.png?marker=1574092153"
+        },
+        {
+            "componentId": "soulpepper:cutout_extension",
+            "condition": "(!hasAddon) && (Width >= 1400)",
+            "thumbnail": "https://catalog.roomle.com/3813453b-5eea-487c-8f62-c541aaf20eaf/components/cutout_extension/perspectiveImage.png?marker=1574092390"
+        },
+        {
+            "componentId": "soulpepper:cutout_modestypanel",
+            "condition": "!hasModestyPanel",
+            "thumbnail": "https://catalog.roomle.com/3813453b-5eea-487c-8f62-c541aaf20eaf/components/cutout_modestypanel/perspectiveImage.png?marker=1571394923"
+        }
+    ]
+}

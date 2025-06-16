@@ -1,0 +1,11 @@
+{
+    "embeddedTextures": [
+        {
+            "height": 1024,
+            "mapping": "RGBA",
+            "url": "https://storage.googleapis.com/roomle-furniture-test/TestContent/Textures/AlphaBlendLabels.png",
+            "width": 1024
+        }
+    ],
+    "shading": {}
+}

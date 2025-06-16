@@ -1,0 +1,201 @@
+{
+    "id": "soulpepper:cutout_modestypanel",
+    "labels": {
+        "en": "Modesty panel"
+    },
+    "parameters": [
+        {
+            "key": "ModestyMat",
+            "labels": {
+                "en": "Modesty Panel Mat"
+            },
+            "type": "String",
+            "defaultValue": "Wood",
+            "validValues": [
+                "Wood",
+                "Metal"
+            ],
+            "enabled": true,
+            "visible": true,
+            "visibleInPartList": true,
+            "onValueChange": "
+                if (ModestyMat == 'Wood') {
+                    thickness = 17;
+                    defaultMaterial = WoodModesMat;
+                } else {
+                    thickness = 2;
+                    defaultMaterial = MetalModesMat;
+                };
+            "
+        },
+        {
+            "key": "WoodModesMat",
+            "labels": {
+                "en": "Wood Modesty Panel Color"
+            },
+            "type": "Material",
+            "defaultValue": "soulpepper:dark_Wood_17B",
+            "validValues": [
+                "soulpepper:white_17A",
+                "soulpepper:foggy_Day_17A",
+                "soulpepper:mocka_17A",
+                "soulpepper:dusty_Noon_17A",
+                "soulpepper:bamboo_Style_17A",
+                "soulpepper:serious_Wood_17A",
+                "soulpepper:woodie_17B",
+                "soulpepper:dark_Wood_17B"
+            ],
+            "enabled": "ModestyMat == 'Wood'",
+            "visible": "ModestyMat == 'Wood'",
+            "visibleInPartList": "ModestyMat == 'Wood'"
+        },
+        {
+            "key": "MetalModesMat",
+            "labels": {
+                "en": "Metal Modesty Panel Color"
+            },
+            "type": "Material",
+            "defaultValue": "soulpepper:salt",
+            "validValues": [
+                "soulpepper:salt",
+                "soulpepper:sage",
+                "soulpepper:clove",
+                "soulpepper:anise",
+                "soulpepper:turmeric",
+                "soulpepper:blueberry",
+                "soulpepper:paprica",
+                "soulpepper:sumac"
+            ],
+            "enabled": "ModestyMat == 'Metal'",
+            "visible": "ModestyMat == 'Metal'",
+            "visibleInPartList": "ModestyMat == 'Metal'"
+        },
+        {
+            "key": "thickness",
+            "type": "Decimal",
+            "defaultValue": 17,
+            "validValues": [
+                17,
+                2
+            ],
+            "enabled": true,
+            "visible": false,
+            "visibleInPartList": false
+        },
+        {
+            "key": "hasCredenza",
+            "type": "Boolean",
+            "defaultValue": false,
+            "enabled": true,
+            "visible": false,
+            "visibleInPartList": false
+        },
+        {
+            "key": "tableWidth",
+            "type": "Integer",
+            "defaultValue": 1400,
+            "enabled": true,
+            "visible": false,
+            "visibleInPartList": false
+        },
+        {
+            "key": "tableDepth",
+            "type": "Integer",
+            "defaultValue": 700,
+            "enabled": true,
+            "visible": false,
+            "visibleInPartList": false
+        },
+        {
+            "key": "credenzaOnLeft",
+            "type": "Boolean",
+            "defaultValue": false,
+            "enabled": true,
+            "visible": false,
+            "visibleInPartList": false
+        },
+        {
+            "key": "cedenzaOnRight",
+            "type": "Boolean",
+            "defaultValue": false,
+            "enabled": true,
+            "visible": false,
+            "visibleInPartList": false
+        }
+    ],
+    "subComponents": [
+        {
+            "internalId": "BACKREF",
+            "componentId": "soulpepper:cutout_modestypanel",
+            "numberInPartList": "1"
+        }
+    ],
+    "onUpdate": "
+        if (ifnull(inited, false) == false) {
+            inited = true;
+            height = 300;
+            legDistance = 150;
+            credenzaDistance = 550;
+            defaultMaterial = 'demoCatalogId:wood';
+        }
+        hasCredenza = credenzaOnLeft || credenzaOnRight;
+        if (ModestyMat == 'Wood') {
+            defaultMaterial = WoodModesMat
+        } else {
+            defaultMaterial = MetalModesMat
+        }
+        width = tableWidth - (hasCredenza == true) * credenzaDistance - legDistance - (hasCredenza == false) * legDistance;
+    ",
+    "geometry": "
+        BeginObjGroup();
+            AddCube(Vector3f{width, thickness, height}, Vector2f{1, 1}, 0, Vector2f{0, 0});
+             SetObjSurface(defaultMaterial);
+
+            if (hasCredenza) {
+                if (credenzaOnLeft) {
+                     MoveMatrixBy(Vector3f{credenzaDistance, 0, 0});
+                }
+                else {
+                     MoveMatrixBy(Vector3f{legDistance, 0, 0});
+                }
+            } else {
+                 MoveMatrixBy(Vector3f{legDistance, 0, 0});
+            }
+        EndObjGroup();
+         MoveMatrixBy(Vector3f{ -tableWidth / 2, -tableDepth / 2 + 200, -height});
+    ",
+    "childDockings": {
+        "points": [
+            {
+                "mask": "modesty",
+                "position": "{0, 0, 0}",
+                "rotation": "{0, 0, 0}",
+                "condition": "true",
+                "assignmentScripts": {
+                    "onDock": "
+                        if (other.SurfaceMaterial == 'soulpepper:white_28A') { self.WoodModesMat = 'soulpepper:white_17A'}
+                        if (other.SurfaceMaterial == 'soulpepper:foggy_Day_28A') { self.WoodModesMat = 'soulpepper:foggy_Day_17A'}
+                        if (other.SurfaceMaterial == 'soulpepper:mocka_28A') { self.WoodModesMat = 'soulpepper:mocka_17A'}
+                        if (other.SurfaceMaterial == 'soulpepper:dusty_Noon_28A') { self.WoodModesMat = 'soulpepper:dusty_Noon_17A'}
+                        if (other.SurfaceMaterial == 'soulpepper:bamboo_Style_28A') { self.WoodModesMat = 'soulpepper:bamboo_Style_17A'}
+                        if (other.SurfaceMaterial == 'soulpepper:serious_Wood_28A') { self.WoodModesMat = 'soulpepper:serious_Wood_17A'}
+                        if (other.SurfaceMaterial == 'soulpepper:woodie_28B') { self.WoodModesMat = 'soulpepper:woodie_17B'}
+                        if (other.SurfaceMaterial == 'soulpepper:dark_Wood_28B') { self.WoodModesMat = 'soulpepper:dark_Wood_17B'}
+                    ",
+                    "onUpdate": "
+                        other.ModestyMaterial = ModestyMat;
+                        other.ModestyLength = width;
+                    "
+                }
+            }
+        ]
+    },
+    "articleNr": "
+        if (ModestyMat == 'Wood') {
+            articleNr = 'MOPW1'
+        }
+        if (ModestyMat == 'Metal') {
+            articleNr = 'MOPM1'
+        }
+    "
+}

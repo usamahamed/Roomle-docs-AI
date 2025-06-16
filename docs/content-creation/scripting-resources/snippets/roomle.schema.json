@@ -1,0 +1,887 @@
+{
+    "definitions": {
+        "labels": {
+            "$id": "#/definitions/labels",
+            "type": "object",
+            "title": "The Labels Schema",
+            "required": [
+                "en"
+            ],
+            "properties": {
+                "en": {
+                    "type": "string",
+                    "default": ""
+                },
+                "de": {
+                    "type": "string",
+                    "default": ""
+                },
+                "fr": {
+                    "type": "string",
+                    "default": ""
+                },
+                "it": {
+                    "type": "string",
+                    "default": ""
+                },
+                "nl": {
+                    "type": "string",
+                    "default": ""
+                },
+                "es": {
+                    "type": "string",
+                    "default": ""
+                },
+                "dk": {
+                    "type": "string",
+                    "default": ""
+                },
+                "pl": {
+                    "type": "string",
+                    "default": ""
+                },
+                "sk": {
+                    "type": "string",
+                    "default": ""
+                },
+                "no": {
+                    "type": "string",
+                    "default": ""
+                },
+                "kr": {
+                    "type": "string",
+                    "default": ""
+                }
+            }
+        },
+        "key": {
+            "$id": "#/definitions/key",
+            "type": "string",
+            "pattern": "[_a-zA-Z][_a-zA-Z0-9]*"
+        },
+        "vector": {
+            "$id": "#/definitions/vector",
+            "type": "string",
+            "description": "Vector of 3 numeric values or expressions. Syntax: {x, y, z}",
+            "pattern": "{[\\s\\w_+-/\\*()(&&)(||)(==)']*,[\\s\\w_+-/\\*()(&&)(||)(==)']*,[\\s\\w_+-/\\*()(&&)(||)(==)']*}",
+            "default": "{0, 0, 0}"
+        },
+        "scriptBoolean": {
+            "$id": "#/definitions/scriptBoolean",
+            "type": [
+                "string",
+                "boolean"
+            ],
+            "title": "Script<Boolean> or Boolean",
+            "default": "true",
+            "examples": [
+                "false"
+            ]
+        },
+        "scriptInteger": {
+            "$id": "#/definitions/scriptInteger",
+            "type": [
+                "string",
+                "integer"
+            ],
+            "title": "Script<Integer> or Integer",
+            "default": "0",
+            "examples": [
+                "true"
+            ]
+        },
+        "scriptDecimal": {
+            "$id": "#/definitions/scriptDecimal",
+            "type": [
+                "string",
+                "number",
+                "integer"
+            ],
+            "title": "Script<Decimal> or Decimal",
+            "default": "0.00"
+        },
+        "scriptString": {
+            "$id": "#/definitions/scriptString",
+            "type": [
+                "string",
+                "number",
+                "integer"
+            ],
+            "title": "Script<String> or String",
+            "default": ""
+        },
+        "any": {
+            "$id": "#/definitions/any",
+            "type": [
+                "string",
+                "number",
+                "integer",
+                "boolean"
+            ],
+            "title": "Any",
+            "default": "0"
+        },
+        "string": {
+            "$id": "#/definitions/string",
+            "type": [
+                "string"
+            ],
+            "title": "String",
+            "default": ""
+        },
+        "script": {
+            "$id": "#/definitions/script",
+            "type": [
+                "string"
+            ],
+            "title": "script",
+            "default": ""
+        },
+        "boolean": {
+            "$id": "#/definitions/boolean",
+            "type": [
+                "boolean"
+            ],
+            "title": "Boolean",
+            "default": true
+        },
+        "integer": {
+            "$id": "#/definitions/integer",
+            "type": [
+                "integer"
+            ],
+            "title": "integer",
+            "default": 0
+        },
+        "decimal": {
+            "$id": "#/definitions/decimal",
+            "type": [
+                "number",
+                "integer"
+            ],
+            "title": "decimal",
+            "default": 0
+        },
+        "valueObject": {
+            "$id": "#/definitions/valueObject",
+            "type": "object",
+            "title": "Value Object",
+            "required": [
+                "value"
+            ],
+            "properties": {
+                "value": {
+                    "$ref": "#/definitions/any"
+                },
+                "condition": {
+                    "$ref": "#/definitions/scriptBoolean"
+                },
+                "thumbnail": {
+                    "$id": "#/properties/parameters/items/properties/valueObjects/items/properties/thumbnail",
+                    "type": "string",
+                    "title": "Thumbnail link from the database",
+                    "pattern": "^https://catalog.roomle.com/"
+                },
+                "labels": {
+                    "$ref": "#/definitions/labels"
+                }
+            }
+        },
+        "assignmentScripts": {
+            "$id": "#/definitions/assignmentScripts",
+            "type": "object",
+            "title": "Assignment Scripts",
+            "properties": {
+                "onDock": {
+                    "$ref": "#/definitions/script"
+                },
+                "onUpdate": {
+                    "$ref": "#/definitions/script"
+                },
+                "onUnDock": {
+                    "$ref": "#/definitions/script"
+                }
+            }
+        },
+        "assignments": {
+            "$id": "#/definitions/assignments",
+            "type": "object",
+            "title": "Assignments"
+        },
+        "selfAssignments": {
+            "$id": "#/definitions/selfAssignments",
+            "type": "object",
+            "title": "Self Assignments",
+            "properties": {
+                "onDock": {
+                    "$ref": "#/definitions/assignments"
+                },
+                "onUpdate": {
+                    "$ref": "#/definitions/assignments"
+                },
+                "onUnDock": {
+                    "$ref": "#/definitions/assignments"
+                }
+            }
+        },
+        "connectionPoint": {
+            "$id": "#/definitions/connectionPoint",
+            "type": "object",
+            "title": "The Items Schema",
+            "required": [
+                "mask",
+                "position"
+            ],
+            "properties": {
+                "mask": {
+                    "$ref": "#/definitions/string"
+                },
+                "position": {
+                    "$ref": "#/definitions/vector"
+                },
+                "rotation": {
+                    "$ref": "#/definitions/vector"
+                },
+                "condition": {
+                    "$ref": "#/definitions/scriptBoolean"
+                },
+                "maxConnections": {
+                    "$ref": "#/definitions/scriptInteger"
+                },
+                "assignmentsOnDock": {
+                    "$ref": "#/definitions/assignments"
+                },
+                "assignmentsOnUpdate": {
+                    "$ref": "#/definitions/assignments"
+                },
+                "assignmentsOnUpdateSilent": {
+                    "$ref": "#/definitions/assignments"
+                },
+                "assignmentsOnUnDock": {
+                    "$ref": "#/definitions/assignments"
+                },
+                "selfAssignments": {
+                    "$ref": "#/definitions/selfAssignments"
+                },
+                "assignmentScripts": {
+                    "$ref": "#/definitions/assignmentScripts"
+                }
+            }
+        },
+        "dockingRange": {
+            "$id": "#/definitions/dockingRange",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/connectionPoint"
+                }
+            ],
+            "required": [
+                "stepEnd"
+            ],
+            "anyOf": [
+                {
+                    "required": [
+                        "stepX"
+                    ]
+                },
+                {
+                    "required": [
+                        "stepY"
+                    ]
+                },
+                {
+                    "required": [
+                        "stepZ"
+                    ]
+                }
+            ],
+            "properties": {
+                "stepEnd": {
+                    "$ref": "#/definitions/vector"
+                },
+                "stepX": {
+                    "$ref": "#/definitions/scriptInteger"
+                },
+                "stepY": {
+                    "$ref": "#/definitions/scriptInteger"
+                },
+                "stepZ": {
+                    "$ref": "#/definitions/scriptInteger"
+                }
+            }
+        },
+        "addOnSpot": {
+            "$id": "#/definitions/addOnSpot",
+            "required": [
+                "position",
+                "mask"
+            ],
+            "properties": {
+                "position": {
+                    "$ref": "#/definitions/vector"
+                },
+                "mask": {
+                    "$ref": "#/definitions/string"
+                },
+                "condition": {
+                    "$ref": "#/definitions/scriptBoolean"
+                }
+            }
+        },
+        "dockingLine": {
+            "$id": "#/definitions/dockingLine",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/connectionPoint"
+                }
+            ],
+            "required": [
+                "positionTo"
+            ],
+            "properties": {
+                "positionTo": {
+                    "$ref": "#/definitions/vector"
+                }
+            }
+        },
+        "componentId": {
+            "$id": "#/definitions/componentId",
+            "type": "string",
+            "title": "catalogueId:componentId",
+            "default": "",
+            "examples": [
+                "catalogue:projectname_itemname"
+            ],
+            "pattern": ".*:.*"
+        }
+    },
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "http://example.com/root.json",
+    "type": "object",
+    "title": "Component",
+    "required": [
+        "id"
+    ],
+    "properties": {
+        "id": {
+            "$ref": "#/definitions/componentId"
+        },
+        "parameterGroups": {
+            "$id": "#/properties/parameterGroups",
+            "type": "array",
+            "title": "The Parametergroups Schema",
+            "items": {
+                "$id": "#/properties/parameterGroups/items",
+                "type": "object",
+                "title": "The Items Schema",
+                "required": [
+                    "key"
+                ],
+                "properties": {
+                    "key": {
+                        "$ref": "#/definitions/key"
+                    },
+                    "labels": {
+                        "$ref": "#/definitions/labels"
+                    },
+                    "collapsed": {
+                        "$ref": "#/definitions/scriptBoolean"
+                    },
+                    "sort": {
+                        "$ref": "#/definitions/scriptInteger"
+                    }
+                }
+            }
+        },
+        "parameters": {
+            "$id": "#/properties/parameters",
+            "type": "array",
+            "title": "The Parameters Schema",
+            "items": {
+                "$id": "#/properties/parameters/items",
+                "type": "object",
+                "title": "The Items Schema",
+                "allOf": [
+                    {
+                        "required": [
+                            "type",
+                            "defaultValue",
+                            "visible",
+                            "visibleInPartList"
+                        ]
+                    },
+                    {
+                        "oneOf": [
+                            {
+                                "required": [
+                                    "key"
+                                ],
+                                "not": {
+                                    "anyOf": [
+                                        {
+                                            "required": [
+                                                "validValues"
+                                            ]
+                                        },
+                                        {
+                                            "required": [
+                                                "valueObjects"
+                                            ]
+                                        },
+                                        {
+                                            "required": [
+                                                "validRange"
+                                            ]
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "required": [
+                                    "key",
+                                    "validValues"
+                                ]
+                            },
+                            {
+                                "required": [
+                                    "key",
+                                    "valueObjects"
+                                ]
+                            },
+                            {
+                                "required": [
+                                    "key",
+                                    "validRange"
+                                ]
+                            }
+                        ]
+                    }
+                ],
+                "properties": {
+                    "key": {
+                        "$ref": "#/definitions/key"
+                    },
+                    "global": {
+                        "$ref": "#/definitions/boolean"
+                    },
+                    "sort": {
+                        "$ref": "#/definitions/integer"
+                    },
+                    "group": {
+                        "$ref": "#/definitions/scriptString"
+                    },
+                    "labels": {
+                        "$ref": "#/definitions/labels"
+                    },
+                    "type": {
+                        "$id": "#/properties/parameters/items/properties/type",
+                        "type": "string",
+                        "title": "The Type Schema",
+                        "default": "",
+                        "enum": [
+                            "Decimal",
+                            "Integer",
+                            "Boolean",
+                            "String",
+                            "Material"
+                        ]
+                    },
+                    "unitType": {
+                        "$id": "#/properties/parameters/items/properties/unitType",
+                        "type": "string",
+                        "title": "The Unittype Schema",
+                        "default": "",
+                        "examples": [
+                            "length",
+                            "angle",
+                            "area"
+                        ],
+                        "pattern": "^(.*)$"
+                    },
+                    "defaultValue": {
+                        "$ref": "#/definitions/any"
+                    },
+                    "highlighted": {
+                        "$ref": "#/definitions/scriptBoolean"
+                    },
+                    "enabled": {
+                        "$ref": "#/definitions/scriptBoolean"
+                    },
+                    "visible": {
+                        "$ref": "#/definitions/scriptBoolean"
+                    },
+                    "visibleInPartList": {
+                        "$ref": "#/definitions/scriptBoolean"
+                    },
+                    "visibleAsGlobal": {
+                        "$ref": "#/definitions/scriptBoolean"
+                    },
+                    "onValueChange": {
+                        "$ref": "#/definitions/script"
+                    },
+                    "validValues": {
+                        "$id": "#/properties/parameters/items/properties/validValues",
+                        "type": "array",
+                        "title": "The Validvalues Schema",
+                        "items": {
+                            "$ref": "#/definitions/any"
+                        }
+                    },
+                    "valueObjects": {
+                        "$id": "#/properties/parameters/items/properties/valueObjects",
+                        "type": "array",
+                        "title": "The Valueobjects Schema",
+                        "items": {
+                            "$ref": "#/definitions/valueObject"
+                        }
+                    },
+                    "validRange": {
+                        "$id": "#/properties/parameters/items/properties/validRange",
+                        "type": "object",
+                        "title": "The Validrange Schema",
+                        "required": [
+                            "valueFrom",
+                            "valueTo",
+                            "step"
+                        ],
+                        "properties": {
+                            "valueFrom": {
+                                "$id": "#/properties/parameters/items/properties/validRange/properties/valueFrom",
+                                "type": [
+                                    "integer",
+                                    "number",
+                                    "string"
+                                ],
+                                "title": "The Valuefrom Schema",
+                                "default": 0,
+                                "examples": [
+                                    "0+var"
+                                ]
+                            },
+                            "valueTo": {
+                                "$id": "#/properties/parameters/items/properties/validRange/properties/valueTo",
+                                "type": [
+                                    "integer",
+                                    "number",
+                                    "string"
+                                ],
+                                "title": "The Valueto Schema",
+                                "default": 100,
+                                "examples": [
+                                    "0+var"
+                                ]
+                            },
+                            "step": {
+                                "$id": "#/properties/parameters/items/properties/validRange/properties/step",
+                                "type": [
+                                    "integer",
+                                    "number",
+                                    "string"
+                                ],
+                                "title": "The Step Schema",
+                                "default": 1,
+                                "examples": [
+                                    "0+var"
+                                ]
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "subComponents": {
+            "$id": "#/properties/subComponents",
+            "type": "array",
+            "title": "The Subcomponents Schema",
+            "items": {
+                "$id": "#/properties/subComponents/items",
+                "type": "object",
+                "title": "The Items Schema",
+                "required": [
+                    "internalId",
+                    "componentId",
+                    "numberInPartList"
+                ],
+                "properties": {
+                    "internalId": {
+                        "$ref": "#/definitions/key"
+                    },
+                    "componentId": {
+                        "$ref": "#/definitions/componentId"
+                    },
+                    "numberInPartList": {
+                        "$ref": "#/definitions/scriptInteger"
+                    },
+                    "assignments": {
+                        "$id": "#/properties/subComponents/items/properties/assignments",
+                        "type": "object",
+                        "title": "The Assignments Schema"
+                    },
+                    "active": {
+                        "$ref": "#/definitions/scriptBoolean"
+                    },
+                    "supersedings": {
+                        "$id": "#/properties/subComponents/items/properties/supersedings",
+                        "type": "array",
+                        "title": "The Supersedings Schema",
+                        "items": {
+                            "$id": "#/properties/subComponents/items/properties/supersedings/items",
+                            "type": "object",
+                            "title": "The Items Schema",
+                            "required": [
+                                "type",
+                                "key"
+                            ],
+                            "properties": {
+                                "type": {
+                                    "$id": "#/properties/subComponents/items/properties/supersedings/items/properties/type",
+                                    "type": "string",
+                                    "title": "The Type Schema",
+                                    "default": "parameter",
+                                    "enum": [
+                                        "parameter"
+                                    ]
+                                },
+                                "key": {
+                                    "$ref": "#/definitions/key"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "onUpdate": {
+            "$ref": "#/definitions/script"
+        },
+        "valid": {
+            "$ref": "#/definitions/scriptBoolean"
+        },
+        "previewGeometry": {
+            "$ref": "#/definitions/script"
+        },
+        "geometry": {
+            "$ref": "#/definitions/script"
+        },
+        "geometryHD": {
+            "$ref": "#/definitions/script"
+        },
+        "siblings": {
+            "$id": "#/properties/siblings",
+            "type": "array",
+            "title": "The Siblings Schema",
+            "items": {
+                "$ref": "#/definitions/connectionPoint"
+            }
+        },
+        "addOnSpots": {
+            "$id": "#/properties/addOnSpots",
+            "type": "array",
+            "title": "The Addonspots Schema",
+            "items": {
+                "$ref": "#/definitions/addOnSpot"
+            }
+        },
+        "parentDockings": {
+            "$id": "#/properties/parentDockings",
+            "type": "object",
+            "title": "The Parentdockings Schema",
+            "properties": {
+                "points": {
+                    "$id": "#/properties/parentDockings/properties/points",
+                    "type": "array",
+                    "title": "The Points Schema",
+                    "items": {
+                        "$ref": "#/definitions/connectionPoint"
+                    }
+                },
+                "ranges": {
+                    "$id": "#/properties/parentDockings/properties/ranges",
+                    "type": "array",
+                    "title": "The Ranges Schema",
+                    "items": {
+                        "$ref": "#/definitions/dockingRange"
+                    }
+                },
+                "lines": {
+                    "$id": "#/properties/parentDockings/properties/lines",
+                    "type": "array",
+                    "title": "Docking Lines",
+                    "items": {
+                        "$ref": "#/definitions/dockingLine"
+                    }
+                }
+            }
+        },
+        "childDockings": {
+            "$id": "#/properties/childDockings",
+            "type": "object",
+            "title": "The Childdockings Schema",
+            "properties": {
+                "points": {
+                    "$id": "#/properties/childDockings/properties/points",
+                    "type": "array",
+                    "title": "The Points Schema",
+                    "items": {
+                        "$ref": "#/definitions/connectionPoint"
+                    }
+                }
+            }
+        },
+        "articleNr": {
+            "$ref": "#/definitions/scriptString"
+        },
+        "packageSizes": {
+            "$id": "#/properties/packageSizes",
+            "type": "array",
+            "title": "The Packagesizes Schema",
+            "items": {
+                "$ref": "#/definitions/integer"
+            }
+        },
+        "packaging": {
+            "$id": "#/properties/packaging",
+            "type": "array",
+            "title": "The Packaging Schema",
+            "items": {
+                "$id": "#/properties/packaging/items",
+                "type": "object",
+                "title": "The Items Schema",
+                "required": [
+                    "size",
+                    "condition"
+                ],
+                "properties": {
+                    "size": {
+                        "$ref": "#/definitions/integer"
+                    },
+                    "condition": {
+                        "$ref": "#/definitions/scriptBoolean"
+                    }
+                }
+            }
+        },
+        "dimensionings": {
+            "$id": "#/properties/dimensionings",
+            "type": "array",
+            "title": "The Dimensionings Schema",
+            "items": {
+                "$id": "#/properties/dimensionings/items",
+                "type": "object",
+                "title": "The Items Schema",
+                "required": [
+                    "type",
+                    "from",
+                    "to",
+                    "level"
+                ],
+                "properties": {
+                    "labels": {
+                        "$ref": "#/definitions/labels"
+                    },
+                    "type": {
+                        "$ref": "#/definitions/string"
+                    },
+                    "from": {
+                        "$ref": "#/definitions/scriptDecimal"
+                    },
+                    "to": {
+                        "$ref": "#/definitions/scriptDecimal"
+                    },
+                    "level": {
+                        "$ref": "#/definitions/integer"
+                    },
+                    "visible": {
+                        "$ref": "#/definitions/scriptBoolean"
+                    }
+                }
+            }
+        },
+        "pricing": {
+            "$id": "#/properties/pricing",
+            "type": "array",
+            "title": "PriceList",
+            "description": "component.pricing should not be used in new projects ... use pricing service instead",
+            "items": {
+                "$id": "#/properties/pricing/items",
+                "type": "object",
+                "title": "PriceList",
+                "required": [
+                    "component.pricing should not be used in new projects ... use pricing service instead",
+                    "region",
+                    "currency",
+                    "retailPriceDependsOnCustomerPrice",
+                    "price",
+                    "retailPrice"
+                ],
+                "properties": {
+                    "region": {
+                        "$ref": "#/definitions/string",
+                        "default": "default",
+                        "examples": [
+                            "default",
+                            "at",
+                            "uk",
+                            "us"
+                        ]
+                    },
+                    "currency": {
+                        "$ref": "#/definitions/string",
+                        "default": "EUR",
+                        "examples": [
+                            "EUR",
+                            "GBP",
+                            "USD",
+                            "CZK"
+                        ]
+                    },
+                    "retailPriceDependsOnCustomerPrice": {
+                        "$ref": "#/definitions/boolean"
+                    },
+                    "price": {
+                        "$ref": "#/definitions/script"
+                    },
+                    "retailPrice": {
+                        "$ref": "#/definitions/script"
+                    }
+                }
+            }
+        },
+        "possibleChildren": {
+            "$id": "#/properties/possibleChildren",
+            "type": "array",
+            "title": "The Possiblechildren Schema",
+            "items": {
+                "$id": "#/properties/possibleChildren/items",
+                "type": "object",
+                "title": "PossibleChild",
+                "oneOf": [
+                    {
+                        "required": [
+                            "componentId"
+                        ]
+                    },
+                    {
+                        "required": [
+                            "itemId"
+                        ]
+                    }
+                ],
+                "properties": {
+                    "componentId": {
+                        "$ref": "#/definitions/componentId"
+                    },
+                    "itemId": {
+                        "$ref": "#/definitions/componentId"
+                    },
+                    "group": {
+                        "$ref": "#/definitions/string"
+                    },
+                    "condition": {
+                        "$ref": "#/definitions/scriptBoolean"
+                    }
+                }
+            }
+        }
+    }
+}

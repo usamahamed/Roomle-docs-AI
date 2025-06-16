@@ -1,0 +1,631 @@
+{
+    "id": "soulpepper:cutout_credenza",
+    "labels": {
+        "en": "Credenza"
+    },
+    "parameters": [
+        {
+            "key": "BoxMaterial",
+            "labels": {
+                "en": "Box Material"
+            },
+            "type": "Material",
+            "defaultValue": "soulpepper:dark_Wood_17B",
+            "validValues": [
+                "soulpepper:white_17A",
+                "soulpepper:foggy_Day_17A",
+                "soulpepper:mocka_17A",
+                "soulpepper:dusty_Noon_17A",
+                "soulpepper:bamboo_Style_17A",
+                "soulpepper:serious_Wood_17A",
+                "soulpepper:woodie_17B",
+                "soulpepper:dark_Wood_17B"
+            ],
+            "enabled": true,
+            "visible": true,
+            "visibleInPartList": true,
+            "onValueChange": "surfaceMaterial = BoxMaterial"
+        },
+        {
+            "key": "FrontMaterial",
+            "labels": {
+                "en": "Front Material"
+            },
+            "type": "Material",
+            "defaultValue": "soulpepper:dark_Wood_17B",
+            "validValues": [
+                "soulpepper:white_17A",
+                "soulpepper:foggy_Day_17A",
+                "soulpepper:mocka_17A",
+                "soulpepper:dusty_Noon_17A",
+                "soulpepper:bamboo_Style_17A",
+                "soulpepper:serious_Wood_17A",
+                "soulpepper:woodie_17B",
+                "soulpepper:dark_Wood_17B"
+            ],
+            "enabled": true,
+            "visible": true,
+            "visibleInPartList": true
+        },
+        {
+            "key": "BaseMaterial",
+            "labels": {
+                "en": "Base Material"
+            },
+            "type": "Material",
+            "defaultValue": "soulpepper:dark_Wood_17B",
+            "validValues": [
+                "soulpepper:white_17A",
+                "soulpepper:foggy_Day_17A",
+                "soulpepper:mocka_17A",
+                "soulpepper:dusty_Noon_17A",
+                "soulpepper:bamboo_Style_17A",
+                "soulpepper:serious_Wood_17A",
+                "soulpepper:woodie_17B",
+                "soulpepper:dark_Wood_17B"
+            ],
+            "enabled": true,
+            "visible": true,
+            "visibleInPartList": true
+        },
+        {
+            "key": "side",
+            "type": "Integer",
+            "defaultValue": -1,
+            "validValues": [
+                -1,
+                1
+            ],
+            "enabled": true,
+            "visible": false,
+            "visibleInPartList": false
+        },
+        {
+            "key": "doorCount",
+            "labels": {
+                "en": "Door count"
+            },
+            "type": "Integer",
+            "defaultValue": 2,
+            "valueObjects": [
+                {
+                    "value": 1,
+                    "condition": true,
+                    "labels": {
+                        "en": "One"
+                    }
+                },
+                {
+                    "value": 2,
+                    "condition": true,
+                    "labels": {
+                        "en": "Two"
+                    }
+                }
+            ],
+            "enabled": true,
+            "visible": false,
+            "visibleInPartList": false,
+            "onValueChange": "
+                cabineteMinWidth = 200 + (doorCount - 1) * 500;
+                cabineteMaxWidth = 600 + (doorCount - 1) * 200
+            "
+        },
+        {
+            "key": "handleType",
+            "labels": {
+                "en": "Handle Type"
+            },
+            "type": "String",
+            "defaultValue": "M96",
+            "valueObjects": [
+                {
+                    "value": "M96",
+                    "condition": true,
+                    "thumbnail": "https://catalog.roomle.com/3813453b-5eea-487c-8f62-c541aaf20eaf/items/cutout_handle_M96/perspectiveimage.png?marker=1571413642",
+                    "labels": {
+                        "en": "M96 Handle"
+                    }
+                },
+                {
+                    "value": "M64",
+                    "condition": true,
+                    "thumbnail": "https://catalog.roomle.com/3813453b-5eea-487c-8f62-c541aaf20eaf/items/cutout_handle_M64/perspectiveimage.png?marker=1571413756",
+                    "labels": {
+                        "en": "M64 Handle"
+                    }
+                },
+                {
+                    "value": "F2",
+                    "condition": true,
+                    "thumbnail": "https://catalog.roomle.com/3813453b-5eea-487c-8f62-c541aaf20eaf/items/cutout_handle_F2/perspectiveimage.png?marker=1571413855",
+                    "labels": {
+                        "en": "F2 Handle"
+                    }
+                },
+                {
+                    "value": "Rifto",
+                    "condition": true,
+                    "thumbnail": "https://catalog.roomle.com/3813453b-5eea-487c-8f62-c541aaf20eaf/items/cutout_handle_Rifto/perspectiveimage.png?marker=1571413973"
+                },
+                {
+                    "value": "X",
+                    "condition": true,
+                    "thumbnail": "https://catalog.roomle.com/3813453b-5eea-487c-8f62-c541aaf20eaf/items/cutout_handle_X/perspectiveimage.png?marker=1571414110"
+                }
+            ],
+            "enabled": true,
+            "visible": true,
+            "visibleInPartList": true
+        },
+        {
+            "key": "handleColor",
+            "labels": {
+                "en": "Handle Color"
+            },
+            "type": "Material",
+            "defaultValue": "soulpepper:sage",
+            "validValues": [
+                "soulpepper:salt",
+                "soulpepper:sage",
+                "soulpepper:clove",
+                "soulpepper:anise",
+                "soulpepper:turmeric",
+                "soulpepper:blueberry",
+                "soulpepper:paprica",
+                "soulpepper:sumac"
+            ],
+            "enabled": true,
+            "visible": true,
+            "visibleInPartList": true
+        },
+        {
+            "key": "openCabineteWidth",
+            "defaultValue": 800,
+            "type": "Decimal",
+            "validRange": {
+                "valueFrom": 400,
+                "valueTo": 1200,
+                "step": 100
+            },
+            "enabled": true,
+            "visible": false,
+            "visibleInPartList": false
+        },
+        {
+            "key": "cabineteWidth",
+            "labels": {
+                "en": "Width of credenza"
+            },
+            "defaultValue": 700,
+            "type": "Decimal",
+            "valueObjects": [
+                {
+                    "value": "200",
+                    "condition": "true",
+                    "thumbnail": "",
+                    "labels": {
+                        "en": "140 cm",
+                        "de": "140 cm"
+                    }
+                },
+                {
+                    "value": "300",
+                    "condition": "true",
+                    "thumbnail": "",
+                    "labels": {
+                        "en": "150 cm",
+                        "de": "150 cm"
+                    }
+                },
+                {
+                    "value": "400",
+                    "condition": "true",
+                    "thumbnail": "",
+                    "labels": {
+                        "en": "160 cm",
+                        "de": "160 cm"
+                    }
+                },
+                {
+                    "value": "500",
+                    "condition": "true",
+                    "thumbnail": "",
+                    "labels": {
+                        "en": "170 cm",
+                        "de": "170 cm"
+                    }
+                },
+                {
+                    "value": "600",
+                    "condition": "true",
+                    "thumbnail": "",
+                    "labels": {
+                        "en": "180 cm",
+                        "de": "180 cm"
+                    }
+                },
+                {
+                    "value": "700",
+                    "condition": "",
+                    "thumbnail": "",
+                    "labels": {
+                        "en": "190 cm",
+                        "de": "190 cm"
+                    }
+                },
+                {
+                    "value": "800",
+                    "condition": "",
+                    "thumbnail": "",
+                    "labels": {
+                        "en": "200 cm",
+                        "de": "200 cm"
+                    }
+                }
+            ],
+            "enabled": true,
+            "visible": false,
+            "visibleInPartList": false
+        },
+        {
+            "key": "credenzaWidth",
+            "labels": {
+                "en": "Width of credenza"
+            },
+            "defaultValue": 700,
+            "type": "Decimal",
+            "valueObjects": [
+                {
+                    "value": "200",
+                    "condition": "true",
+                    "thumbnail": "",
+                    "labels": {
+                        "en": "140 cm",
+                        "de": "140 cm"
+                    }
+                },
+                {
+                    "value": "300",
+                    "condition": "true",
+                    "thumbnail": "",
+                    "labels": {
+                        "en": "150 cm",
+                        "de": "150 cm"
+                    }
+                },
+                {
+                    "value": "400",
+                    "condition": "true",
+                    "thumbnail": "",
+                    "labels": {
+                        "en": "160 cm",
+                        "de": "160 cm"
+                    }
+                },
+                {
+                    "value": "500",
+                    "condition": "true",
+                    "thumbnail": "",
+                    "labels": {
+                        "en": "170 cm",
+                        "de": "170 cm"
+                    }
+                },
+                {
+                    "value": "600",
+                    "condition": "true",
+                    "thumbnail": "",
+                    "labels": {
+                        "en": "180 cm",
+                        "de": "180 cm"
+                    }
+                },
+                {
+                    "value": "700",
+                    "condition": "",
+                    "thumbnail": "",
+                    "labels": {
+                        "en": "190 cm",
+                        "de": "190 cm"
+                    }
+                },
+                {
+                    "value": "800",
+                    "condition": "",
+                    "thumbnail": "",
+                    "labels": {
+                        "en": "200 cm",
+                        "de": "200 cm"
+                    }
+                }
+            ],
+            "enabled": true,
+            "visible": true,
+            "visibleInPartList": false,
+            "onValueChange": "
+                if (!in(credenzaWidth, '700', '800')) {
+                    cabineteWidth = '700'
+                } else {
+                    cabineteWidth = credenzaWidth
+                }
+            "
+        },
+        {
+            "key": "drawerWidth",
+            "type": "Integer",
+            "defaultValue": 400,
+            "validRange": {
+                "valueFrom": 400,
+                "valueTo": 600,
+                "step": 1
+            },
+            "enabled": true,
+            "visible": false,
+            "visibleInPartList": false
+        },
+        {
+            "key": "parentSurface",
+            "labels": {
+                "en": "Surface Material"
+            },
+            "type": "Material",
+            "defaultValue": "soulpepper:serious_Wood_28A",
+            "enabled": true,
+            "visible": false,
+            "visibleInPartList": false
+        }
+    ],
+    "subComponents": [
+        {
+            "internalId": "HANDLE",
+            "componentId": "soulpepper:cutout_handle",
+            "numberInPartList": "numberOfHandles",
+            "active": true,
+            "assignments": {
+                "handleType": "handleType",
+                "handleColor": "handleColor"
+            }
+        },
+        {
+            "internalId": "CONNECTOR",
+            "componentId": "soulpepper:cutout_connector",
+            "numberInPartList": "1"
+        },
+        {
+            "internalId": "BACKREF",
+            "componentId": "soulpepper:cutout_credenza",
+            "numberInPartList": "1"
+        }
+    ],
+    "onUpdate": "
+        if (ifnull(inited, false) == false) {
+            inited = true;
+            baseHeight = 80;
+            wallThickness = 17;
+            doorThickness = 20;
+            height = 650 - baseHeight;
+            depth = 450 - wallThickness;
+            surfaceThickness = 17;
+            cabineteMaxWidth = 800;
+            cabineteMinWidth = 700;
+            uScale = 1;
+            vScale = 1;
+            uvRotation = 0;
+            sideFask = 20;
+            tableDepth = 700;
+            connectorMaterial = 'soulpepper:sage';
+        }
+        numberOfHandles = 3 + doorCount;
+    ",
+    "geometry": "
+        BeginObjGroup('FULLGEOMETRY');
+            
+            /* Open cabinete */
+            BeginObjGroup('openCabinete');
+            
+                /* Front */
+                AddCube(Vector3f{320, wallThickness, height - surfaceThickness - wallThickness}, Vector2f{uScale, vScale}, uvRotation, Vector2f{0, 0});
+                 SetObjSurface(BoxMaterial);
+                if (side == - 1) {
+                     MoveMatrixBy(Vector3f{openCabineteWidth - 320, depth - doorThickness - wallThickness, wallThickness});
+                } else {
+                     MoveMatrixBy(Vector3f{0, depth - doorThickness - wallThickness, wallThickness});
+                }
+                /* Back */
+                Copy();
+                 MoveMatrixBy(Vector3f{0, -depth + wallThickness + doorThickness, 0});
+                AddCube(Vector3f{openCabineteWidth - wallThickness * 2 - sideFask, wallThickness, 370}, Vector2f{uScale, vScale}, uvRotation, Vector2f{0, 0});
+                 SetObjSurface(BoxMaterial);
+                if (side == - 1) {
+                     MoveMatrixBy(Vector3f{wallThickness, wallThickness, wallThickness});
+                } else {
+                     MoveMatrixBy(Vector3f{sideFask + wallThickness, wallThickness, wallThickness});
+                        
+                }
+        
+                /* Side out */
+                AddCube(Vector3f{wallThickness, depth - wallThickness * 3, height - surfaceThickness}, Vector2f{uScale, vScale}, uvRotation, Vector2f{0, 0});
+                 SetObjSurface(BoxMaterial);
+                if (side == - 1) {
+                     MoveMatrixBy(Vector3f{openCabineteWidth - sideFask * 2, wallThickness, 0});
+                } else {
+                     MoveMatrixBy(Vector3f{sideFask, wallThickness, 0});
+                }
+
+                /* Side in */
+                AddCube(Vector3f{wallThickness, depth - wallThickness - doorThickness, height - surfaceThickness}, Vector2f{uScale, vScale}, uvRotation, Vector2f{0, 0});
+                 SetObjSurface(BoxMaterial);
+                if (side == - 1) {
+                     MoveMatrixBy(Vector3f{0, wallThickness, 0});
+                } else {
+                     MoveMatrixBy(Vector3f{openCabineteWidth - wallThickness, wallThickness, 0});
+                }
+
+                /* Bottom */
+                AddCube(Vector3f{openCabineteWidth, depth - doorThickness, wallThickness}, Vector2f{uScale, vScale}, 90, Vector2f{0, 0});
+                 SetObjSurface(BoxMaterial);
+
+                SubComponent(CONNECTOR);
+                 RotateMatrixBy(Vector3f{0, 0, 1}, Vector3f{0, 0, 0}, 90);
+                 SetObjSurface(connectorMaterial);
+                if (side == - 1) {
+                     MoveMatrixBy(Vector3f{openCabineteWidth - tableDepth / 2, 300, height});
+                } else {
+                     MoveMatrixBy(Vector3f{tableDepth / 2, 300, height});
+                }
+            EndObjGroup('openCabinete');
+
+            if (side == - 1) {
+                 MoveMatrixBy(Vector3f{ -openCabineteWidth, 0, 0});
+            }
+            /* end open cabinete; */
+
+            /* Cabinete with doors*/
+            BeginObjGroup('cabinete');
+                /* Back */
+                AddCube(Vector3f{cabineteWidth, depth - doorThickness, height - surfaceThickness - wallThickness});
+                 SetObjSurface(BoxMaterial);
+                 MoveMatrixBy(Vector3f{0, 0, wallThickness});
+
+                /* Bottom */
+                AddCube(Vector3f{cabineteWidth, depth - doorThickness, wallThickness}, Vector2f{uScale, vScale}, 90, Vector2f{0, 0});
+                 SetObjSurface(BoxMaterial);
+
+                /*Doors*/
+                BeginObjGroup('door');
+                    AddCube(Vector3f{cabineteWidth / doorCount - 1, doorThickness, height});
+                     MoveMatrixBy(Vector3f{0, depth - doorThickness, 0});
+                     SetObjSurface(FrontMaterial);
+                EndObjGroup('door');
+                if (doorCount == 2) {
+                    Copy();
+                     MoveMatrixBy(Vector3f{cabineteWidth / 2, 0, 0});
+                }
+                SubComponent(HANDLE);
+                if (doorCount == 2) {
+                     MoveMatrixBy(Vector3f{cabineteWidth / doorCount - 140, depth, height - 55});
+                    SubComponent(HANDLE);
+                     MoveMatrixBy(Vector3f{cabineteWidth / doorCount + 140, depth, height - 55});
+                } else {
+                    if (side == 1) {
+                         MoveMatrixBy(Vector3f{140, depth, height - 55});
+                    } else {
+                         MoveMatrixBy(Vector3f{cabineteWidth - 140, depth, height - 55});
+                    }
+                }
+            EndObjGroup('cabinete');
+        
+            if (side == - 1) {
+                 MoveMatrixBy(Vector3f{ -openCabineteWidth - cabineteWidth, 0, 0});
+            } else {
+                 MoveMatrixBy(Vector3f{openCabineteWidth, 0, 0});
+            }
+            /* end cabinete with doors; */
+
+            /* Cabinete with drawers */
+            BeginObjGroup('withDrawers');
+                /* Side */
+                AddCube(Vector3f{drawerWidth - sideFask * 2, depth - wallThickness - doorThickness, height - surfaceThickness - wallThickness}, Vector2f{uScale, vScale}, uvRotation, Vector2f{0, 0});
+                 SetObjSurface(BoxMaterial);
+                 MoveMatrixBy(Vector3f{sideFask, wallThickness, wallThickness});
+            
+                /* Bottom */
+                AddCube(Vector3f{drawerWidth, depth - doorThickness, wallThickness}, Vector2f{uScale, vScale}, 90, Vector2f{0, 0});
+                 SetObjSurface(BoxMaterial);
+
+                /* Back */
+                AddCube(Vector3f{drawerWidth, wallThickness, height - surfaceThickness - wallThickness}, Vector2f{uScale, vScale}, uvRotation, Vector2f{0, 0});
+                 SetObjSurface(BoxMaterial);
+                 MoveMatrixBy(Vector3f{0, 0, wallThickness});
+
+                /* Drawers */
+                BeginObjGroup('drawer');
+                    AddCube(Vector3f{drawerWidth, doorThickness, height / 3 - 1});
+                     SetObjSurface(FrontMaterial);
+                    SubComponent(HANDLE);
+                    if ((handleType == 'X') && (side == - 1)) {
+                         RotateMatrixBy(Vector3f{0, 1, 0}, Vector3f{0, 0, 0}, 180);
+                    }
+                     MoveMatrixBy(Vector3f{drawerWidth / 2, doorThickness, height / 3 - 55});
+                EndObjGroup('drawer');
+                 MoveMatrixBy(Vector3f{0, depth - doorThickness, 0});
+                Copy();
+                 MoveMatrixBy(Vector3f{0, 0, height / 3});
+                Copy();
+                 MoveMatrixBy(Vector3f{0, 0, height / 3});
+            EndObjGroup('withDrawers');
+
+            if (side == - 1) {
+                 MoveMatrixBy(Vector3f{ -openCabineteWidth - drawerWidth - cabineteWidth, 0, 0});
+            } else {
+                 MoveMatrixBy(Vector3f{openCabineteWidth + cabineteWidth, 0, 0});
+            }
+            /* end cabinete with drawers; */
+
+            /* Surface */
+            AddCube(Vector3f{openCabineteWidth + cabineteWidth + drawerWidth, depth - doorThickness, surfaceThickness});
+             SetObjSurface(BoxMaterial);
+            if (side == - 1) {
+                 MoveMatrixBy(Vector3f{ -openCabineteWidth - drawerWidth - cabineteWidth, 0, height - surfaceThickness});
+            } else {
+                 MoveMatrixBy(Vector3f{0, 0, height - surfaceThickness});
+            }
+            /* end surface; */
+
+            /* Base under the credenza */
+            AddCube(Vector3f{openCabineteWidth + cabineteWidth + drawerWidth - 40, depth - doorThickness - 40, baseHeight});
+             SetObjSurface(BaseMaterial);
+            if (side == - 1) {
+                 MoveMatrixBy(Vector3f{ -openCabineteWidth - cabineteWidth - drawerWidth + 20, 20, -baseHeight});
+            } else {
+                 MoveMatrixBy(Vector3f{20, 20, -baseHeight});
+            }
+            /* end base under the credenza; */
+
+        EndObjGroup('FULLGEOMETRY');
+         MoveMatrixBy(Vector3f{0, 0, baseHeight});
+    ",
+    "childDockings": {
+        "points": [
+            {
+                "mask": "credenza",
+                "position": "{0, 0, 0}",
+                "rotation": "{0, 0, 0}",
+                "condition": "true",
+                "assignmentScripts": {
+                    "onDock": "
+                    if (other.SurfaceMaterial == 'soulpepper:white_28A') { self.BaseMaterial = 'soulpepper:white_17A'; self.FrontMaterial = 'soulpepper:white_17A'; self.BoxMaterial = 'soulpepper:white_17A'}
+                    if (other.SurfaceMaterial == 'soulpepper:foggy_Day_28A') { self.BaseMaterial = 'soulpepper:foggy_Day_17A'; self.FrontMaterial = 'soulpepper:foggy_Day_17A'; self.BoxMaterial = 'soulpepper:foggy_Day_17A'}
+                    if (other.SurfaceMaterial == 'soulpepper:mocka_28A') { self.BaseMaterial = 'soulpepper:mocka_17A'; self.FrontMaterial = 'soulpepper:mocka_17A'; self.BoxMaterial = 'soulpepper:mocka_17A'}
+                    if (other.SurfaceMaterial == 'soulpepper:dusty_Noon_28A') { self.BaseMaterial = 'soulpepper:dusty_Noon_17A'; self.FrontMaterial = 'soulpepper:dusty_Noon_17A'; self.BoxMaterial = 'soulpepper:dusty_Noon_17A'}
+                    if (other.SurfaceMaterial == 'soulpepper:bamboo_Style_28A') { self.BaseMaterial = 'soulpepper:bamboo_Style_17A'; self.FrontMaterial = 'soulpepper:bamboo_Style_17A'; self.BoxMaterial = 'soulpepper:bamboo_Style_17A'}
+                    if (other.SurfaceMaterial == 'soulpepper:serious_Wood_28A') { self.BaseMaterial = 'soulpepper:serious_Wood_17A'; self.FrontMaterial = 'soulpepper:serious_Wood_17A'; self.BoxMaterial = 'soulpepper:serious_Wood_17A'}
+                    if (other.SurfaceMaterial == 'soulpepper:woodie_28B') { self.BaseMaterial = 'soulpepper:woodie_17B'; self.FrontMaterial = 'soulpepper:woodie_17B'; self.BoxMaterial = 'soulpepper:woodie_17B'}
+                    if (other.SurfaceMaterial == 'soulpepper:dark_Wood_28B') { self.BaseMaterial = 'soulpepper:dark_Wood_17B'; self.FrontMaterial = 'soulpepper:dark_Wood_17B'; self.BoxMaterial = 'soulpepper:dark_Wood_17B'}
+                "
+                }
+            }
+        ]
+    },
+    "possibleChildren": [],
+    "articleNr": "
+        if (side == - 1) {
+            if (credenzaWidth == 200) { articleNr = 'CRD14L'}
+            if (credenzaWidth == 300) { articleNr = 'CRD15L'}
+            if (credenzaWidth == 400) { articleNr = 'CRD16L'}
+            if (credenzaWidth == 500) { articleNr = 'CRD17L'}
+            if (credenzaWidth == 600) { articleNr = 'CRD18L'}
+            if (credenzaWidth == 700) { articleNr = 'CRD19L'}
+            if (credenzaWidth == 800) { articleNr = 'CRD20L'}
+        } else {
+            if (credenzaWidth == 200) { articleNr = 'CRD14R'}
+            if (credenzaWidth == 300) { articleNr = 'CRD15R'}
+            if (credenzaWidth == 400) { articleNr = 'CRD16R'}
+            if (credenzaWidth == 500) { articleNr = 'CRD17R'}
+            if (credenzaWidth == 600) { articleNr = 'CRD18R'}
+            if (credenzaWidth == 700) { articleNr = 'CRD19R'}
+            if (credenzaWidth == 800) { articleNr = 'CRD20R'}
+        }
+    "
+}

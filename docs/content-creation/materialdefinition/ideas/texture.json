@@ -1,0 +1,43 @@
+{
+
+    // Mapping
+    // Describes how texture channels are mapped to material channels.
+
+    // Missing maps:
+    // o: Occlusion map (grayscale; linear values; real-time only))
+    // r: Roughness map (grayscale; linear values)
+    // m: Metallic map (grayscale; linear values )
+
+    // RGBa: Albedo color plus alpha channel (inverse transmission)
+    // A: alpha/opacity map (grayscale; linear values)
+    // a: transmission map (grayscale; linear values)
+
+    // Default: RGB
+    "mapping": "RGB",
+
+    // Transform in UV space
+    "transform": {
+    	"rotation": 0
+    },
+
+    "wrap": {
+        // horizontal (x) wrap; values: clamp, repeat, mirror
+    	"s": "repeat",
+        // vertical (y) wrap; values: clamp, repeat, mirror
+    	"t": "repeat"
+    },
+
+    // Not part of texture, more of material
+    "UV_channel": 1,
+
+    // Ideally mipmaps are present in native format if needed
+    // not generated at run-time
+    "mipmap": true,
+
+    // Real-time related
+    "minFilter": "nearest", // minify filter; values: nearest, linear, bilinear
+    "magFilter": "nearest", // magnify filter; values: nearest, linear, bilinear
+
+    // Anisotropic filtering
+    "anisoFilter": 1,
+}

@@ -1,0 +1,32 @@
+{
+    "id": "isdt:example_partlistpattern_test",
+    "parameters": [
+        {
+            "key": "articleNumber",
+            "type": "String",
+            "defaultValue": "value",
+            "validValues": [
+                "771.015.160",
+                "771.015.181",
+                "4654654",
+                "xxxxxxx",
+                "771.005.120",
+                "771.005.130",
+                "771.005.140",
+                "771.005.150"
+            ],
+            "visible": true,
+            "visibleInPartList": false
+        }
+    ],
+    "subComponents": [
+        {
+            "internalId": "partlist",
+            "componentId": "isdt:example_partlistpattern",
+            "numberInPartList": "1",
+            "assignments": {
+                "articleNumber": "articleNumber"
+            }
+        }
+    ]
+}

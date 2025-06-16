@@ -1,0 +1,99 @@
+{
+    "id": "catalog:example_window",
+    "parameters": [
+        {
+            "key": "width",
+            "defaultValue": 400,
+            "type": "Decimal",
+            "validRange": {
+                "valueFrom": 200,
+                "valueTo": 2000,
+                "step": 1
+            },
+            "enabled": true,
+            "visible": true,
+            "visibleInPartList": true
+        },
+        {
+            "key": "height",
+            "defaultValue": 400,
+            "type": "Decimal",
+            "validRange": {
+                "valueFrom": 300,
+                "valueTo": 1500,
+                "step": 1
+            },
+            "enabled": true,
+            "visible": true,
+            "visibleInPartList": true
+        }
+    ],
+    "geometry": "
+        thickness = 75;
+        depth = 20;
+        gap = 0.5;
+
+        BeginObjGroup();
+            AddPrism(depth, Vector2f[
+                    {gap, 0},
+                    {width - gap, 0},
+                    {width - thickness - gap, thickness},
+                    {thickness + gap, thickness}
+                ], Vector2f{1, 1}, 0, Vector2f{0, 0}
+            );
+             SetObjSurface('isdt:surface_oak');
+            Copy();
+             SetObjSurface('isdt:white');
+             RotateMatrixBy(Vector3f{0, 0, 1}, Vector3f{width / 2, height / 2, 0}, 180);
+
+            AddPrism(depth, Vector2f[
+                    {gap, 0},
+                    {thickness + gap, -thickness},
+                    {height - thickness - gap, -thickness},
+                    {height - gap, 0}
+                ]
+            );
+             SetObjSurface('isdt:surface_oak');
+             RotateMatrixBy(Vector3f{0, 0, 1}, Vector3f{0, 0, 0}, 90);
+            Copy();
+             SetObjSurface('isdt:white');
+             RotateMatrixBy(Vector3f{0, 0, 1}, Vector3f{width / 2, height / 2, 0}, 180);
+
+            AddPlainCube(Vector3f{thickness-2*gap, height - 2 * gap, depth - 2 * gap});
+            SetObjSurface('isdt:black');
+            MoveMatrixBy(Vector3f{ gap , gap , gap });
+            Copy();
+            SetObjSurface('isdt:white');
+            MoveMatrixBy(Vector3f{ width - thickness , 0 , 0 });
+        EndObjGroup();
+
+
+        /*AddCube(Vector3f{thickness - 2 * gap, thickness - 2 * gap, depth - 2 * gap});
+         SetObjSurface('isdt:surface_oak');
+         MoveMatrixBy(Vector3f{gap, gap, gap});*/
+
+        /*BeginObjGroup();
+            AddPrism(depth, Vector2f[
+            {gap, 0},
+            {width - gap, 0},
+            {width - thickness - gap, thickness},
+            {thickness + gap, thickness}
+            ], Vector2f{1, 1}, 0, Vector2f{0, 0}
+            );
+            Copy();
+             RotateMatrixBy(Vector3f{0, 0, 1}, Vector3f{width / 2, height / 2, 0}, 180);
+
+            AddPrism(depth, Vector2f[
+            {0, gap},
+            {thickness, thickness + gap},
+            {thickness, height - thickness - gap},
+            {0, height - gap}
+            ], Vector2f{1, 1}, 90, Vector2f{0, 0}
+            );
+            Copy();
+             RotateMatrixBy(Vector3f{0, 0, 1}, Vector3f{width / 2, height / 2, 0}, 180);
+
+        EndObjGroup();
+         SetObjSurface('isdt:surface_oak');*/
+    "
+}

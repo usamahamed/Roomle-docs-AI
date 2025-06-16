@@ -1,0 +1,14 @@
+{
+    "embeddedTextures": [
+        {
+            "height": 512,
+            "mapping": "RGBA",
+            "url": "https://storage.googleapis.com/roomle-furniture-test/TestContent/Textures/tshirt.png",
+            "width": 512
+        }
+    ],
+    "shading": {
+        "alphaCutoff": 0.5,
+        "doubleSided": true
+    }
+}

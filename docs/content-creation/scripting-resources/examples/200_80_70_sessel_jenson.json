@@ -1,0 +1,96 @@
+{
+    "id": "candy:Sessel_Jenson",
+    "labels": {
+        "en": "Sessel Jenson",
+        "de": "Sessel Jenson"
+    },
+    "parameters": [
+        {
+            "key": "material",
+            "sort": 0,
+            "global": "true",
+            "enabled": "true",
+            "visible": "false",
+            "labels": {
+                "de": "Bezug",
+                "en": "Bezug"
+            },
+            "defaultValue": "candy:florida_anthrazi",
+            "type": "Material",
+            "validValues": [
+                "candy:florida_anthrazit",
+                "candy:florida_beige",
+                "candy:florida_chocolate",
+                "candy:florida_dark_grey",
+                "candy:florida_deep_ocean",
+                "candy:florida_espresso"
+            ],
+            "visibleInPartList": "true"
+        },
+        {
+            "key": "LegMaterial",
+            "sort": 0,
+            "global": "true",
+            "enabled": "true",
+            "visible": "false",
+            "labels": {
+                "en": "Füße",
+                "de": "Füße"
+            },
+            "defaultValue": "candy:EI_GE",
+            "type": "Material",
+            "valueObjects": [
+                {
+                    "value": "candy:BU_SCHW"
+                },
+                {
+                    "value": "candy:EI_GE"
+                }
+            ],
+            "visibleInPartList": "true"
+        }
+    ],
+    "geometry": "
+        AddExternalMesh('candy:Jenson_Sessel_base', Vector3f{687.4, 880, 901.8}, Vector3f{ -343.7, -440, 148.2});
+         SetObjSurface(material);
+
+        AddExternalMesh('candy:Jenson_Sessel_legs', Vector3f{720, 839.1, 1005.7}, Vector3f{ -360, -399.1, 0});
+         SetObjSurface(LegMaterial);
+    ",
+    "onUpdate": "
+        if (ifnull(inited, false) == false) {
+            inited = true;
+            hasFootstoolDocked = false;
+        }
+    ",
+    "parentDockings": {
+        "points": [
+            {
+                "rotation": "{0, 0, 0}",
+                "mask": "candy:HockerJenson",
+                "position": "{0, 700, 0}",
+                "assignmentsOnUpdate": {
+                    "material": "material",
+                    "LegMaterial": "LegMaterial"
+                },
+                "selfAssignments": {
+                    "onDock": {
+                        "hasFootstoolDocked": true
+                    },
+                    "onUnDock": {
+                        "hasFootstoolDocked": false
+                    }
+                }
+            }
+        ]
+    },
+    "possibleChildren": [
+        {
+            "itemId": "candy:Hocker_Jenson",
+            "condition": "(!hasFootstoolDocked)"
+        }
+    ],
+    "articleNr": "
+        articleNr = '1002';
+    "
+}

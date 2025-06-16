@@ -1,0 +1,60 @@
+{
+    "id": "demoCatalogId:example_storagebox",
+    "label": "
+        if (material == 'demoCatalogId:silver_metallic') { label = 'Storage Box - Silver Metallic'; }
+        if (material == 'demoCatalogId:lightblue_metallic') { label = 'Storage Box - Light Blue Metallic'; }
+        if (material == 'demoCatalogId:darkgrey_metallic') { label = 'Storage Box - Dark Grey Metallic'; }
+        if (material == 'demoCatalogId:bronze_metallic') { label = 'Storage Box - Bronze Metallic'; }
+        if (material == 'demoCatalogId:white_metallic') { label = 'Storage Box - White Metallic'; }
+        if (material == 'demoCatalogId:orange_metallic') { label = 'Storage Box - Orange Metallic'; }
+        if (language == 'de') {
+            if (material == 'demoCatalogId:silver_metallic') { label = 'Storage Box - Silber Metallic'; }
+            if (material == 'demoCatalogId:lightblue_metallic') { label = 'Storage Box - Light Blue Metallic'; }
+            if (material == 'demoCatalogId:darkgrey_metallic') { label = 'Storage Box - Dark Grey Metallic'; }
+            if (material == 'demoCatalogId:bronze_metallic') { label = 'Storage Box - Bronze Metallic'; }
+            if (material == 'demoCatalogId:white_metallic') { label = 'Storage Box - White Metallic'; }
+            if (material == 'demoCatalogId:orange_metallic') { label = 'Storage Box - Orange Metallic'; }
+        }
+    ",
+    "parameters": [
+        {
+            "key": "material",
+            "type": "Material",
+            "labels": {
+                "en": "Colour",
+                "de": "Farbe"
+            },
+            "defaultValue": "demoCatalogId:silver_metallic",
+            "validValues": [
+                "demoCatalogId:silver_metallic",
+                "demoCatalogId:lightblue_metallic",
+                "demoCatalogId:darkgrey_metallic",
+                "demoCatalogId:bronze_metallic",
+                "demoCatalogId:white_metallic",
+                "demoCatalogId:orange_metallic"
+            ],
+            "visible": true,
+            "visibleInPartList": true
+        }
+    ],
+    "geometry": "
+        AddExternalMesh('demoCatalogId:storagebox_lid', Vector3f{1010, 459.6, 52}, Vector3f{ -505, -229.8, 557.8});
+         SetObjSurface(material);
+        AddExternalMesh('demoCatalogId:storagebox_nuts', Vector3f{953.2, 408.2, 379.6}, Vector3f{ -476.6, -204.1, 44.9});
+         SetObjSurface('demoCatalogId:chrome');
+        AddExternalMesh('demoCatalogId:storagebox_handles', Vector3f{62.6, 42.4, 23.1}, Vector3f{ -31.3, 187.1, 506});
+         SetObjSurface('demoCatalogId:chrome');
+        AddExternalMesh('demoCatalogId:storagebox_legs', Vector3f{936.7, 392.3, 16.2}, Vector3f{ -468.2, -195.8, 0});
+         SetObjSurface('demoCatalogId:black_rough');
+        AddExternalMesh('demoCatalogId:storagebox_frame', Vector3f{948.8, 404, 576.1}, Vector3f{ -474.4, -202, 14.4});
+         SetObjSurface(material);
+    ",
+    "articleNr": "
+        if (material == 'demoCatalogId:silver_metallic') { articleNr = '100.200.300'; }
+        if (material == 'demoCatalogId:lightblue_metallic') { articleNr = '100.200.301'; }
+        if (material == 'demoCatalogId:darkgrey_metallic') { articleNr = '100.200.302'; }
+        if (material == 'demoCatalogId:bronze_metallic') { articleNr = '100.200.303'; }
+        if (material == 'demoCatalogId:white_metallic') { articleNr = '100.200.305'; }
+        if (material == 'demoCatalogId:orange_metallic') { articleNr = '100.200.307'; }
+    "
+}

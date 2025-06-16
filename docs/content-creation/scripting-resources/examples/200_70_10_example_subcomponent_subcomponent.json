@@ -1,0 +1,43 @@
+{
+    "id": "isdt:example_subcomponent_subcomponent",
+    "parameters": [
+        {
+            "key": "width",
+            "type": "Decimal",
+            "defaultValue": 800,
+            "validValues": [
+                600,
+                800,
+                1000
+            ],
+            "enabled": true,
+            "visible": true,
+            "visibleInPartList": true
+        },
+        {
+            "key": "material",
+            "type": "Material",
+            "defaultValue": "value",
+            "validValues": [
+                "isdt:red",
+                "isdt:green",
+                "isdt:blue",
+                "isdt:cyan",
+                "isdt:magenta",
+                "isdt:yellow",
+                "isdt:black",
+                "isdt:white",
+                "isdt:black_transparent",
+                "isdt:white_transparent",
+                "demoCatalogId:reference1"
+            ],
+            "visible": true,
+            "visibleInPartList": true
+        }
+    ],
+    "geometry": "
+        AddCube(Vector3f{width, 1000, 1000});
+         SetObjSurface(material);
+    ",
+    "articleNr": "width | ' ' | material"
+}

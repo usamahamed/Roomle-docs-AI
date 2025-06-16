@@ -1,0 +1,39 @@
+{
+    "id": "soulpepper:cutout_connector",
+    "labels": {
+        "en": "Connector"
+    },
+    "parameters": [
+        {
+            "key": "material",
+            "labels": {
+                "en": "Leg Material"
+            },
+            "type": "Material",
+            "defaultValue": "soulpepper:sumac",
+            "validValues": [
+                "soulpepper:salt",
+                "soulpepper:sage",
+                "soulpepper:clove",
+                "soulpepper:anise",
+                "soulpepper:turmeric",
+                "soulpepper:blueberry",
+                "soulpepper:paprica",
+                "soulpepper:sumac"
+            ],
+            "enabled": true,
+            "visible": false,
+            "visibleInPartList": false
+        }
+    ],
+    "onUpdate": "",
+    "geometry": "
+        /* w=140 d=28 h=60 */
+        AddExternalMesh('soulpepper:Soul&Pepper_connector', Vector3f{28, 140, 60}, Vector3f{0, -70, 0});
+         MoveMatrixBy(Vector3f{ -70, 0, 0});
+         SetObjSurface(material);
+    ",
+    "articleNr": "
+        articleNr = 'CN'
+    "
+}

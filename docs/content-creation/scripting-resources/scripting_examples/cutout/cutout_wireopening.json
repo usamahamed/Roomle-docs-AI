@@ -1,0 +1,185 @@
+{
+    "id": "soulpepper:cutout_wireopening",
+    "labels": {
+        "en": "Wire opening"
+    },
+    "parameters": [
+        {
+            "key": "WireOpening",
+            "labels": {
+                "en": "Wire Opening"
+            },
+            "sort": 6,
+            "type": "String",
+            "defaultValue": "None",
+            "validValues": [
+                "None",
+                "Rounded",
+                "Rectangular"
+            ],
+            "enabled": true,
+            "visible": true,
+            "visibleInPartList": "WireOpening != 'None'",
+            "onValueChange": "SecondWireOpening = WireOpening;"
+        },
+        {
+            "key": "SecondWireOpening",
+            "labels": {
+                "en": "Second Wire Opening"
+            },
+            "sort": 9,
+            "type": "String",
+            "defaultValue": "None",
+            "valueObjects": [
+                {
+                    "value": "None",
+                    "condition": "WireOpening == 'None'"
+                },
+                {
+                    "value": "Rounded",
+                    "condition": ""
+                },
+                {
+                    "value": "Rectangular",
+                    "condition": ""
+                }
+            ],
+            "enabled": true,
+            "visible": "(WireOpeningPosition == 'BothSides') && (WireOpening != 'None')",
+            "visibleInPartList": false
+        },
+        {
+            "key": "WireOpeningPosition",
+            "labels": {
+                "en": "Wire Opening Position"
+            },
+            "sort": 8,
+            "type": "String",
+            "defaultValue": "Left",
+            "valueObjects": [
+                {
+                    "value": "Left",
+                    "condition": true
+                },
+                {
+                    "value": "Right",
+                    "condition": true
+                },
+                {
+                    "value": "BothSides",
+                    "condition": true,
+                    "labels": {
+                        "en": "Both Sides"
+                    }
+                },
+                {
+                    "value": "Center",
+                    "condition": true
+                }
+            ],
+            "enabled": true,
+            "visible": "WireOpening != 'None'",
+            "visibleInPartList": "WireOpening != 'None'"
+        },
+        {
+            "key": "WireOpeningColor",
+            "labels": {
+                "en": "Wire Opening Color"
+            },
+            "sort": 7,
+            "type": "Material",
+            "defaultValue": "massjalousien:weiss",
+            "valueObjects": [
+                {
+                    "value": "soulpepper:weiss",
+                    "condition": true,
+                    "thumbnail": "",
+                    "labels": {
+                        "en": "White"
+                    }
+                },
+                {
+                    "value": "soulpepper:silber",
+                    "condition": true,
+                    "thumbnail": "",
+                    "labels": {
+                        "en": "Silver"
+                    }
+                },
+                {
+                    "value": "soulpepper:schwarz_end",
+                    "condition": true,
+                    "thumbnail": "",
+                    "labels": {
+                        "en": "Black"
+                    }
+                }
+            ],
+            "enabled": true,
+            "visible": "WireOpening != 'None'",
+            "visibleInPartList": "WireOpening != 'None'"
+        },
+        {
+            "key": "tableWidth",
+            "type": "Integer",
+            "defaultValue": 1400,
+            "enabled": true,
+            "visible": false,
+            "visibleInPartList": false
+        },
+        {
+            "key": "tableDepth",
+            "type": "Integer",
+            "defaultValue": 700,
+            "enabled": true,
+            "visible": false,
+            "visibleInPartList": false
+        }
+    ],
+    "onUpdate": "
+        if (ifnull(inited, false) == false) {
+            inited = true;
+        }
+    ",
+    "geometry": "
+        if (WireOpening == 'Rounded') {
+            AddExternalMesh('soulpepper:Soul&Pepper_wire_opening_round', Vector3f{76, 76, 2.5}, Vector3f{ -38, -38, 0});
+        }
+        if (WireOpening == 'Rectangular') {
+            AddExternalMesh('soulpepper:Soul&Pepper_wire_opening_square', Vector3f{80, 170, 2.5}, Vector3f{ -40, -85, 0});
+        }
+         SetObjSurface(WireOpeningColor);
+
+        if (WireOpeningPosition == 'Left') {
+             MoveMatrixBy(Vector3f{ -tableWidth / 2 + 135, 0, 0});
+        }
+        if (WireOpeningPosition == 'Right') {
+             RotateMatrixBy(Vector3f{0, 0, 1}, Vector3f{0, 0, 0}, 180);
+             MoveMatrixBy(Vector3f{tableWidth / 2 - 135, 0, 0});
+        }
+        if (WireOpeningPosition == 'Center') {
+             RotateMatrixBy(Vector3f{0, 0, 1}, Vector3f{0, 0, 0}, 90);
+             MoveMatrixBy(Vector3f{0, ( -tableDepth / 2) + 90, 0});
+        }
+        if (WireOpeningPosition == 'BothSides') {
+             MoveMatrixBy(Vector3f{ -tableWidth / 2 + 135, 0, 0});
+            if (SecondWireOpening == 'Rounded') {
+                AddExternalMesh('soulpepper:Soul&Pepper_wire_opening_round', Vector3f{76, 76, 2.5}, Vector3f{ -38, -38, 0});
+            }
+            if (SecondWireOpening == 'Rectangular') {
+                AddExternalMesh('soulpepper:Soul&Pepper_wire_opening_square', Vector3f{80, 170, 2.5}, Vector3f{ -40, -85, 0});
+            }
+             SetObjSurface(WireOpeningColor);
+             RotateMatrixBy(Vector3f{0, 0, 1}, Vector3f{0, 0, 0}, 180);
+             MoveMatrixBy(Vector3f{tableWidth / 2 - 135, 0, 0});
+        }
+    ",
+    "articleNr": "
+        if (WireOpening == 'Rounded') {
+            articleNr = 'HLRD'
+        }
+        if (WireOpening == 'Rectangular') {
+            articleNr = 'HLRC'
+        }
+    "
+}

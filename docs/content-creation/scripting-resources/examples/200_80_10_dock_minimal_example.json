@@ -1,0 +1,25 @@
+{
+    "id": "isdt:test1",
+    "geometry": "AddCube(Vector3f{1000, 1000, 1000}); SetObjSurface('isdt:cyan');",
+    "parentDockings": {
+        "points": [
+            {
+                "mask": "mask",
+                "position": "{1000, 0, 0}"
+            }
+        ]
+    },
+    "childDockings": {
+        "points": [
+            {
+                "mask": "mask",
+                "position": "{0, 0, 0}"
+            }
+        ]
+    },
+    "possibleChildren": [
+        {
+            "componentId": "isdt:test1"
+        }
+    ]
+}

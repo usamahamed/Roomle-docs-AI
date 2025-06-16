@@ -1,0 +1,16 @@
+{
+    "id": "isdt:example_roomleprice",
+    "pricing": [
+        {
+            "region": "RML_DEFAULT",
+            "currency": "EUR",
+            "price": "
+                if (material == 'candy:florida_light_blue') { pricePerSqM = 16; }
+                if (material == 'candy:florida_rot') { pricePerSqM = 18; }
+                if (material == 'candy:florida_saphran') { pricePerSqM = 20; }
+                if (material == 'candy:florida_stone') { pricePerSqM = 22; }
+                price = pricePerSqM * (width / 1000) * (length / 1000);
+            "
+        }
+    ]
+}

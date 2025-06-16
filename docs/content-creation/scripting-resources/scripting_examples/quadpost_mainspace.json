@@ -1,0 +1,1045 @@
+{
+    "id": "demoCatalogId:quadpost_mainspace",
+    "parameters": [
+        {
+            "key": "width",
+            "labels": {
+                "en": "Width",
+                "de": "Breite"
+            },
+            "type": "Decimal",
+            "unitType": "length",
+            "defaultValue": 0,
+            "validValues": [
+                400,
+                600,
+                800,
+                1200,
+                1600
+            ],
+            "enabled": true,
+            "visible": true,
+            "visibleInPartList": true
+        },
+        {
+            "key": "depth",
+            "labels": {
+                "en": "Depth",
+                "de": "Tiefe"
+            },
+            "type": "Decimal",
+            "unitType": "length",
+            "defaultValue": 0,
+            "validValues": [
+                400,
+                600,
+                800,
+                1200
+            ],
+            "enabled": true,
+            "visible": true,
+            "visibleInPartList": true
+        },
+        {
+            "key": "height",
+            "enabled": "true",
+            "visible": "true",
+            "visibleInPartList": "true",
+            "labels": {
+                "en": "Height",
+                "de": "Höhe"
+            },
+            "type": "Decimal",
+            "unitType": "length",
+            "defaultValue": 400,
+            "validValues": [
+                400,
+                800,
+                1200,
+                1600,
+                2000,
+                2400
+            ]
+        },
+        {
+            "key": "legMaterial",
+            "global": true,
+            "labels": {
+                "en": "Leg Material",
+                "de": "Bein Material"
+            },
+            "type": "Material",
+            "defaultValue": "demoCatalogId:darkgrey_metallic",
+            "validValues": [
+                "demoCatalogId:silver_metallic",
+                "demoCatalogId:darkgrey_metallic",
+                "demoCatalogId:lightblue_metallic",
+                "demoCatalogId:white_metallic"
+            ],
+            "enabled": true,
+            "visible": false,
+            "visibleInPartList": true
+        },
+        {
+            "key": "frameMaterial",
+            "global": true,
+            "labels": {
+                "en": "Frame Material",
+                "de": "Rahmen Material"
+            },
+            "type": "Material",
+            "defaultValue": "demoCatalogId:darkgrey_metallic",
+            "validValues": [
+                "demoCatalogId:silver_metallic",
+                "demoCatalogId:darkgrey_metallic",
+                "demoCatalogId:lightblue_metallic",
+                "demoCatalogId:white_metallic"
+            ],
+            "enabled": true,
+            "visible": false,
+            "visibleInPartList": true,
+            "onValueChange": "frameMaterialUpdate = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];"
+        },
+        {
+            "key": "shelfMaterial",
+            "global": true,
+            "labels": {
+                "en": "Shelf Material",
+                "de": "Regal Material"
+            },
+            "type": "String",
+            "defaultValue": "frame",
+            "valueObjects": [
+                {
+                    "value": "frame",
+                    "labels": {
+                        "en": "Without Shelf",
+                        "de": "Ohne Regal"
+                    }
+                },
+                {
+                    "value": "glass",
+                    "labels": {
+                        "en": "Glass",
+                        "de": "Glas"
+                    }
+                },
+                {
+                    "value": "wood",
+                    "labels": {
+                        "en": "Wood",
+                        "de": "Holz"
+                    }
+                },
+                {
+                    "value": "metal",
+                    "labels": {
+                        "en": "Metal",
+                        "de": "Metall"
+                    }
+                }
+            ],
+            "enabled": true,
+            "visible": true,
+            "visibleAsGlobal": true,
+            "visibleInPartList": false,
+            "onValueChange": "
+                shelfMaterialUpdate = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
+            "
+        },
+        {
+            "key": "metalMaterial",
+            "global": true,
+            "labels": {
+                "en": "Metal Material",
+                "de": "Metall Material"
+            },
+            "type": "Material",
+            "defaultValue": "demoCatalogId:darkgrey_metallic",
+            "validValues": [
+                "demoCatalogId:silver_metallic",
+                "demoCatalogId:darkgrey_metallic",
+                "demoCatalogId:lightblue_metallic",
+                "demoCatalogId:white_metallic"
+            ],
+            "enabled": true,
+            "visible": "(shelfMaterial == 'metal') || (metalShelvesCount > 0)",
+            "visibleAsGlobal": "(shelfMaterial == 'metal') || (metalShelvesCount > 0)",
+            "visibleInPartList": "(shelfMaterial == 'metal') || (metalShelvesCount > 0)",
+            "onValueChange": "
+                shelfMetalTypeUpdate = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
+            "
+        },
+        {
+            "key": "glassType",
+            "global": true,
+            "labels": {
+                "en": "Glass Type",
+                "de": "Glasart"
+            },
+            "type": "Material",
+            "defaultValue": "visplay:glass",
+            "validValues": [
+                "visplay:glass",
+                "visplay:glass_satinato"
+            ],
+            "enabled": true,
+            "visible": "(shelfMaterial == 'glass') || (glassShelvesCount > 0)",
+            "visibleAsGlobal": "(shelfMaterial == 'glass') || (glassShelvesCount > 0)",
+            "visibleInPartList": "(shelfMaterial == 'glass') || (glassShelvesCount > 0)",
+            "onValueChange": "
+                shelfGlassTypeUpdate = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
+            "
+        },
+        {
+            "key": "woodType",
+            "global": true,
+            "labels": {
+                "en": "Wood Type",
+                "de": "Holzart"
+            },
+            "type": "Material",
+            "defaultValue": "visplay:H1180_Eiche_Natur",
+            "validValues": [
+                "visplay:H1180_Eiche_Natur",
+                "visplay:H3734_Dijon_Nussbaum_natur",
+                "visplay:H3711_Carini_Nussbaum_Tabak",
+                "visplay:H1615_Kirschbaum_Verona",
+                "visplay:H1582_Ellmau_Buche",
+                "visplay:H1387_Denver_Eiche_graphit",
+                "visplay:U899_ST9_Kossmosgrau",
+                "visplay:W1000_ST9_Premiumweiss",
+                "visplay:U708_ST9_Hellgrau"
+            ],
+            "enabled": true,
+            "visible": "(shelfMaterial == 'wood') || (woodenShelvesCount > 0)",
+            "visibleAsGlobal": "(shelfMaterial == 'wood') || (woodenShelvesCount > 0)",
+            "visibleInPartList": "(shelfMaterial == 'wood') || (woodenShelvesCount > 0)",
+            "onValueChange": "
+                shelfWoodTypeUpdate = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
+            "
+        },
+        {
+            "key": "childType",
+            "type": "String",
+            "defaultValue": "any",
+            "validValues": [
+                "any",
+                "straight",
+                "parallel"
+            ],
+            "visible": false,
+            "visibleInPartList": false
+        },
+        {
+            "key": "elementType",
+            "type": "String",
+            "defaultValue": "SW40",
+            "valueObjects": [
+                {
+                    "value": "SW40",
+                    "labels": {
+                        "en": "SW40"
+                    }
+                },
+                {
+                    "value": "SW60",
+                    "labels": {
+                        "en": "SW60"
+                    }
+                },
+                {
+                    "value": "SW80",
+                    "labels": {
+                        "en": "SW80"
+                    }
+                },
+                {
+                    "value": "SW120",
+                    "labels": {
+                        "en": "SW120"
+                    }
+                },
+                {
+                    "value": "SW160",
+                    "labels": {
+                        "en": "SW160"
+                    }
+                },
+                {
+                    "value": "PW60",
+                    "labels": {
+                        "en": "PW60"
+                    }
+                },
+                {
+                    "value": "PW80",
+                    "labels": {
+                        "en": "PW80"
+                    }
+                },
+                {
+                    "value": "PW120",
+                    "labels": {
+                        "en": "PW120"
+                    }
+                },
+                {
+                    "value": "PW160",
+                    "labels": {
+                        "en": "PW160"
+                    }
+                },
+                {
+                    "value": "PDW60",
+                    "labels": {
+                        "en": "PDW60"
+                    }
+                },
+                {
+                    "value": "PDW80",
+                    "labels": {
+                        "en": "PDW80"
+                    }
+                },
+                {
+                    "value": "PDW120",
+                    "labels": {
+                        "en": "PDW120"
+                    }
+                }
+            ],
+            "enabled": true,
+            "visible": true,
+            "visibleInPartList": false
+        }
+    ],
+    "subComponents": [
+        {
+            "internalId": "ROD",
+            "componentId": "demoCatalogId:quadpost_leg",
+            "numberInPartList": "countOfMyRods",
+            "assignments": {
+                "length": "height",
+                "legMaterial": "legMaterial"
+            }
+        }
+    ],
+    "previewGeometry": "Cube(Vector3f{width, depth, dockHeight}); MoveMatrixBy(Vector3f{ -width / 2, -depth / 2, 0}); SetObjSurface('demoCatalogId:reference');",
+    "onUpdate": "
+        if (ifnull(inited, false) == false) {
+            inited = true;
+
+            plugSize = 67;
+            dockHeight = 0;
+            countOfMyRods = 4;
+            isRoot = true;
+            id = getUniqueRuntimeId();
+
+            /* For each leg, we need who is on the other side (idsXY) and which height he has (heightsXY) and how many such 'structs' are there */
+            /* B - back, F - front, L - left, R - right */
+            idsBL = [0]; /* holds the unique runtime ids of the siblings - this is used to find out, which sibling has which height */
+            heightsBL = [0]; /* heights of the siblings. order is matching with the idsBL */
+            idsCountBL = 0; /* how many of them we have */
+
+            idsBR = [0];
+            heightsBR = [0];
+            idsCountBR = 0;
+
+            idsFL = [0];
+            heightsFL = [0];
+            idsCountFL = 0;
+
+            idsFR = [0];
+            heightsFR = [0];
+            idsCountFR = 0;
+
+            neighboursRearCount = 0;
+            neighboursFrontCount = 0;
+            neighboursLeftCount = 0;
+            neighboursRightCount = 0;
+
+            resultHeightBL = 0;
+            resultHeightFL = 0;
+            resultHeightBR = 0;
+            resultHeightFR = 0;
+
+            woodenShelvesCount = 0;
+            glassShelvesCount = 0;
+            metalShelvesCount = 0;
+
+            frameShelves = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+            woodenShelves = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+            glassShelves = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+            metalShelves = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+
+            frameMaterialUpdate = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+            shelfMaterialUpdate = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+            shelfWoodTypeUpdate = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+            shelfGlassTypeUpdate = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+            shelfMetalTypeUpdate = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+        }
+
+        if (elementType == 'SW40') { childType = 'straight'; depth = 400; width = 400; }
+        if (elementType == 'SW60') { childType = 'straight'; depth = 400; width = 600; }
+        if (elementType == 'SW80') { childType = 'straight'; depth = 400; width = 800; }
+        if (elementType == 'SW120') { childType = 'straight'; depth = 400; width = 1200; }
+        if (elementType == 'SW160') { childType = 'straight'; depth = 400; width = 1600; }
+
+        if (elementType == 'PW60') { childType = 'parallel'; depth = 400; width = 600; }
+        if (elementType == 'PW80') { childType = 'parallel'; depth = 400; width = 800; }
+        if (elementType == 'PW120') { childType = 'parallel'; depth = 400; width = 1200; }
+        if (elementType == 'PW160') { childType = 'parallel'; depth = 400; width = 1600; }
+
+        if (elementType == 'PDW60') { childType = 'parallel'; depth = 600; width = 600; }
+        if (elementType == 'PDW80') { childType = 'parallel'; depth = 800; width = 800; }
+        if (elementType == 'PDW120') { childType = 'parallel'; depth = 1200; width = 1200; }
+
+        hasBL = true; /* assume this will have leg on BL corner */
+        resultHeightBL = height; /* assume I'm the highest of the siblings */
+        for (i = 1; i < (idsCountBL + 1) && hasBL; i = i + 1) {
+            neighbourH = get(heightsBL, i);
+            if (neighbourH > height) { resultHeightBL = neighbourH; hasBL = false; }/* if the siblings is higher, he will have the leg, not me */
+            else {
+                if (neighbourH == height) { resultHeightBL = neighbourH; hasBL = id < get(idsBL, i); }/* if the sibling is as high, whoever is 'older' (has lesser UID), has the leg */
+            }
+        }
+
+        hasFL = true;
+        resultHeightFL = height;
+        for (i = 1; i < (idsCountFL + 1) && hasFL; i = i + 1) {
+            neighbourH = get(heightsFL, i);
+            if (neighbourH > height) { resultHeightFL = neighbourH; hasFL = false; }
+            else {
+                if (neighbourH == height) { resultHeightFL = neighbourH; hasFL = id < get(idsFL, i); }
+            }
+        }
+
+        hasBR = true;
+        resultHeightBR = height;
+        for (i = 1; i < (idsCountBR + 1) && hasBR; i = i + 1) {
+            neighbourH = get(heightsBR, i);
+            if (neighbourH > height) { resultHeightBR = neighbourH; hasBR = false; }
+            else {
+                if (neighbourH == height) { resultHeightBR = neighbourH; hasBR = id < get(idsBR, i); }
+            }
+        }
+
+        hasFR = true;
+        resultHeightFR = height;
+        for (i = 1; i < (idsCountFR + 1) && hasFR; i = i + 1) {
+            neighbourH = get(heightsFR, i);
+            if (neighbourH > height) { resultHeightFR = neighbourH; hasFR = false; }
+            else {
+                if (neighbourH == height) { resultHeightFR = neighbourH; hasFR = id < get(idsFR, i); }
+            }
+        }
+
+        /* Replace with dH = MIN(resultHeightBR,BL,FR,FL) */
+        dockHeight = resultHeightBL;
+        if (dockHeight > resultHeightBR) { dockHeight = resultHeightBR; }
+        if (dockHeight > resultHeightFR) { dockHeight = resultHeightFR; }
+        if (dockHeight > resultHeightFL) { dockHeight = resultHeightFL; }
+
+        /* IS THIS SAFE? */
+        /* This sets the height parameter in case where all neighbourd are higher than this component. The value is the lowest of the neighbours. */
+        height = dockHeight;
+
+        /*hasFL = !in(childType,  'straight');
+        hasBR = !in(childType, 'parallel');
+        hasBL = !in(childType, 'straight', 'parallel');*/
+
+        woodenShelvesCount = 0;
+        for (i = 0; i < length(woodenShelves); i = i + 1) {
+            woodenShelvesCount = woodenShelvesCount + get(woodenShelves, i);
+        }
+
+        glassShelvesCount = 0;
+        for (i = 0; i < length(glassShelves); i = i + 1) {
+            glassShelvesCount = glassShelvesCount + get(glassShelves, i);
+        }
+
+        metalShelvesCount = 0;
+        for (i = 0; i < length(metalShelves); i = i + 1) {
+            metalShelvesCount = metalShelvesCount + get(metalShelves, i);
+        }
+
+        countOfMyRods = (hasBL) * 1 + (hasBR) * 1 + (hasFL) * 1 + (hasFR) * 1;
+    ",
+    "geometry": "
+        if (countOfMyRods == 0 && isRoot) {
+            AddPlainCube(Vector3f{width, height, 1});
+             MoveMatrixBy(Vector3f{ -width / 2, -depth / 2, 0});
+             SetObjSurface('cube:invisible');
+        }
+
+        if (hasBL) {
+            SubComponent('ROD');
+             MoveMatrixBy(Vector3f{ -width / 2, -depth / 2, 0});
+        }
+
+        if (hasBR) {
+            SubComponent('ROD');
+             MoveMatrixBy(Vector3f{width / 2, -depth / 2, 0});
+        }
+
+        if (hasFL) {
+            SubComponent('ROD');
+             MoveMatrixBy(Vector3f{ -width / 2, depth / 2, 0});
+        }
+
+        if (hasFR) {
+            SubComponent('ROD');
+             MoveMatrixBy(Vector3f{width / 2, depth / 2, 0});
+        }
+    ",
+    "siblings": [
+        {
+            "mask": "rodSibling",
+            "maxConnections": 99,
+            "position": "{ -width / 2, -depth / 2, 0}",
+            "condition": "true",
+            "assignmentScripts": {
+                "onDock": "
+                    pushBack(self.idsBL, other.id);
+                    pushBack(self.heightsBL, other.height);
+                    self.idsCountBL = self.idsCountBL + 1;
+                    connection._i = indexOf(other.id, self.idsBL);
+                ",
+                "onUpdate": "
+                    if (connection._i > 0) {
+                        if (get(self.heightsBL, connection._i) != other.height) {
+                            set(self.heightsBL, connection._i, other.height);
+                        }
+                    }
+                ",
+                "onUnDock": "
+                    if (connection._i > 0) {
+                        set(self.heightsBL, connection._i, 0);
+                        set(self.idsBL, connection._i, 0);
+                    }
+                "
+            }
+        },
+        {
+            "mask": "rodSibling",
+            "maxConnections": 99,
+            "position": "{width / 2, -depth / 2, 0}",
+            "condition": "true",
+            "assignmentScripts": {
+                "onDock": "
+                    pushBack(self.idsBR, other.id);
+                    pushBack(self.heightsBR, other.height);
+                    self.idsCountBR = self.idsCountBR + 1;
+                    connection._i = indexOf(other.id, self.idsBR);
+                ",
+                "onUpdate": "
+                    if (connection._i > 0) {
+                        if (get(self.heightsBR, connection._i) != other.height) {
+                            set(self.heightsBR, connection._i, other.height);
+                        }
+                    }
+                ",
+                "onUnDock": "
+                    if (connection._i > 0) {
+                        set(self.heightsBR, connection._i, 0);
+                        set(self.idsBR, connection._i, 0);
+                    }
+                "
+            }
+        },
+        {
+            "mask": "rodSibling",
+            "maxConnections": 99,
+            "position": "{ -width / 2, depth / 2, 0}",
+            "condition": "true",
+            "assignmentScripts": {
+                "onDock": "
+                    pushBack(self.idsFL, other.id);
+                    pushBack(self.heightsFL, other.height);
+                    self.idsCountFL = self.idsCountFL + 1;
+                    connection._i = indexOf(other.id, self.idsFL);
+                ",
+                "onUpdate": "
+                    if (connection._i > 0) {
+                        if (get(self.heightsFL, connection._i) != other.height) {
+                            set(self.heightsFL, connection._i, other.height);
+                        }
+                    }
+                ",
+                "onUnDock": "
+                    if (connection._i > 0) {
+                        set(self.heightsFL, connection._i, 0);
+                        set(self.idsFL, connection._i, 0);
+                    }
+                "
+            }
+        },
+        {
+            "mask": "rodSibling",
+            "maxConnections": 99,
+            "position": "{width / 2, depth / 2, 0}",
+            "condition": "true",
+            "assignmentScripts": {
+                "onDock": "
+                    /* push at once sibling's id and height, mark down count of the siblings */
+                    pushBack(self.idsFR, other.id);
+                    pushBack(self.heightsFR, other.height);
+                    self.idsCountFR = self.idsCountFR + 1;
+                    /* get the siblings's id and find its index in my idsFR array, so that I know who has the height */
+                    connection._i = indexOf(other.id, self.idsFR);
+                ",
+                "onUpdate": "
+                    if (connection._i > 0) {
+                        if (get(self.heightsFR, connection._i) != other.height) {
+                            /* I now know who I'm talking with and will update his height */
+                            set(self.heightsFR, connection._i, other.height);
+                        }
+                    }
+                ",
+                "onUnDock": "
+                    if (connection._i > 0) {
+                        /* because we can not remove from array, we just set it to 0, which we consider invalid (UID is never 0) */
+                        set(self.heightsFR, connection._i, 0);
+                        set(self.idsFR, connection._i, 0);
+                    }
+                "
+            }
+        },
+        {
+            "mask": "parallelSibling",
+            "position": "{0, -depth / 2, 0}",
+            "maxConnections": 5,
+            "selfAssignments": {
+                "onDock": {
+                    "neighboursRearCount": "neighboursRearCount + 1"
+                },
+                "onUnDock": {
+                    "neighboursRearCount": "neighboursRearCount - 1"
+                }
+            }
+        },
+        {
+            "mask": "parallelSibling",
+            "position": "{0, depth / 2, 0}",
+            "maxConnections": 5,
+            "selfAssignments": {
+                "onDock": {
+                    "neighboursFrontCount": "neighboursFrontCount + 1"
+                },
+                "onUnDock": {
+                    "neighboursFrontCount": "neighboursFrontCount - 1"
+                }
+            }
+        },
+        {
+            "mask": "sideSibling",
+            "position": "{0, -depth / 2, 0}",
+            "maxConnections": 5,
+            "selfAssignments": {
+                "onDock": {
+                    "neighboursRearCount": "neighboursRearCount + 1"
+                },
+                "onUnDock": {
+                    "neighboursRearCount": "neighboursRearCount - 1"
+                }
+            }
+        },
+        {
+            "mask": "sideSibling",
+            "position": "{0, depth / 2, 0}",
+            "maxConnections": 5,
+            "selfAssignments": {
+                "onDock": {
+                    "neighboursFrontCount": "neighboursFrontCount + 1"
+                },
+                "onUnDock": {
+                    "neighboursFrontCount": "neighboursFrontCount - 1"
+                }
+            }
+        },
+        {
+            "mask": "sideSibling",
+            "position": "{width / 2, 0, 0}",
+            "maxConnections": 5,
+            "selfAssignments": {
+                "onDock": {
+                    "neighboursRightCount": "neighboursRightCount + 1"
+                },
+                "onUnDock": {
+                    "neighboursRightCount": "neighboursRightCount - 1"
+                }
+            }
+        },
+        {
+            "mask": "sideSibling",
+            "position": "{ -width / 2, 0, 0}",
+            "maxConnections": 5,
+            "selfAssignments": {
+                "onDock": {
+                    "neighboursLeftCount": "neighboursLeftCount + 1"
+                },
+                "onUnDock": {
+                    "neighboursLeftCount": "neighboursLeftCount - 1"
+                }
+            }
+        }
+    ],
+    "parentDockings": {
+        "points": [
+            {
+                "mask": "cube_straight",
+                "position": "{width / 2, 0, 0}",
+                "rotation": "{0, 0, 0}",
+                "condition": "
+                    /* Can dock straight to right side? Valid if depths match. */
+                    condition = (other.depth == self.depth);
+
+                    if (connection.isPreview) {
+                        /* If right side is already occupied, disallow. */
+                        if (neighboursRightCount > 0) {
+                            condition = false;
+                        }
+                    }
+                ",
+                "assignmentsOnDock": {
+                    "isRoot": false,
+                    "height": "height"
+                }
+            },
+            {
+                "mask": "cube_straight",
+                "position": "{ -width / 2, 0, 0}",
+                "rotation": "{0, 0, 180}",
+                "condition": "
+                    /* Can dock straight to left side? Valid if depths match. */
+                    condition = (other.depth == self.depth);
+
+                    if (connection.isPreview) {
+                        /* If left side is already occupied, disallow. */
+                        if (neighboursLeftCount > 0) {
+                            condition = false;
+                        }
+                    }
+                ",
+                "assignmentsOnDock": {
+                    "isRoot": false,
+                    "height": "height"
+                }
+            },
+            {
+                "mask": "cube_straight",
+                "position": "{0, -depth / 2, 0}",
+                "rotation": "{0, 0, 270}",
+                "condition": "
+                    /* Can dock straight to rear? In current possible children context, relevant for w == 400*/
+                    condition = (other.depth == 400) && (self.width == 400);
+
+                    if (connection.isPreview) {
+                        /* If left side is already occupied, disallow. */
+                        if (neighboursRearCount > 0) {
+                            condition = false;
+                        }
+                    }
+                ",
+                "assignmentsOnDock": {
+                    "isRoot": false,
+                    "height": "height"
+                }
+            },
+            {
+                "mask": "cube_straight",
+                "position": "{0, depth / 2, 0}",
+                "rotation": "{0, 0, 90}",
+                "condition": "
+                    /* Can dock straight to rear? In current possible children context, relevant for w == 400*/
+                    condition = (other.depth == 400) && (self.width == 400);
+
+                    if (connection.isPreview) {
+                        /* If left side is already occupied, disallow. */
+                        if (neighboursFrontCount > 0) {
+                            condition = false;
+                        }
+                    }
+                ",
+                "assignmentsOnDock": {
+                    "isRoot": false,
+                    "height": "height"
+                }
+            },
+            {
+                "mask": "cube_parallel",
+                "position": "{width / 2, 0, 0}",
+                "rotation": "{0, 0, -90}",
+                "condition": "
+                    /* If this is square, it needs parallel docks on the sides as well. Length of side is a neighbour of other's front (therefore width == depth). */
+                    condition = (self.depth == self.width) && (other.width == self.depth);
+
+                    if (connection.isPreview) {
+                        /* If right side is already occupied, disallow. */
+                        if (neighboursRightCount > 0) {
+                            condition = false;
+                        }
+                    }
+                ",
+                "assignmentsOnDock": {
+                    "isRoot": false,
+                    "height": "height"
+                }
+            },
+            {
+                "mask": "cube_parallel",
+                "position": "{ -width / 2, 0, 0}",
+                "rotation": "{0, 0, 90}",
+                "condition": "
+                    /* If this is square, it needs parallel docks on the sides as well. Length of side is a neighbour of other's front (therefore width == depth). */
+                    condition = (self.depth == self.width) && (other.width == self.depth);
+
+                    if (connection.isPreview) {
+                        /* If left side is already occupied, disallow. */
+                        if (neighboursLeftCount > 0) {
+                            condition = false;
+                        }
+                    }
+                ",
+                "assignmentsOnDock": {
+                    "isRoot": false,
+                    "height": "height"
+                }
+            },
+            {
+                "mask": "cube_parallel",
+                "position": "{0, depth / 2, 0}",
+                "rotation": "{0, 0, 0}",
+                "condition": "
+                    /* Can dock parallel forward? Valid if widths match. */
+                    condition = (other.width == self.width);
+
+                    if (connection.isPreview) {
+                        /* If front side is already occupied, disallow. */
+                        if (neighboursFrontCount > 0) {
+                            condition = false;
+                        }
+                    }
+                ",
+                "assignmentsOnDock": {
+                    "isRoot": false,
+                    "height": "height"
+                }
+            },
+            {
+                "mask": "cube_parallel",
+                "position": "{0, -depth / 2, 0}",
+                "rotation": "{0, 0, 180}",
+                "condition": "
+                    /* Can dock parallel backward? Valid if widths match. */
+                    condition = (other.width == self.width);
+
+                    if (connection.isPreview) {
+                        /* If rear side is already occupied, disallow. */
+                        if (neighboursRearCount > 0) {
+                            condition = false;
+                        }
+                    }
+                ",
+                "assignmentsOnDock": {
+                    "isRoot": false,
+                    "height": "height"
+                }
+            }
+        ],
+        "ranges": [
+            {
+                "position": "{0, 0, dockHeight + plugSize}",
+                "mask": "shelf",
+                "condition": "
+                    _.z = zFromVector(connection.position);
+                    if (connection.isPreview) {
+                        condition = _.z >= plugSize;
+                    } else {
+                        condition = true;
+                    }
+                ",
+                "stepX": 0,
+                "stepY": 0,
+                "stepZ": -100,
+                "stepEnd": "{0, 0, -2400}",
+                "assignmentsOnDock": {
+                    "width": "width",
+                    "depth": "depth"
+                },
+                "assignmentsOnUpdate": {
+                    "width": "width",
+                    "depth": "depth"
+                },
+                "assignmentsOnDockSilent": {
+                    "shelfMaterial": "shelfMaterial"
+                },
+                "assignmentScripts": {
+                    "onDock": "
+                        connection._i = connection.index + 1;
+                        set(shelfMaterialUpdate, connection._i, 0);
+                        set(frameMaterialUpdate, connection._i, 0);
+                        set(shelfWoodTypeUpdate, connection._i, 0);
+                        set(shelfMetalTypeUpdate, connection._i, 0);
+                        set(shelfGlassTypeUpdate, connection._i, 0);
+                    ",
+                    "onUnDock": "
+                        connection._i = connection.index + 1;
+                        set(frameShelves, connection._i, 0);
+                    ",
+                    "onUpdate": "
+                        _.z = zFromVector(connection.position);
+                        if (_.z >= plugSize) {
+                            other.visible = true;
+                            connection._i = connection.index + 1;
+                            if (get(shelfGlassTypeUpdate, connection._i) > 0) {
+                                set(shelfGlassTypeUpdate, connection._i, 0);
+                                other.glassType = self.glassType;
+                            }
+                            if (get(frameMaterialUpdate, connection._i) > 0) {
+                                set(frameMaterialUpdate, connection._i, 0);
+                                other.frameMaterial = self.frameMaterial;
+                            }
+                            if (get(shelfMaterialUpdate, connection._i) > 0) {
+                                set(shelfMaterialUpdate, connection._i, 0);
+                                other.shelfMaterial = self.shelfMaterial;
+                            }
+                            if (get(shelfWoodTypeUpdate, connection._i) > 0) {
+                                set(shelfWoodTypeUpdate, connection._i, 0);
+                                other.woodType = self.woodType;
+                            }
+                            if (get(shelfMetalTypeUpdate, connection._i) > 0) {
+                                set(shelfMetalTypeUpdate, connection._i, 0);
+                                other.metalMaterial = self.metalMaterial;
+                            }
+
+                            if (other.shelfMaterial == 'frame') {
+                                set(frameShelves, connection._i, 1);
+                            } else {
+                                set(frameShelves, connection._i, 0);
+                            }
+
+                            if (other.shelfMaterial == 'wood') {
+                                set(woodenShelves, connection._i, 1);
+                            } else {
+                                set(woodenShelves, connection._i, 0);
+                            }
+
+                            if (other.shelfMaterial == 'glass') {
+                                set(glassShelves, connection._i, 1);
+                            } else {
+                                set(glassShelves, connection._i, 0);
+                            }
+
+                            if (other.shelfMaterial == 'metal') {
+                                set(metalShelves, connection._i, 1);
+                            } else {
+                                set(metalShelves, connection._i, 0);
+                            }
+
+
+                            /* set space below shelf */
+
+                            if (_.z < 100) {
+                                other.spaceBelow = 0;
+                            } else {
+                                _.z = _.z - 100;
+                                _.spaceBelowToNextShelf = 100;
+                                _.continue = true;
+                                for (_.i = connection._i + 1; (_.i < length(frameShelves)) && (_.continue) && (_.z > 100); _.i = _.i + 1) {
+                                    if (get(frameShelves, _.i) == 0) {
+                                        _.spaceBelowToNextShelf = _.spaceBelowToNextShelf + 100;
+                                        _.z = _.z - 100;
+                                    } else {
+                                        _.continue = false;
+                                    }
+                                }
+                                other.spaceBelow = _.spaceBelowToNextShelf;
+                            }
+                        } else {
+                            other.visible = false;
+                            other.spaceBelow = 0;
+                        }
+                    "
+                }
+            }
+        ],
+        "lines": [
+            {
+                "mask": "shelf",
+                "position": "{0, 0, 0}",
+                "positionTo": "{0, 0, dockHeight}",
+                "condition": false
+            }
+        ]
+    },
+    "childDockings": {
+        "points": [
+            {
+                "mask": "cube_straight",
+                "position": "{ -width / 2, 0, 0}",
+                "condition": "in(elementType, 'SW40', 'SW60', 'SW80', 'SW120', 'SW160', 'PDW60', 'PDW80', 'PDW120')"
+            },
+            {
+                "mask": "cube_parallel",
+                "position": "{0, -depth / 2, 0}",
+                "condition": "in(elementType, 'PW60', 'PW80', 'PW120', 'PW160', 'PDW60', 'PDW80', 'PDW120')"
+            }
+        ]
+    },
+    "possibleChildren": [
+        {
+            "itemId": "demoCatalogId:quadpost_shelf_f",
+            "condition": true
+        },
+        {
+            "itemId": "demoCatalogId:quadpost_straight_w40",
+            "condition": "(depth == 400) && (neighboursLeftCount + neighboursRightCount) < 2"
+        },
+        {
+            "itemId": "demoCatalogId:quadpost_straight_w60",
+            "condition": "(depth == 400) && (neighboursLeftCount + neighboursRightCount) < 2"
+        },
+        {
+            "itemId": "demoCatalogId:quadpost_straight_w80",
+            "condition": "(depth == 400) && (neighboursLeftCount + neighboursRightCount) < 2"
+        },
+        {
+            "itemId": "demoCatalogId:quadpost_straight_w120",
+            "condition": "(depth == 400) && (neighboursLeftCount + neighboursRightCount) < 2"
+        },
+        {
+            "itemId": "demoCatalogId:quadpost_straight_w160",
+            "condition": "(depth == 400) && (neighboursLeftCount + neighboursRightCount) < 2"
+        },
+        {
+            "itemId": "demoCatalogId:quadpost_parallel_w60",
+            "condition": "((width == 600) && (neighboursRearCount + neighboursFrontCount) < 2) || ((width == 600 && depth == 600) && (neighboursLeftCount + neighboursRightCount) < 2)"
+        },
+        {
+            "itemId": "demoCatalogId:quadpost_parallel_w80",
+            "condition": "((width == 800) && (neighboursRearCount + neighboursFrontCount) < 2) || ((width == 800 && depth == 800) && (neighboursLeftCount + neighboursRightCount) < 2)"
+        },
+        {
+            "itemId": "demoCatalogId:quadpost_parallel_w120",
+            "condition": "((width == 1200) && (neighboursRearCount + neighboursFrontCount) < 2) || ((width == 1200 && depth == 1200) && (neighboursLeftCount + neighboursRightCount) < 2)"
+        },
+        {
+            "itemId": "demoCatalogId:quadpost_parallel_w160",
+            "condition": "((width == 1600) && (neighboursRearCount + neighboursFrontCount) < 2) || ((width == 1600 && depth == 1600) && (neighboursLeftCount + neighboursRightCount) < 2)"
+        },
+        {
+            "itemId": "demoCatalogId:quadpost_parallel_dw60",
+            "condition": "((width == 600) && (neighboursRearCount + neighboursFrontCount) < 2) || ((width == 600 && depth == 600) && (neighboursLeftCount + neighboursRightCount) < 2)"
+        },
+        {
+            "itemId": "demoCatalogId:quadpost_parallel_dw80",
+            "condition": "((width == 800) && (neighboursRearCount + neighboursFrontCount) < 2) || ((width == 800 && depth == 800) && (neighboursLeftCount + neighboursRightCount) < 2)"
+        },
+        {
+            "itemId": "demoCatalogId:quadpost_parallel_dw120",
+            "condition": "((width == 1200) && (neighboursRearCount + neighboursFrontCount) < 2) || ((width == 1200 && depth == 1200) && (neighboursLeftCount + neighboursRightCount) < 2)"
+        }
+    ]
+}

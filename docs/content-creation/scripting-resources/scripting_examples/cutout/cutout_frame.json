@@ -1,0 +1,27 @@
+{
+    "id": "soulpepper:cutout_frame",
+    "labels":{
+        "en":"Frame"
+    },
+    "parameters": [
+        {
+            "key": "Frame",
+            "type": "String",
+            "defaultValue": "Standard",
+            "validValues": [
+                "Standard",
+                "Thin",
+                "SuperThin"
+            ],
+            "enabled": true,
+            "visible": false,
+            "visibleInPartList": false
+        }
+    ],
+    "onUpdate": "",
+    "geometry": "",
+    "articleNr": "
+        if (Frame == 'Standard') { articleNr = 'FT2'}
+        if (Frame == 'Thin') { articleNr = 'FH2'}
+    "
+}

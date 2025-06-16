@@ -1,0 +1,244 @@
+{
+    "id": "demoCatalogId:example_shelf_addon",
+    "parameters": [
+        {
+            "key": "elementType",
+            "type": "String",
+            "defaultValue": "door",
+            "valueObjects": [
+                {
+                    "value": "door"
+                },
+                {
+                    "value": "glass"
+                },
+                {
+                    "value": "crate"
+                },
+                {
+                    "value": "drawers"
+                },
+                {
+                    "value": "open"
+                }
+            ],
+            "visible": true,
+            "visibleInPartList": true
+        },
+        {
+            "key": "material_addon",
+            "labels": {
+                "en": "Infill Colour"
+            },
+            "global": true,
+            "type": "Material",
+            "defaultValue": "value",
+            "validValues": [
+                "isdt:surface_oak",
+                "isdt:surface_cremewhite",
+                "isdt:surface_nut",
+                "isdt:surface_gray"
+            ],
+            "visible": "in(elementType, 'door', 'crate', 'drawers')",
+            "visibleAsGlobal": "in(elementType, 'door', 'crate', 'drawers')",
+            "visibleInPartList": "in(elementType, 'door', 'crate', 'drawers')"
+        },
+        {
+            "key": "hingeSide",
+            "type": "Integer",
+            "defaultValue": 0,
+            "valueObjects": [
+                {
+                    "value": -1,
+                    "labels": {
+                        "en": "Left"
+                    }
+                },
+                {
+                    "value": 1,
+                    "labels": {
+                        "en": "Right"
+                    }
+                }
+            ],
+            "visible": "in(elementType, 'door', 'glass')",
+            "visibleInPartList": "in(elementType, 'door', 'glass')"
+        }
+    ],
+    "onUpdate": "
+        if (ifnull(inited, false) == false) {
+            inited = true;
+            glassThickness = 5;
+            sideWallThickness = 5;
+            woodThickness = 15;
+            width = 350;
+            height = 350;
+            depth = 400;
+            backWallOffset = 10;
+            doorGap = 2;
+        }
+    ",
+    "geometry": "
+        if (in(elementType, 'door', 'glass', 'drawers', 'open')) {
+            if (elementType == 'glass') {
+                frontThickness = glassThickness;
+            }
+            if (in(elementType, 'door', 'drawers')) {
+                frontThickness = woodThickness;
+            }
+            if (elementType == 'open') {
+                frontThickness = 20;
+            }
+            BeginObjGroup('WALLS');
+                AddPrism(height, Vector2f[
+                        {0, 0},
+                        {0, depth - frontThickness},
+                        {sideWallThickness, depth - frontThickness},
+                        {sideWallThickness, backWallOffset},
+                        {sideWallThickness / 2, backWallOffset},
+                        {sideWallThickness / 2, backWallOffset - sideWallThickness},
+                        {sideWallThickness, backWallOffset - sideWallThickness},
+                        {sideWallThickness, 0}
+                    ], Vector2f{1, 1}, 0, Vector2f{0, 0}, 2);
+
+                AddPrism(height, Vector2f[
+                        {0, 0},
+                        {sideWallThickness, 0},
+                        {sideWallThickness, depth - frontThickness},
+                        {0, depth - frontThickness},
+                        {0, backWallOffset},
+                        {sideWallThickness / 2, backWallOffset},
+                        {sideWallThickness / 2, backWallOffset - sideWallThickness},
+                        {0, backWallOffset - sideWallThickness}
+                    ], Vector2f{1, 1}, 0, Vector2f{0, 0}, 2);
+
+                 MoveMatrixBy(Vector3f{width - sideWallThickness, 0, 0});
+
+                AddCube(Vector3f{width - sideWallThickness, sideWallThickness, height}, Vector2f{1, 1}, 0, Vector2f{0, 0}, 1);
+                 MoveMatrixBy(Vector3f{sideWallThickness / 2, backWallOffset - sideWallThickness, 0});
+            EndObjGroup('WALLS');
+             SetObjSurface('isdt:surface_cremewhite');
+
+            if (elementType == 'door') {
+                AddCube(Vector3f{width - 2 * doorGap, woodThickness, height - 2 * doorGap});
+                 MoveMatrixBy(Vector3f{doorGap, depth - woodThickness, doorGap});
+                 SetObjSurface(material_addon);
+                AddCylinder(5, 5, 15, 16, Vector2f{1, 1}, 0, Vector2f{0, 0}, 0);
+                 SetObjSurface('demoCatalogId:chrome');
+                 RotateMatrixBy(Vector3f{1, 0, 0}, Vector3f{0, 0, 0}, -90);
+                 MoveMatrixBy(Vector3f{30, depth, height / 2});
+                if (hingeSide < 0) {
+                     MoveMatrixBy(Vector3f{width - 60, 0, 0});
+                }
+            }
+            if (elementType == 'glass') {
+                AddCube(Vector3f{width - 2 * doorGap, glassThickness, height - 2 * doorGap});
+                 MoveMatrixBy(Vector3f{doorGap, depth - glassThickness, doorGap});
+                 SetObjSurface('isdt:black_transparent');
+                AddCube(Vector3f{width - 2 * sideWallThickness, depth - frontThickness - backWallOffset, glassThickness});
+                 SetObjSurface('isdt:black_transparent');
+                 MoveMatrixBy(Vector3f{sideWallThickness, backWallOffset, height / 2 - glassThickness / 2});
+                BeginObjGroup('HINGES');
+                    BeginObjGroup('ONE HINGE');
+                        AddCube(Vector3f{5, 15, 20});
+                        AddCylinder(10, 10, 7, 24, Vector2f{1, 1}, 0, Vector2f{0, 0}, 0);
+                         RotateMatrixBy(Vector3f{1, 0, 0}, Vector3f{0, 0, 0}, -90);
+                         MoveMatrixBy(Vector3f{ -hingeSide * 10, 15 + glassThickness - 6, 10});
+                    EndObjGroup('ONE HINGE');
+                     SetObjSurface('demoCatalogId:chrome');
+                     MoveMatrixBy(Vector3f{sideWallThickness, depth - glassThickness - 15, height / 3 - 10});
+                    if (hingeSide > 0) {
+                         MoveMatrixBy(Vector3f{width - 2 * sideWallThickness - 5, 0, 0});
+                    }
+                    Copy();
+                     MoveMatrixBy(Vector3f{0, 0, height / 3});
+                EndObjGroup('HINGES');
+                AddCylinder(5, 5, 15, 16, Vector2f{1, 1}, 0, Vector2f{0, 0}, 0);
+                 SetObjSurface('demoCatalogId:chrome');
+                 RotateMatrixBy(Vector3f{1, 0, 0}, Vector3f{0, 0, 0}, -90);
+                 MoveMatrixBy(Vector3f{30, depth, height / 2});
+                if (hingeSide < 0) {
+                     MoveMatrixBy(Vector3f{width - 60, 0, 0});
+                }
+            }
+        }
+        if (elementType == 'drawers') {
+            BeginObjGroup('DRAWER');
+                AddCube(Vector3f{width - 2 * doorGap, woodThickness, height / 2 - 2 * doorGap});
+                 MoveMatrixBy(Vector3f{doorGap, depth - woodThickness, doorGap});
+                 SetObjSurface(material_addon);
+                AddCylinder(5, 5, 15, 16, Vector2f{1, 1}, 0, Vector2f{0, 0}, 0);
+                 SetObjSurface('demoCatalogId:chrome');
+                 RotateMatrixBy(Vector3f{1, 0, 0}, Vector3f{0, 0, 0}, -90);
+                 MoveMatrixBy(Vector3f{width / 2, depth, height / 4});
+            EndObjGroup('DRAWER');
+            Copy();
+             MoveMatrixBy(Vector3f{0, 0, height / 2});
+            /* bottom, middle, top */
+            AddCube(Vector3f{width - 2 * sideWallThickness, depth - frontThickness - backWallOffset, sideWallThickness});
+             SetObjSurface('isdt:surface_cremewhite');
+             MoveMatrixBy(Vector3f{sideWallThickness, backWallOffset, 0});
+            Copy();
+             MoveMatrixBy(Vector3f{0, 0, height / 2 - sideWallThickness / 2});
+            Copy();
+             MoveMatrixBy(Vector3f{0, 0, height / 2 - sideWallThickness / 2});
+        }
+
+        if (elementType == 'crate') {
+            AddCube(Vector3f{2 * woodThickness, 2 * woodThickness, height}, Vector2f{1, 1}, 90, Vector2f{0, 0}, 1);
+             SetObjSurface(material_addon);
+            Copy();
+             MoveMatrixBy(Vector3f{width - 2 * woodThickness, 0, 0});
+            Copy();
+             MoveMatrixBy(Vector3f{0, depth - 2 * woodThickness, 0});
+            Copy();
+             MoveMatrixBy(Vector3f{ -width + 2 * woodThickness, 0, 0});
+
+
+            BeginObjGroup('');
+                AddCube(Vector3f{width - 4 * woodThickness, woodThickness, 3 * height / 10});
+                 MoveMatrixBy(Vector3f{2 * woodThickness, woodThickness / 2, 0});
+                 SetObjSurface(material_addon);
+                Copy();
+                 MoveMatrixBy(Vector3f{0, 0, 3.5 * height / 10});
+                Copy();
+                 MoveMatrixBy(Vector3f{0, 0, 3.5 * height / 10});
+            EndObjGroup('');
+            Copy();
+             MoveMatrixBy(Vector3f{0, depth - 2.001 * woodThickness, 0});
+
+            BeginObjGroup('');
+                AddCube(Vector3f{depth - 4 * woodThickness, woodThickness, 3 * height / 10});
+                 RotateMatrixBy(Vector3f{0, 0, 1}, Vector3f{0, 0, 0}, 90);
+                 MoveMatrixBy(Vector3f{3 * woodThickness / 2, 2 * woodThickness, 0});
+                 SetObjSurface(material_addon);
+                Copy();
+                 MoveMatrixBy(Vector3f{0, 0, 3.5 * height / 10});
+                Copy();
+                 MoveMatrixBy(Vector3f{0, 0, 3.5 * height / 10});
+            EndObjGroup('');
+            Copy();
+             MoveMatrixBy(Vector3f{width - 2 * woodThickness, 0, 0});
+
+            AddCube(Vector3f{width - woodThickness, depth - woodThickness, woodThickness});
+             MoveMatrixBy(Vector3f{woodThickness / 2, woodThickness / 2, woodThickness / 2});
+             SetObjSurface(material_addon);
+
+        }
+    ",
+    "childDockings": {
+        "points": [
+            {
+                "mask": "shelf",
+                "position": "{width / 2, 0, 0}"
+            }
+        ]
+    },
+    "articleNr": "
+        if (elementType == 'door') { articleNr = '2973.900.100'; }
+        if (elementType == 'glass') { articleNr = '2973.900.200'; }
+        if (elementType == 'crate') { articleNr = '2973.900.300'; }
+        if (elementType == 'drawers') { articleNr = '2973.900.400'; }
+        if (elementType == 'open') { articleNr = '2973.900.500'; }
+    "
+}

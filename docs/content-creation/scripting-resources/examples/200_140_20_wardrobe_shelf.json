@@ -1,0 +1,136 @@
+{
+    "id": "isdt:wardrobe_shelf",
+    "parameters": [
+        {
+            "key": "elementType",
+            "type": "String",
+            "defaultValue": "shelf",
+            "valueObjects": [
+                {
+                    "value": "shelf",
+                    "condition": true
+                },
+                {
+                    "value": "drawer",
+                    "condition": true
+                },
+                {
+                    "value": "rod",
+                    "condition": true
+                }
+            ],
+            "visible": true,
+            "visibleInPartList": true
+        },
+        {
+            "key": "width",
+            "type": "Decimal",
+            "unitType": "length",
+            "validValues": [
+                500,
+                750,
+                1000
+            ],
+            "enabled": true,
+            "visible": true,
+            "visibleInPartList": true
+        },
+        {
+            "key": "depth",
+            "type": "Decimal",
+            "defaultValue": 500,
+            "visible": true,
+            "visibleInPartList": true
+        },
+        {
+            "key": "material_shelf",
+            "type": "Material",
+            "validValues": [
+                "isdt:wood_oak_stained",
+                "isdt:wood_oak",
+                "isdt:wood_chstnut"
+            ],
+            "visible": true,
+            "visibleInPartList": true
+        }
+    ],
+    "onUpdate": "
+        if (ifnull(inited, false) == false) {
+            inited = true;
+            wallT = 20;
+            backwallT = 5;
+            drawerwallT = 8;
+            spaceUnder = 0;
+            spaceAbove = wallT;
+        }
+        if (elementType == 'shelf') { height = wallT; spaceUnder = 0; spaceAbove = 20; }
+        if (elementType == 'drawer') { height = 160; spaceUnder = 0; spaceAbove = height; }
+        if (elementType == 'rod') { height = 40; spaceUnder = 500; spaceAbove = 80; }
+    ",
+    "previewGeometry": "
+        AddCube(Vector3f{width - 2 * wallT, depth - backwallT, wallT});
+         SetObjSurface('isdt:white');
+         MoveMatrixBy(Vector3f{ -width / 2 + wallT, 0, 0});
+    ",
+    "geometry": "
+        if (elementType == 'shelf') {
+            AddCube(Vector3f{wallT, depth - backwallT, width - 2 * wallT});
+             SetObjSurface(material_shelf);
+             RotateMatrixBy(Vector3f{0, 1, 0}, Vector3f{0, 0, 0}, 90);
+             MoveMatrixBy(Vector3f{ -width / 2 + wallT, 0, wallT});
+        }
+        if (elementType == 'drawer') {
+            BeginObjGroup();
+                AddCube(Vector3f{10, depth - backwallT - 50, 15}, Vector2f{1, 1}, 0, Vector2f{0, 0}, 0.5);
+                 SetObjSurface('isdt:darkgrey_metallic');
+                 MoveMatrixBy(Vector3f{ -width / 2 + wallT, 20, 0});
+                Copy();
+                 MoveMatrixBy(Vector3f{width - 2 * wallT - 10, 0, 0});
+
+                AddCube(Vector3f{drawerwallT, height, depth - backwallT}, Vector2f{1, 1}, 0, Vector2f{0, 0}, 1);
+                 SetObjSurface(material_shelf);
+                 RotateMatrixBy(Vector3f{1, 0, 0}, Vector3f{0, 0, 0}, 90);
+                 MoveMatrixBy(Vector3f{ -width / 2 + wallT + 10, depth - backwallT, 0});
+                Copy();
+                 MoveMatrixBy(Vector3f{width - 2 * wallT - 20 - drawerwallT, 0, 0});
+
+                AddCube(Vector3f{drawerwallT, height, width - 2 * wallT - 20 - 2 * drawerwallT}, Vector2f{1, 1}, 0, Vector2f{0, 0}, 1);
+                 SetObjSurface(material_shelf);
+                 RotateMatrixBy(Vector3f{1, 0, 0}, Vector3f{0, 0, 0}, 90);
+                 RotateMatrixBy(Vector3f{0, 0, 1}, Vector3f{0, 0, 0}, 90);
+                 MoveMatrixBy(Vector3f{ -width / 2 + wallT + 10 + drawerwallT, 0, 0});
+                Copy();
+                 MoveMatrixBy(Vector3f{0, depth - backwallT - drawerwallT, 0});
+
+                AddPlainCube(Vector3f{width - 2 * wallT - 20 - 2 * drawerwallT, depth - backwallT - 2 * drawerwallT, backwallT});
+                 SetObjSurface('isdt:surface_gray');
+                 MoveMatrixBy(Vector3f{ -width / 2 + wallT + 10 + drawerwallT, drawerwallT, 0});
+            EndObjGroup();
+        }
+        if (elementType == 'rod') {
+            BeginObjGroup('');
+                BeginObjGroup();
+                    AddCylinder(40, 40, 10, 16);
+                    AddCylinder(40, 35, 5, 16);
+                     MoveMatrixBy(Vector3f{0, 0, 10});
+                EndObjGroup();
+                Copy();
+                 RotateMatrixBy(Vector3f{1, 0, 0}, Vector3f{0, 0, 0}, 180);
+                 MoveMatrixBy(Vector3f{0, 0, width - 2 * wallT});
+                AddCylinder(12.7, 12.7, width - 2 * wallT - 2 * 15, 10);
+                 MoveMatrixBy(Vector3f{0, 0, 15});
+            EndObjGroup('');
+             SetObjSurface('isdt:surface_gray');
+             RotateMatrixBy(Vector3f{0, 1, 0}, Vector3f{0, 0, 0}, 90);
+             MoveMatrixBy(Vector3f{ -width / 2 + wallT, 0, 0});
+        }
+    ",
+    "childDockings": {
+        "points": [
+            {
+                "mask": "shelf",
+                "position": "{0, 0, 0}"
+            }
+        ]
+    }
+}

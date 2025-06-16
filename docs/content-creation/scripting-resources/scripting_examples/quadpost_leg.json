@@ -1,0 +1,56 @@
+{
+    "id": "demoCatalogId:quadpost_leg",
+    "parameters": [
+        {
+            "key": "length",
+            "enabled": "true",
+            "visible": "true",
+            "visibleInPartList": "true",
+            "labels": {
+                "en": "Length",
+                "de": "Länge"
+            },
+            "type": "Decimal",
+            "unitType": "length",
+            "defaultValue": 400,
+            "validValues": [
+                400,
+                800,
+                1200,
+                1600,
+                2000,
+                2400
+            ]
+        },
+        {
+            "key": "legMaterial",
+            "global": true,
+            "labels": {
+                "en": "Leg material",
+                "de": "Leg material"
+            },
+            "type": "Material",
+            "defaultValue": "demoCatalogId:darkgrey_metallic",
+            "validValues": [
+                "demoCatalogId:silver_metallic",
+                "demoCatalogId:darkgrey_metallic",
+                "demoCatalogId:lightblue_metallic",
+                "demoCatalogId:white_metallic"
+            ],
+            "enabled": true,
+            "visible": false,
+            "visibleInPartList": true
+        }
+    ],
+    "previewGeometry": "AddCylinder(24, 24, length + 80, 20, Vector2f{0.5, 0.5}, 90, Vector2f{0, 0});",
+    "onUpdate": "
+        if (ifnull(inited, false) == false) {
+            inited = true;
+            partHeight = 100;
+        }
+    ",
+    "geometry": "
+        AddCylinder(24, 24, length + 80, 20, Vector2f{0.5, 0.5}, 90, Vector2f{0, 0});
+         SetObjSurface(legMaterial);
+    "
+}

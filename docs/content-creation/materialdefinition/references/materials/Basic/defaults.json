@@ -1,0 +1,14 @@
+{
+    "shading": {
+        "alpha": 1.0,
+        "alphaCutoff": 0.0,
+        "basecolor": {
+            "b": 0.9,
+            "g": 0.9,
+            "r": 0.9
+        },
+        "metallic": 0.0,
+        "roughness": 0.85,
+        "transmission": 0.0
+    }
+}

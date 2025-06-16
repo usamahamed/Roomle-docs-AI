@@ -1,0 +1,26 @@
+{
+    "id": "soulpepper:cutout_beam",
+    "labels": {
+        "en": "Beam",
+        "de": "Beam"
+    },
+    "parameters": [
+        {
+            "key": "size",
+            "type": "Integer",
+            "defaultValue": 1200,
+            "enabled": true,
+            "visible": false,
+            "visibleInPartList": false
+        }
+    ],
+    "onUpdate": "",
+    "geometry": "",
+    "articleNr": "
+        if (size == 1200) {
+            articleNr = 'BMU'
+        } else {
+            articleNr = 'BM1'
+        }
+    "
+}

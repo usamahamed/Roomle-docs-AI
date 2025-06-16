@@ -1,0 +1,108 @@
+{
+    "id": "isdt:wardrobe_master",
+    "parameters": [
+        {
+            "key": "width",
+            "type": "Decimal",
+            "unitType": "length",
+            "validValues": [
+                500,
+                750,
+                1000
+            ],
+            "enabled": true,
+            "visible": true,
+            "visibleInPartList": true
+        },
+        {
+            "key": "height",
+            "type": "Decimal",
+            "unitType": "length",
+            "validValues": [
+                2000,
+                2200
+            ],
+            "enabled": true,
+            "visible": true,
+            "visibleInPartList": true
+        },
+        {
+            "key": "depth",
+            "type": "Decimal",
+            "defaultValue": 500,
+            "visible": true,
+            "visibleInPartList": true
+        },
+        {
+            "key": "material_body",
+            "type": "Material",
+            "validValues": [
+                "isdt:wood_oak_stained",
+                "isdt:wood_oak",
+                "isdt:wood_chstnut"
+            ],
+            "visible": true,
+            "visibleInPartList": true
+        }
+    ],
+    "onUpdate": "
+        if (ifnull(inited, false) == false) {
+            inited = true;
+            wallT = 20;
+            backwallT = 5;
+            plinthH = 80;
+            pinsOffset = 50;
+        }
+
+        dockrange_height = height - 2 * wallT - plinthH;
+    ",
+    "geometry": "
+        BeginObjGroup();
+            BeginObjGroup();
+                /* side walls */
+                AddCube(Vector3f{wallT, depth, height});
+                Copy();
+                 MoveMatrixBy(Vector3f{width - wallT, 0, 0});
+                /* floor */
+                AddCube(Vector3f{wallT, depth, width - 2 * wallT});
+                 RotateMatrixBy(Vector3f{0, 1, 0}, Vector3f{0, 0, 0}, 90);
+                 MoveMatrixBy(Vector3f{wallT, 0, plinthH});
+                /* ceiling */
+                Copy();
+                 MoveMatrixBy(Vector3f{0, 0, height - plinthH});
+                /* plinth */
+                AddCube(Vector3f{plinthH - wallT, wallT, width - 2 * wallT});
+                 RotateMatrixBy(Vector3f{0, 1, 0}, Vector3f{0, 0, 0}, 90);
+                 MoveMatrixBy(Vector3f{wallT, depth - 2 * wallT, plinthH - wallT});
+            EndObjGroup();
+             SetObjSurface(material_body);
+            /* backwall */
+            AddCube(Vector3f{width - 2 * wallT, backwallT, height - plinthH - wallT});
+             MoveMatrixBy(Vector3f{wallT, 0, plinthH});
+             SetObjSurface('isdt:gray');
+        EndObjGroup();
+         MoveMatrixBy(Vector3f{ -width / 2, 0, 0});
+    ",
+    "parentDockings": {
+        "ranges": [
+            {
+                "mask": "shelf",
+                "position": "{0, backwallT, plinthH + wallT}",
+                "stepEnd": "{0, backwallT, height - wallT}",
+                "rotation": "{0, 0, 0}",
+                "condition": "true",
+                "maxConnections": 1,
+                "stepX": 0,
+                "stepY": 0,
+                "stepZ": "pinsOffset"
+            }
+        ]
+    },
+    "possibleChildren": [
+        {
+            "componentId": "isdt:wardrobe_shelf"
+        }
+    ]
+}
+
+

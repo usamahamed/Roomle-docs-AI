@@ -1,0 +1,19 @@
+{
+    "id": "demo:material_pricegroups",
+    "parameters": [
+        {
+            "key": "material",
+            "type": "Material",
+            "defaultValue": "value",
+            "validGroups": [
+                "isdt:fabrics"
+            ],
+            "visible": true,
+            "visibleInPartList": true
+        }
+    ],
+        "articleNr": "
+        pricegroup = getMaterialProperty(material, 'pricegroup', 'NULL');
+        articleNr = sku_base | ' ' | pricegroup;
+    "
+}

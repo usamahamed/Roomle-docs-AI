@@ -1,0 +1,54 @@
+{
+    "id": "catalogId:200_100_20_addprism_handle",
+    "parameters": [
+        {
+            "key": "length",
+            "defaultValue": 400,
+            "type": "Decimal",
+            "validRange": {
+                "valueFrom": 300,
+                "valueTo": 600,
+                "step": 1
+            },
+            "enabled": true,
+            "visible": true,
+            "visibleInPartList": true
+        }
+    ],
+    "geometry": "
+        height = 200;
+        height_profile = 40;
+        thickness_wood = 30;
+        thickness_profile = 1.5;
+        depth_handle = 40;
+        height_handle = 10;
+        /* wood */
+        BeginObjGroup();
+        AddPrism(length,
+            Vector2f[
+                {0, 0},
+                {thickness_wood, thickness_wood},
+                {thickness_wood, height},
+                {0, height}
+            ]
+            /*,
+            Vector2f{1, 1}, 90, Vector2f{0, 0}, 2*/
+        );
+         SetObjSurface('isdt:surface_oak');
+
+        /* rail */
+        AddPrism(length,
+            Vector2f[
+                {0, height},
+                {0, height + thickness_profile},
+                {depth_handle, height + thickness_profile},
+                {depth_handle, height - height_handle},
+                {depth_handle - thickness_profile, height - height_handle},
+                {depth_handle - thickness_profile, height}
+            ]);
+         SetObjSurface('demoCatalogId:chrome');
+         EndObjGroup();
+         RotateMatrixBy(Vector3f{1, 0, 0}, Vector3f{0, 0, 0}, 90);
+         RotateMatrixBy(Vector3f{0, 0, 1}, Vector3f{0, 0, 0}, 90);
+    "
+}

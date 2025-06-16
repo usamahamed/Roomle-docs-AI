@@ -1,0 +1,122 @@
+{
+    "id": "demoCatalogId:example_global",
+    "parameters": [
+        {
+            "key": "material_filter",
+            "global": true,
+            "type": "String",
+            "defaultValue": "RGB",
+            "validValues": [
+                 "RGB",
+                "CMY",
+                "CMYK"
+            ],
+            "visible": true,
+            "visibleInPartList": true
+        },
+        {
+            "key": "material",
+            "global": true,
+            "type": "Material",
+            "defaultValue": "isdt:red",
+            "valueObjects": [
+                {
+                    "value": "isdt:red",
+                    "condition": "material_filter == 'RGB'"
+                },
+                {
+                    "value": "isdt:green",
+                    "condition": "material_filter == 'RGB'"
+                },
+                {
+                    "value": "isdt:blue",
+                    "condition": "material_filter == 'RGB'"
+                },
+                {
+                    "value": "isdt:cyan",
+                    "condition": "material_filter == 'CMY' || material_filter == 'CMYK'"
+                },
+                {
+                    "value": "isdt:magenta",
+                    "condition": "material_filter == 'CMY' || material_filter == 'CMYK'"
+                },
+                {
+                    "value": "isdt:yellow",
+                    "condition": "material_filter == 'CMY' || material_filter == 'CMYK'"
+                },
+                {
+                    "value": "isdt:black",
+                    "condition": "material_filter == 'CMYK'"
+                }
+            ],
+            "enabled": "material_enabled",
+            "visible": "material_visible",
+            "visibleAsGlobal": "material_visibleAsGlobal",
+            "visibleInPartList": false
+        },
+        {
+            "key": "material_enabled",
+            "type": "Boolean",
+            "global": true,
+            "defaultValue": true,
+            "validValues": [
+                true,
+                false
+            ],
+            "enabled": true,
+            "visible": true,
+            "visibleAsGlobal": true,
+            "visibleInPartList": false
+        },
+        {
+            "key": "material_visible",
+            "type": "Boolean",
+            "global": true,
+            "defaultValue": true,
+            "validValues": [
+                true,
+                false
+            ],
+            "enabled": true,
+            "visible": true,
+            "visibleAsGlobal": true,
+            "visibleInPartList": false
+        },
+        {
+            "key": "material_visibleAsGlobal",
+            "type": "Boolean",
+            "global": true,
+            "defaultValue": true,
+            "validValues": [
+                true,
+                false
+            ],
+            "enabled": true,
+            "visible": true,
+            "visibleAsGlobal": true,
+            "visibleInPartList": false
+        }
+    ],
+    "geometry": "AddCube(Vector3f{1000, 1000, 1000}); SetObjSurface(material);",
+    "parentDockings": {
+        "points": [
+            {
+                "mask": "mask",
+                "position": "{1000, 0, 0}"
+            }
+        ]
+    },
+    "childDockings": {
+        "points": [
+            {
+                "mask": "mask",
+                "position": "{0, 0, 0}"
+            }
+        ]
+    },
+    "possibleChildren": [
+        {
+            "componentId": "demoCatalogId:example_global"
+        }
+    ]
+}

@@ -1,0 +1,344 @@
+{
+    "id": "usm:frame",
+    "parameters": [
+        {
+            "key": "width",
+            "labels": {
+                "de": "Breite",
+                "en": "Width"
+            },
+            "type": "Decimal",
+            "unitType": "length",
+            "defaultValue": 750,
+            "validValues": [
+                350,
+                395,
+                750
+            ],
+            "visible": "true"
+        },
+        {
+            "key": "depth",
+            "sort": 10,
+            "global": true,
+            "labels": {
+                "de": "Tiefe",
+                "en": "Depth"
+            },
+            "type": "Decimal",
+            "unitType": "length",
+            "defaultValue": 350,
+            "validValues": [
+                350,
+                500
+            ],
+            "visible": false
+        },
+        {
+            "sort": 10,
+            "key": "height",
+            "labels": {
+                "de": "Höhe",
+                "en": "Height"
+            },
+            "type": "Decimal",
+            "unitType": "length",
+            "defaultValue": 350,
+            "validValues": [
+                100,
+                175,
+                250,
+                350,
+                395
+            ],
+            "visible": "true"
+        }
+    ],
+    "subComponents": [
+        {
+            "internalId": "HEAD",
+            "componentId": "usm:head",
+            "numberInPartList": "2 * (1 + hasBottomParts + hasLeftParts + hasBottomLeftParts)"
+        },
+        {
+            "internalId": "PIPE_HORIZONTAL",
+            "componentId": "usm:pipe",
+            "assignments": {
+                "length": "width"
+            },
+            "numberInPartList": "2 * (1 + hasBottomParts)"
+        },
+        {
+            "internalId": "PIPE_VERTICAL",
+            "componentId": "usm:pipe",
+            "assignments": {
+                "length": "height"
+            },
+            "numberInPartList": "2 * (1 + hasLeftParts)"
+        },
+        {
+            "internalId": "PIPE_FORWARD",
+            "componentId": "usm:pipe",
+            "assignments": {
+                "length": "depth"
+            },
+            "numberInPartList": "(1 + hasBottomParts + hasLeftParts + hasBottomLeftParts)"
+        },
+        {
+            "internalId": "FOOT",
+            "componentId": "usm:levelingfoot",
+            "numberInPartList": "2 * (1 + hasBottomLeftParts)"
+        }
+    ],
+    "onUpdate": "
+        if (ifnull(inited, false) == false) {
+            inited = true;
+            hasLeftNeighbour = false;
+            hasRightNeighbour = false;
+            hasTopNeighbour = false;
+            hasBottomNeighbour = false;
+            isRoot = true;
+        }
+
+        hasBottomParts = !hasBottomNeighbour;
+        hasLeftParts = !hasLeftNeighbour;
+        hasBottomLeftParts = hasBottomParts && hasLeftParts;
+    ",
+    "geometry": "
+        if (isRoot) {
+            coordSystemAxesLength = 200;
+            coordSystemAxesThickness = 10;
+            BeginObjGroup();
+                AddPlainCube(Vector3f{coordSystemAxesThickness, coordSystemAxesThickness, coordSystemAxesLength}); SetObjSurface('demoCatalogId:test_crazy_gree');
+                AddPlainCube(Vector3f{coordSystemAxesThickness, coordSystemAxesLength, coordSystemAxesThickness}); SetObjSurface('demoCatalogId:cyan');
+                AddPlainCube(Vector3f{coordSystemAxesLength, coordSystemAxesThickness, coordSystemAxesThickness}); SetObjSurface('demoCatalogId:red');
+            EndObjGroup();
+        }
+        AddCube(Vector3f{width, depth, height});
+         MoveMatrixBy(Vector3f{ -width / 2, 0, 0});
+         SetObjSurface('isdt:black_transparent');
+
+        AddSphere(Vector3f{50, 50, 50});
+         MoveMatrixBy(Vector3f{ -width / 2 + 25, 0, 50});
+        if (hasLeftNeighbour) {
+             SetObjSurface('isdt:green');
+        } else {
+             SetObjSurface('isdt:red');
+        }
+
+        AddSphere(Vector3f{50, 50, 50});
+         MoveMatrixBy(Vector3f{width / 2 - 25, 0, 50});
+        if (hasRightNeighbour) {
+             SetObjSurface('isdt:green');
+        } else {
+             SetObjSurface('isdt:red');
+        }
+
+        AddSphere(Vector3f{50, 50, 50});
+         MoveMatrixBy(Vector3f{0, 0, height - 25});
+        if (hasTopNeighbour) {
+             SetObjSurface('isdt:green');
+        } else {
+             SetObjSurface('isdt:red');
+        }
+
+        AddSphere(Vector3f{50, 50, 50});
+         MoveMatrixBy(Vector3f{0, 0, 25});
+        if (hasBottomNeighbour) {
+             SetObjSurface('isdt:green');
+        } else {
+             SetObjSurface('isdt:red');
+        }
+
+        if (hasLeftParts) {
+            BeginObjGroup();
+                SubComponent('PIPE_VERTICAL');
+                SubComponent('HEAD');
+                 MoveMatrixBy(Vector3f{0, 0, height});
+            EndObjGroup();
+             MoveMatrixBy(Vector3f{ -width / 2, 0, 0});
+            Copy();
+             MoveMatrixBy(Vector3f{0, depth, 0});
+            SubComponent('PIPE_FORWARD');
+             RotateMatrixBy(Vector3f{1, 0, 0}, Vector3f{0, 0, 0}, -90);
+             MoveMatrixBy(Vector3f{ -width / 2, 0, height});
+        }
+        if (hasBottomParts) {
+            BeginObjGroup();
+                SubComponent('HEAD');
+                SubComponent('PIPE_HORIZONTAL');
+                 RotateMatrixBy(Vector3f{0, 1, 0}, Vector3f{0, 0, 0}, -90);
+                SubComponent('FOOT');
+            EndObjGroup();
+             MoveMatrixBy(Vector3f{width / 2, 0, 0});
+            Copy();
+             MoveMatrixBy(Vector3f{0, depth, 0});
+            SubComponent('PIPE_FORWARD');
+             RotateMatrixBy(Vector3f{1, 0, 0}, Vector3f{0, 0, 0}, -90);
+             MoveMatrixBy(Vector3f{width / 2, 0, 0});
+
+        }
+        if (hasBottomLeftParts) {
+            SubComponent('HEAD');
+             MoveMatrixBy(Vector3f{ -width / 2, 0, 0});
+            Copy();
+             MoveMatrixBy(Vector3f{0, depth, 0});
+            SubComponent('FOOT');
+             MoveMatrixBy(Vector3f{ -width / 2, 0, 0});
+            Copy();
+             MoveMatrixBy(Vector3f{0, depth, 0});
+            SubComponent('PIPE_FORWARD');
+             RotateMatrixBy(Vector3f{1, 0, 0}, Vector3f{0, 0, 0}, -90);
+             MoveMatrixBy(Vector3f{ -width / 2, 0, 0});
+        }
+        BeginObjGroup();
+            SubComponent('HEAD');
+             MoveMatrixBy(Vector3f{width / 2, 0, height});
+            SubComponent('PIPE_HORIZONTAL');
+             RotateMatrixBy(Vector3f{0, 1, 0}, Vector3f{0, 0, 0}, 90);
+             MoveMatrixBy(Vector3f{ -width / 2, 0, height});
+            SubComponent('PIPE_VERTICAL');
+             MoveMatrixBy(Vector3f{width / 2, 0, 0});
+        EndObjGroup();
+        Copy();
+         MoveMatrixBy(Vector3f{0, depth, 0});
+        SubComponent('PIPE_FORWARD');
+         RotateMatrixBy(Vector3f{1, 0, 0}, Vector3f{0, 0, 0}, -90);
+         MoveMatrixBy(Vector3f{width / 2, 0, height});
+    ",
+    "siblings": [
+        {
+            "mask": "horizontalSibling",
+            "position": "{ -width / 2, 0, 50}",
+            "assignmentsOnUpdateSilent": {
+                "height": "height"
+            },
+            "selfAssignments": {
+                "onDock": {
+                    "hasLeftNeighbour": true
+                },
+                "onUnDock": {
+                    "hasLeftNeighbour": false
+                }
+            }
+        },
+        {
+            "mask": "horizontalSibling",
+            "position": "{width / 2, 0, 50}",
+            "assignmentsOnUpdateSilent": {
+                "height": "height"
+            },
+            "selfAssignments": {
+                "onDock": {
+                    "hasRightNeighbour": true
+                },
+                "onUnDock": {
+                    "hasRightNeighbour": false
+                }
+            }
+        },
+        {
+            "mask": "verticalSibling",
+            "position": "{0, 0, height}",
+            "assignmentsOnUpdateSilent": {
+                "width": "width"
+            },
+            "selfAssignments": {
+                "onDock": {
+                    "hasTopNeighbour": true
+                },
+                "onUnDock": {
+                    "hasTopNeighbour": false
+                }
+            }
+        },
+        {
+            "mask": "verticalSibling",
+            "position": "{0, 0, 0}",
+            "assignmentsOnUpdateSilent": {
+                "width": "width"
+            },
+            "selfAssignments": {
+                "onDock": {
+                    "hasBottomNeighbour": true
+                },
+                "onUnDock": {
+                    "hasBottomNeighbour": false
+                }
+            }
+        }
+    ],
+    "parentDockings": {
+        "points": [
+            {
+                "mask": "gridLeft",
+                "position": "{ -width / 2, 0, 0}",
+                "rotation": "{0, 0, 0}",
+                "condition": "(!hasBottomNeighbour) && ((!connection.isPreview) || (!hasLeftNeighbour))"
+            },
+            {
+                "mask": "gridRight",
+                "position": "{width / 2, 0, 0}",
+                "rotation": "{0, 0, 0}",
+                "condition": "(!hasBottomNeighbour) && ((!connection.isPreview) || (!hasRightNeighbour))"
+            },
+            {
+                "mask": "gridTop",
+                "position": "{0, 0, height}",
+                "rotation": "{0, 0, 0}",
+                "condition": "true"
+            }
+        ]
+    },
+    "childDockings": {
+        "points": [
+            {
+                "mask": "gridLeft",
+                "position": "{width / 2, 0, 0}",
+                "rotation": "{0, 0, 0}",
+                "condition": "true",
+                "selfAssignments": {
+                    "onDock": {
+                        "isRoot": false
+                    },
+                    "onUnDock": {
+                        "isRoot": true
+                    }
+                }
+            },
+            {
+                "mask": "gridRight",
+                "position": "{ -width / 2, 0, 0}",
+                "rotation": "{0, 0, 0}",
+                "condition": "true",
+                "selfAssignments": {
+                    "onDock": {
+                        "isRoot": false
+                    },
+                    "onUnDock": {
+                        "isRoot": true
+                    }
+                }
+            },
+            {
+                "mask": "gridTop",
+                "position": "{0, 0, 0}",
+                "rotation": "{0, 0, 0}",
+                "condition": "true",
+                "selfAssignments": {
+                    "onDock": {
+                        "isRoot": false
+                    },
+                    "onUnDock": {
+                        "isRoot": true
+                    }
+                }
+            }
+        ]
+    },
+    "possibleChildren": [
+        {
+            "componentId": "usm:frame"
+        }
+    ]
+}

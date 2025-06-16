@@ -1,0 +1,298 @@
+{
+    "id": "soulpepper:cutout_extension",
+    "labels": {
+        "en": "Extension"
+    },
+    "parameters": [
+        {
+            "key": "tableSurface",
+            "type": "Material",
+            "sort": 1,
+            "defaultValue": "soulpepper:dark_Wood_28B",
+            "enabled": true,
+            "visible": false,
+            "visibleInPartList": false
+        },
+        {
+            "key": "Width",
+            "labels": {
+                "en": "Width of Surface"
+            },
+            "type": "Integer",
+            "sort": 2,
+            "unitType": "length",
+            "defaultValue": 500,
+            "validRange": {
+                "valueFrom": 500,
+                "valueTo": 1200,
+                "step": 100
+            },
+            "enabled": true,
+            "visible": true,
+            "visibleInPartList": true
+        },
+        {
+            "key": "AdditionalCabinet",
+            "labels": {
+                "en": "Additional Cabinet"
+            },
+            "type": "String",
+            "sort": 3,
+            "defaultValue": "without",
+            "valueObjects": [
+                {
+                    "value": "without",
+                    "condition": true,
+                    "thumbnail": "https://catalog.roomle.com/3813453b-5eea-487c-8f62-c541aaf20eaf/items/zerothumbnailcarrier/topimage.png?marker=1572954582",
+                    "labels": {
+                        "en": "Without"
+                    }
+                },
+                {
+                    "value": "4dr",
+                    "condition": true,
+                    "thumbnail": "https://catalog.roomle.com/3813453b-5eea-487c-8f62-c541aaf20eaf/items/cutout_cabinet_4dr/perspectiveimage.png?marker=1571400213",
+                    "labels": {
+                        "en": "4 Drawers"
+                    }
+                },
+                {
+                    "value": "2dr1f",
+                    "condition": true,
+                    "thumbnail": "https://catalog.roomle.com/3813453b-5eea-487c-8f62-c541aaf20eaf/items/cutout_cabinet_2dr1f/perspectiveimage.png?marker=1571400277",
+                    "labels": {
+                        "en": "2 Drawers + 1 File"
+                    }
+                },
+                {
+                    "value": "2f",
+                    "condition": true,
+                    "thumbnail": "https://catalog.roomle.com/3813453b-5eea-487c-8f62-c541aaf20eaf/items/cutout_cabinet_2f/perspectiveimage.png?marker=1571400329",
+                    "labels": {
+                        "en": "2 File Drawers"
+                    }
+                },
+                {
+                    "value": "door",
+                    "condition": true,
+                    "thumbnail": "https://catalog.roomle.com/3813453b-5eea-487c-8f62-c541aaf20eaf/items/cutout_cabinet_door/perspectiveimage.png?marker=1571400368",
+                    "labels": {
+                        "en": "Low Storage"
+                    }
+                }
+            ],
+            "enabled": true,
+            "visible": "(Width >= 900) && (Width <= 1200)",
+            "visibleInPartList": "(Width >= 900) && (Width <= 1200)"
+        },
+        {
+            "key": "handleType",
+            "labels": {
+                "en": "Handle Type"
+            },
+            "type": "String",
+            "sort": 7,
+            "defaultValue": "M96",
+            "valueObjects": [
+                {
+                    "value": "M96",
+                    "condition": true,
+                    "thumbnail": "https://catalog.roomle.com/3813453b-5eea-487c-8f62-c541aaf20eaf/items/cutout_handle_M96/perspectiveimage.png?marker=1571413642",
+                    "labels": {
+                        "en": "M96 Handle"
+                    }
+                },
+                {
+                    "value": "M64",
+                    "condition": true,
+                    "thumbnail": "https://catalog.roomle.com/3813453b-5eea-487c-8f62-c541aaf20eaf/items/cutout_handle_M64/perspectiveimage.png?marker=1571413756",
+                    "labels": {
+                        "en": "M64 Handle"
+                    }
+                },
+                {
+                    "value": "F2",
+                    "condition": true,
+                    "thumbnail": "https://catalog.roomle.com/3813453b-5eea-487c-8f62-c541aaf20eaf/items/cutout_handle_F2/perspectiveimage.png?marker=1571413855",
+                    "labels": {
+                        "en": "F2 Handle"
+                    }
+                },
+                {
+                    "value": "Rifto",
+                    "condition": true,
+                    "thumbnail": "https://catalog.roomle.com/3813453b-5eea-487c-8f62-c541aaf20eaf/items/cutout_handle_Rifto/perspectiveimage.png?marker=1571413973"
+                },
+                {
+                    "value": "X",
+                    "condition": true,
+                    "thumbnail": "https://catalog.roomle.com/3813453b-5eea-487c-8f62-c541aaf20eaf/items/cutout_handle_X/perspectiveimage.png?marker=1571414110"
+                }
+            ],
+            "enabled": true,
+            "visible": true,
+            "visibleInPartList": true
+        },
+        {
+            "key": "handleColor",
+            "labels": {
+                "en": "Handle Color"
+            },
+            "type": "Material",
+            "sort": 8,
+            "defaultValue": "soulpepper:sage",
+            "validValues": [
+                "soulpepper:salt",
+                "soulpepper:sage",
+                "soulpepper:clove",
+                "soulpepper:anise",
+                "soulpepper:turmeric",
+                "soulpepper:blueberry",
+                "soulpepper:paprica",
+                "soulpepper:sumac"
+            ],
+            "enabled": true,
+            "visible": true,
+            "visibleInPartList": true
+        },
+        {
+            "key": "side",
+            "type": "Integer",
+            "defaultValue": -1,
+            "validValues": [
+                -1,
+                1
+            ],
+            "enabled": true,
+            "visible": false,
+            "visibleInPartList": false
+        }
+    ],
+    "subComponents": [
+        {
+            "internalId": "TABLETOP",
+            "componentId": "soulpepper:cutout_tabletop",
+            "numberInPartList": "round(1/6, 2)",
+            "assignments": {
+                "Width": "Width",
+                "Depth": "Depth",
+                "Edge": "Edge",
+                "SurfaceMaterial": "tableSurface"
+            }
+        },
+        {
+            "internalId": "CABINET",
+            "componentId": "soulpepper:cutout_cabinet",
+            "numberInPartList": "1",
+            "assignments": {
+                "side": "side",
+                "handleType": "handleType",
+                "handleColor": "handleColor"
+            },
+            "active": "true",
+            "supersedings": [
+                {
+                    "key": "width",
+                    "type": "parameter"
+                },
+                {
+                    "key": "ChangeStorage",
+                    "type": "parameter"
+                },
+                {
+                    "key": "BoxMaterial",
+                    "type": "parameter"
+                },
+                {
+                    "key": "FrontMaterial",
+                    "type": "parameter"
+                },
+                {
+                    "key": "BaseMaterial",
+                    "type": "parameter"
+                }
+            ]
+        },
+        {
+            "internalId": "CABINET2",
+            "componentId": "soulpepper:cutout_cabinet",
+            "numberInPartList": "AdditionalCabinet != 'without'",
+            "assignments": {
+                "side": "side",
+                "handleType": "handleType",
+                "handleColor": "handleColor",
+                "ChangeStorage": "AdditionalCabinet",
+                "BoxMaterial": "BoxMaterial",
+                "FrontMaterial": "FrontMaterial",
+                "BaseMaterial": "BaseMaterial"
+            }
+        },
+        {
+            "internalId": "FRAME",
+            "componentId": "soulpepper:cutout_frame",
+            "numberInPartList": "1",
+            "active": "true",
+            "assignments": {
+                "Frame": "Edge"
+            }
+        }
+    ],
+    "onUpdate": "
+        if (ifnull(inited, false) == false) {
+            inited = true;
+            hasAdditionalCabinet = false;
+            Depth = 400;
+            Edge = 'Standard';
+        }
+    ",
+    "geometry": "
+        SubComponent(FRAME);
+
+        SubComponent(TABLETOP);
+         SetObjSurface(tableSurface);
+        if (side == - 1) {
+             MoveMatrixBy(Vector3f{ -Width, 0, 0});
+        }
+        SubComponent(CABINET);
+        if (side == - 1) {
+             MoveMatrixBy(Vector3f{ -Width + width / 2, 0, 0});
+        } else {
+             MoveMatrixBy(Vector3f{Width - width / 2, 0, 0});
+        }
+        
+        if (AdditionalCabinet != 'without') {
+            SubComponent(CABINET2);
+             MoveMatrixBy(Vector3f{(Width - 600) * side, 0, 0});
+        }
+    ",
+    "childDockings": {
+        "points": [
+            {
+                "mask": "extension",
+                "position": "{0, 0, 0}",
+                "rotation": "{0, 0, 0}",
+                "condition": "true",
+                "assignmentScripts": {
+                    "onDock": "
+                    if (other.SurfaceMaterial == 'soulpepper:white_28A') { self.BaseMaterial = 'soulpepper:white_17A'; self.FrontMaterial = 'soulpepper:white_17A'; self.BoxMaterial = 'soulpepper:white_17A'}
+                    if (other.SurfaceMaterial == 'soulpepper:foggy_Day_28A') { self.BaseMaterial = 'soulpepper:foggy_Day_17A'; self.FrontMaterial = 'soulpepper:foggy_Day_17A'; self.BoxMaterial = 'soulpepper:foggy_Day_17A'}
+                    if (other.SurfaceMaterial == 'soulpepper:mocka_28A') { self.BaseMaterial = 'soulpepper:mocka_17A'; self.FrontMaterial = 'soulpepper:mocka_17A'; self.BoxMaterial = 'soulpepper:mocka_17A'}
+                    if (other.SurfaceMaterial == 'soulpepper:dusty_Noon_28A') { self.BaseMaterial = 'soulpepper:dusty_Noon_17A'; self.FrontMaterial = 'soulpepper:dusty_Noon_17A'; self.BoxMaterial = 'soulpepper:dusty_Noon_17A'}
+                    if (other.SurfaceMaterial == 'soulpepper:bamboo_Style_28A') { self.BaseMaterial = 'soulpepper:bamboo_Style_17A'; self.FrontMaterial = 'soulpepper:bamboo_Style_17A'; self.BoxMaterial = 'soulpepper:bamboo_Style_17A'}
+                    if (other.SurfaceMaterial == 'soulpepper:serious_Wood_28A') { self.BaseMaterial = 'soulpepper:serious_Wood_17A'; self.FrontMaterial = 'soulpepper:serious_Wood_17A'; self.BoxMaterial = 'soulpepper:serious_Wood_17A'}
+                    if (other.SurfaceMaterial == 'soulpepper:woodie_28B') { self.BaseMaterial = 'soulpepper:woodie_17B'; self.FrontMaterial = 'soulpepper:woodie_17B'; self.BoxMaterial = 'soulpepper:woodie_17B'}
+                    if (other.SurfaceMaterial == 'soulpepper:dark_Wood_28B') { self.BaseMaterial = 'soulpepper:dark_Wood_17B'; self.FrontMaterial = 'soulpepper:dark_Wood_17B'; self.BoxMaterial = 'soulpepper:dark_Wood_17B'}
+                "
+                }
+            }
+        ]
+    },
+    "articleNr": "
+        if (side == - 1) {
+            articleNr = 'XTL'
+        }
+        if (side == 1) {
+            articleNr = 'XTR'
+        }
+    "
+}

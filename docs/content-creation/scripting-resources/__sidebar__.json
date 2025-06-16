@@ -1,0 +1,205 @@
+[
+    [
+        "../../",
+        "Home"
+    ],
+    {
+        "title": "Scripting Resources",
+        "collapsable": false,
+        "sidebarDepth": 0,
+        "children": [
+            [
+                "./",
+                "Overview"
+            ]
+        ]
+    },
+    {
+        "title": "Getting Started",
+        "collapsable": false,
+        "sidebarDepth": 2,
+        "children": [
+            [
+                "100_40_helloworld",
+                "Hello world example"
+            ],
+            [
+                "100_10_setup",
+                "Environment Setup"
+            ],
+            [
+                "100_50_loadersnippet",
+                "Using offline loader snippets"
+            ],
+            [
+                "https://github.com/roomle/roomle-blender-addon",
+                "Roomle Blender Addon on GitHub"
+            ]
+        ]
+    },
+    {
+        "title": "Scripting Course",
+        "collapsable": false,
+        "sidebarDepth": 2,
+        "children": [
+            [
+                "200_10_prerequisities.md",
+                "Prerequisities and expectations"
+            ],
+            [
+                "200_20_componentdefinitionbasics.md",
+                "Component Definition Basics"
+            ],
+            [
+                "200_30_parameters.md",
+                "Parameters"
+            ],
+            [
+                "200_40_roomlescript.md",
+                "RoomleScript Language Reference"
+            ],
+            [
+                "200_50_exampletable",
+                "Example: Scripting a Parameterized Table and Implementing Client Feedback"
+            ],
+            [
+                "200_60_shelves",
+                "Example: Parametrized shelf system"
+            ],
+            [
+                "200_70_subcomponents",
+                "SubComponents"
+            ],
+            [
+                "200_80_dockingbasics",
+                "Docking Basics"
+            ],
+            [
+                "200_90_globalparameters",
+                "Global Parameters and Parameter Context"
+            ],
+            [
+                "200_100_meshes",
+                "3D Models & Meshes"
+            ],
+            [
+                "200_110_advancedpartlist",
+                "Advanced Partlist Topics"
+            ],
+            [
+                "200_120_dimensioning",
+                "Dimensioning"
+            ],
+            [
+                "200_130_pricing",
+                "Pricing"
+            ],
+            [
+                "200_140_getmaterialproperty",
+                "Using GetMaterialPropery Function"
+            ],
+            [
+                "200_140_advanceddockinglogic",
+                "Advanced Docking Logic"
+            ],
+            [
+                "examples/_allexamples",
+                "List of all Scripting Course Examples"
+            ]
+        ]
+    },
+    {
+        "title": "Reference Documentation",
+        "collapsable": false,
+        "sidebarDepth": 1,
+        "children": [
+            [
+                "200_40_roomlescript.md",
+                "RoomleScript Language Reference"
+            ],
+            [
+                "model/configurator/ConfigurationFormat",
+                "Roomle Configuration Format"
+            ]
+        ]
+    },
+    {
+        "title": "Content Production Process",
+        "collapsable": false,
+        "sidebarDepth": 1,
+        "children": [
+            [
+                "300_10_gitstructure",
+                "Roomle Content Project Data Structure AKA 'The GIT Convention'"
+            ],
+            [
+                "300_20_naming",
+                "Naming Convention of Components, Items, Parameters, Variables"
+            ]
+        ]
+    },
+    {
+        "title": "Scripting Examples",
+        "collapsable": false,
+        "sidebarDepth": 1,
+        "children": [
+            [
+                "400_20_cg1example",
+                "Simple Colour Changing Product Scripting Example"
+            ],
+            [
+                "400_10_chairs",
+                "Chairs, Armchairs and Footstools"
+            ],
+            [
+                "400_40_tablesystem",
+                "Office Table System"
+            ],
+            [
+                "400_30_quadpost",
+                "4-Posts Shelving System"
+            ]
+        ]
+    },
+    {
+        "title": "Templates and Case Studies",
+        "collapsable": false,
+        "sidebarDepth": 1,
+        "children": [
+            {
+                "title": "Sofa Systems",
+                "collapsable": false,
+                "sidebarDepth": 1,
+                "children": [
+                    [
+                        "500_100_simplesofa",
+                        "Simple Sofa"
+                    ],
+                    [
+                        "500_100_doublesofa",
+                        "Two-Parts Sofa System"
+                    ],
+                    [
+                        "500_100_complexsofa",
+                        "Complex Sofa System"
+                    ]
+                ]
+            },
+            [
+                "500_400_wardrobes",
+                "Wardrobes"
+            ]
+        ]
+    },
+    {
+        "title": "Rubens Admin for Content Creators",
+        "collapsable": false,
+        "sidebarDepth": 1,
+        "children": [
+            [
+                "../../web/datamanagement/import-export",
+                "Data Import and Export"
+            ]
+        ]
+    }
+]

@@ -1,0 +1,1235 @@
+{
+    "id": "hussl:ST6N",
+    "parameterGroups": [
+        {
+            "key": "variation",
+            "labels": {
+                "en": "Variante",
+                "de": "Variante"
+            },
+            "collapsed": "true",
+            "sort": "1"
+        },
+        {
+            "key": "execution",
+            "labels": {
+                "en": "Ausführung",
+                "de": "Ausführung"
+            },
+            "collapsed": "true",
+            "sort": "2"
+        },
+        {
+            "key": "materials",
+            "labels": {
+                "en": "Material",
+                "de": "Material"
+            },
+            "collapsed": "false",
+            "sort": "3"
+        }
+    ],
+    "parameters": [
+        {
+            "key": "variante",
+            "enabled": "true",
+            "visible": "true",
+            "group": "'variation'",
+            "visibleInPartList": "true",
+            "labels": {
+                "en": "Variante tauschen"
+            },
+            "defaultValue": "stuhl",
+            "type": "String",
+            "valueObjects": [
+                {
+                    "value": "stuhl",
+                    "labels": {
+                        "en": "ST6N Stuhl"
+                    },
+                    "thumbnail": "https://catalog.roomle.com/hussl/items/ST6N_Rund/perspectiveimageHD.png?marker=1579851779"
+                },
+                {
+                    "value": "junior",
+                    "labels": {
+                        "en": "ST6J-2 Kinderstuhl"
+                    },
+                    "thumbnail": "https://catalog.roomle.com/hussl/itemAdditionalContents/bc2aed9d-f1be-45ac-8999-0bd65e8fa699/stuhl_junior_small.png?marker=1587720814"
+                },
+                {
+                    "value": "barhocker",
+                    "labels": {
+                        "en": "ST6H Barhocker"
+                    },
+                    "thumbnail": "https://catalog.roomle.com/hussl/items/barhocker/perspectiveimage.png?marker=1579852347"
+                },
+                {
+                    "value": "barstuhl",
+                    "labels": {
+                        "en": "ST6H Barstuhl"
+                    },
+                    "thumbnail": "https://catalog.roomle.com/hussl/items/barstuhl/perspectiveimage.png?marker=1579853077"
+                },
+                {
+                    "value": "hocker",
+                    "labels": {
+                        "en": "ST6N Hocker"
+                    },
+                    "thumbnail": "https://catalog.roomle.com/hussl/items/hocker/perspectiveimage.png?marker=1579852557"
+                },
+                {
+                    "value": "hocker_Junior",
+                    "labels": {
+                        "en": "ST6J Kinderhocker"
+                    },
+                    "thumbnail": "https://catalog.roomle.com/hussl/itemAdditionalContents/b3db1f7a-9cb8-4992-af5b-7fb33961d0e1/hocker_junior_small.png?marker=1587721404"
+                },
+                {
+                    "value": "bank",
+                    "labels": {
+                        "en": "ST6B Bank"
+                    },
+                    "thumbnail": "https://catalog.roomle.com/hussl/items/bank/perspectiveimage.png?marker=1579852681"
+                },
+                {
+                    "value": "medium",
+                    "labels": {
+                        "en": "ST6M Barstuhl"
+                    },
+                    "thumbnail": "https://catalog.roomle.com/hussl/items/medium/perspectiveimage.png?marker=1579853024"
+                },
+                {
+                    "value": "medium_hocker",
+                    "labels": {
+                        "en": "ST6M Barhocker"
+                    },
+                    "thumbnail": "https://catalog.roomle.com/hussl/items/medium_hocker/perspectiveimage.png?marker=1579852878"
+                }
+            ]
+        },
+        {
+            "key": "gestell",
+            "enabled": "material_Ruckenlehne != gestell",
+            "visible": "true",
+            "group": "'materials'",
+            "visibleInPartList": "true",
+            "labels": {
+                "en": "MATERIAL GESTELL"
+            },
+            "defaultValue": "hussl:buche_natur_lackiert",
+            "type": "Material",
+            "valueObjects": [
+                {
+                    "value": "hussl:buche_natur_lackiert",
+                    "condition": "(variante != 'junior')"
+                },
+                {
+                    "value": "hussl:buche_nussbaum",
+                    "condition": "(variante != 'junior')"
+                },
+                {
+                    "value": "hussl:hussl:esche_natur_lackiert_90_rot"
+                },
+                {
+                    "value": "hussl:esche_schwarz_gebeizt_90_rot"
+                },
+                {
+                    "value": "hussl:esche_nordic"
+                },
+                {
+                    "value": "hussl:eiche_natur_lackiert_90_rot",
+                    "condition": "(variante != 'junior')"
+                },
+                {
+                    "value": "hussl:eiche_charcoal",
+                    "condition": "(variante != 'junior')"
+                },
+                {
+                    "value": "hussl:eiche_cotton",
+                    "condition": "(variante != 'junior')"
+                },
+                {
+                    "value": "hussl:eiche_slate_grey",
+                    "condition": "(variante != 'junior')"
+                },
+                {
+                    "value": "hussl:ahorn_natur_lackiert_90_rot",
+                    "condition": "(variante != 'junior')"
+                }
+            ],
+            "onValueChange": ""
+        },
+        {
+            "key": "ruckenlehne",
+            "enabled": "true",
+            "group": "'execution'",
+            "visible": "in(variante, 'stuhl', 'barstuhl', 'medium')",
+            "visibleInPartList": "in(variante, 'stuhl', 'barstuhl', 'medium')",
+            "labels": {
+                "en": "Ausführung Rückenlehne"
+            },
+            "defaultValue": "rund",
+            "type": "String",
+            "valueObjects": [
+                {
+                    "value": "rund",
+                    "labels": {
+                        "en": "N-1 Rund"
+                    },
+                    "condition": "variante != 'junior'",
+                    "thumbnail": "https://catalog.roomle.com/hussl/items/rund/topimage.png?marker=1583488349"
+                },
+                {
+                    "value": "eckig",
+                    "labels": {
+                        "en": "N-2 Eckig"
+                    },
+                    "thumbnail": "https://catalog.roomle.com/hussl/items/eckig/topimage.png?marker=1583488277"
+                }
+            ]
+        },
+        {
+            "key": "material_Ruckenlehne",
+            "enabled": "true",
+            "group": "'materials'",
+            "visible": "in(variante, 'stuhl', 'barstuhl', 'medium')",
+            "visibleInPartList": "in(variante, 'stuhl', 'barstuhl', 'medium')",
+            "labels": {
+                "en": "Material Rückenlehne und Sitz"
+            },
+            "defaultValue": "hussl:lime11",
+            "type": "Material",
+            "valueObjects": [
+                {
+                    "value": "hussl:buche_nussbaum",
+                    "condition": "variante != 'junior'"
+                },
+                {
+                    "value": "hussl:eiche_cotton",
+                    "condition": "variante != 'junior'"
+                },
+                {
+                    "value": "hussl:eiche_slate_grey",
+                    "condition": "variante != 'junior'"
+                },
+                {
+                    "value": "hussl:eiche_charcoal",
+                    "condition": "variante != 'junior'"
+                },
+                {
+                    "value": "hussl:esche_nordic"
+                },
+                {
+                    "value": "hussl:black18"
+                },
+                {
+                    "value": "hussl:eggplant18"
+                },
+                {
+                    "value": "hussl:ice11"
+                },
+                {
+                    "value": "hussl:lime11"
+                },
+                {
+                    "value": "hussl:olive18"
+                },
+                {
+                    "value": "hussl:paras11"
+                },
+                {
+                    "value": "hussl:plum"
+                },
+                {
+                    "value": "hussl:rose11"
+                },
+                {
+                    "value": "hussl:sand18"
+                },
+                {
+                    "value": "hussl:titan18"
+                },
+                {
+                    "value": "hussl:vincent18"
+                },
+                {
+                    "value": "hussl:white18"
+                },
+                {
+                    "value": "hussl:hussl:esche_natur_lackiert_90_rot"
+                },
+                {
+                    "value": "hussl:esche_schwarz_gebeizt_90_rot"
+                },
+                {
+                    "value": "hussl:eiche_natur_lackiert_90_rot",
+                    "condition": "variante != 'junior'"
+                }
+            ],
+            "onValueChange": "
+                if (material_Ruckenlehne == 'hussl:buche_nussbaum') {
+                    gestell = 'hussl:buche_nussbaum';
+                }
+                if (material_Ruckenlehne == 'hussl:hussl:esche_natur_lackiert_90_rot') {
+                    gestell = 'hussl:hussl:esche_natur_lackiert_90_rot';
+                }
+                if (material_Ruckenlehne == 'hussl:esche_nordic') {
+                    gestell = 'hussl:esche_nordic';
+                }
+                if (material_Ruckenlehne == 'hussl:esche_schwarz_gebeizt_90_rot') {
+                    gestell = 'hussl:esche_schwarz_gebeizt_90_rot';
+                }
+                if (material_Ruckenlehne == 'hussl:eiche_natur_lackiert_90_rot') {
+                    gestell = 'hussl:eiche_natur_lackiert_90_rot';
+                }
+                if (material_Ruckenlehne == 'hussl:eiche_charcoal') {
+                    gestell = 'hussl:eiche_charcoal';
+                }
+                if (material_Ruckenlehne == 'hussl:eiche_cotton') {
+                    gestell = 'hussl:eiche_cotton';
+                }
+                if (material_Ruckenlehne == 'hussl:eiche_slate_grey') {
+                    gestell = 'hussl:eiche_slate_grey';
+                }
+            "
+        },
+        {
+            "key": "fussring",
+            "enabled": "true",
+            "group": "'materials'",
+            "visible": "in(variante, 'barhocker', 'barstuhl', 'medium', 'medium_hocker')",
+            "visibleInPartList": "in(variante, 'barhocker', 'barstuhl'), 'medium', 'medium_hocker')",
+            "labels": {
+                "en": "Fussring"
+            },
+            "defaultValue": "hussl:aluminium",
+            "type": "Material",
+            "validValues": [
+                "hussl:aluminium",
+                "hussl:black"
+            ]
+        },
+        {
+            "key": "sitzpolster",
+            "enabled": "true",
+            "group": "'execution'",
+            "visible": "in(variante, 'stuhl', 'barhocker', 'barstuhl', 'hocker', 'medium', 'medium_hocker')",
+            "visibleInPartList": "in(variante, 'stuhl', 'barhocker', 'barstuhl', 'hocker', 'medium', 'medium_hocker')",
+            "labels": {
+                "en": "AUSFÜHRUNG SITZ"
+            },
+            "defaultValue": "ohne",
+            "type": "String",
+            "valueObjects": [
+                {
+                    "value": "ohne",
+                    "labels": {
+                        "en": "HOLZSITZ"
+                    },
+                    "thumbnail": "https://catalog.roomle.com/hussl/items/sitzpols/topimage.png?marker=1583489071"
+                },
+                {
+                    "value": "mit",
+                    "labels": {
+                        "en": "POLSTERSITZ"
+                    },
+                    "thumbnail": "https://catalog.roomle.com/hussl/items/sitzpolster/topimage.png?marker=1583489008"
+                }
+            ]
+        },
+        {
+            "key": "materialSitzpolster",
+            "enabled": "true",
+            "group": "'materials'",
+            "visible": "(sitzpolster == 'mit') && (in(variante, 'stuhl', 'barhocker', 'barstuhl', 'hocker', 'medium', 'medium_hocker'))",
+            "visibleInPartList": "(sitzpolster == 'mit') && (in(variante, 'stuhl', 'barhocker', 'barstuhl', 'hocker', 'medium', 'medium_hocker'))",
+            "labels": {
+                "en": "Sitzpolster Material"
+            },
+            "type": "Material",
+            "defaultValue": "hussl:ak004",
+            "validValues": [
+                "hussl:ak004",
+                "hussl:ak017",
+                "hussl:ak18",
+                "hussl:ak020",
+                "hussl:czu1r_hr",
+                "hussl:cuz1w_hr",
+                "hussl:cuz2q_hr",
+                "hussl:cuz2t_hr",
+                "hussl:cuz12_hr",
+                "hussl:cuz28_hr",
+                "hussl:cuz31_hr",
+                "hussl:cuz35_hr",
+                "hussl:cuz58_hr",
+                "hussl:cuz67_hr",
+                "hussl:cuz86_hr",
+                "hussl:capri",
+                "hussl:ebene",
+                "hussl:lava",
+                "hussl:nero",
+                "hussl:perle",
+                "hussl:anthrazite41580",
+                "hussl:black41599",
+                "hussl:black_brown41590",
+                "hussl:coffee41597",
+                "hussl:grey41585",
+                "hussl:anthrazite21003",
+                "hussl:camel21004",
+                "hussl:cognac21000",
+                "hussl:dark_brown21001",
+                "hussl:grey21007",
+                "hussl:racing_green21005",
+                "hussl:rust21002"
+            ]
+        },
+        {
+            "key": "bodengleiter",
+            "enabled": "true",
+            "visible": "true",
+            "group": "'execution'",
+            "visibleInPartList": "true",
+            "labels": {
+                "en": "Bodengleiter"
+            },
+            "defaultValue": "filz",
+            "type": "String",
+            "valueObjects": [
+                {
+                    "value": "filz",
+                    "labels": {
+                        "en": "Filz"
+                    }
+                }
+            ]
+        }
+    ],
+    "dimensionings": [
+        {
+            "level": 2,
+            "type": "z",
+            "from": "0",
+            "to": "465",
+            "labels": {
+                "en": "46.5 cm"
+            },
+            "visible": "variante == 'stuhl' && ruckenlehne ==  'rund'"
+        },
+        {
+            "level": 1,
+            "type": "z",
+            "from": "0",
+            "to": "830",
+            "labels": {
+                "en": "83 cm"
+            },
+            "visible": "variante == 'stuhl' && ruckenlehne ==  'rund'"
+        },
+        {
+            "level": 1,
+            "type": "y",
+            "from": "-250",
+            "to": "250",
+            "labels": {
+                "en": "50 cm"
+            },
+            "visible": "variante == 'stuhl' && ruckenlehne ==  'rund'"
+        },
+        {
+            "level": 1,
+            "type": "x",
+            "from": "-197.5",
+            "to": "197.5",
+            "labels": {
+                "en": "39.5 cm"
+            },
+            "visible": "variante == 'stuhl' && ruckenlehne ==  'rund'"
+        },
+        {
+            "level": 2,
+            "type": "z",
+            "from": "0",
+            "to": "465",
+            "labels": {
+                "en": "46.5 cm"
+            },
+            "visible": "variante == 'stuhl' && ruckenlehne ==  'eckig'"
+        },
+        {
+            "level": 1,
+            "type": "z",
+            "from": "0",
+            "to": "805",
+            "labels": {
+                "en": "80.5 cm"
+            },
+            "visible": "variante == 'stuhl' && ruckenlehne ==  'eckig'"
+        },
+        {
+            "level": 1,
+            "type": "y",
+            "from": "-236.5",
+            "to": "236.5",
+            "labels": {
+                "en": "47.3 cm"
+            },
+            "visible": "variante == 'stuhl' && ruckenlehne ==  'eckig'"
+        },
+        {
+            "level": 1,
+            "type": "x",
+            "from": "-216.5",
+            "to": "216.5",
+            "labels": {
+                "en": "43.3 cm"
+            },
+            "visible": "variante == 'stuhl' && ruckenlehne ==  'eckig'"
+        },
+        {
+            "level": 2,
+            "type": "z",
+            "from": "0",
+            "to": "350",
+            "labels": {
+                "en": "35 cm"
+            },
+            "visible": "variante == 'junior' && ruckenlehne ==  'eckig'"
+        },
+        {
+            "level": 1,
+            "type": "z",
+            "from": "0",
+            "to": "590",
+            "labels": {
+                "en": "59 cm"
+            },
+            "visible": "variante == 'junior' && ruckenlehne ==  'eckig'"
+        },
+        {
+            "level": 1,
+            "type": "y",
+            "from": "-167.5",
+            "to": "167.5",
+            "labels": {
+                "en": "33.5 cm"
+            },
+            "visible": "variante == 'junior' && ruckenlehne ==  'eckig'"
+        },
+        {
+            "level": 1,
+            "type": "x",
+            "from": "-150",
+            "to": "150",
+            "labels": {
+                "en": "30 cm"
+            },
+            "visible": "variante == 'junior' && ruckenlehne ==  'eckig'"
+        },
+        {
+            "level": 2,
+            "type": "z",
+            "from": "0",
+            "to": "790",
+            "labels": {
+                "en": "79 cm"
+            },
+            "visible": "variante == 'barstuhl' && ruckenlehne ==  'rund'"
+        },
+        {
+            "level": 1,
+            "type": "z",
+            "from": "0",
+            "to": "1155",
+            "labels": {
+                "en": "115.5 cm"
+            },
+            "visible": "variante == 'barstuhl' && ruckenlehne ==  'rund'"
+        },
+        {
+            "level": 1,
+            "type": "y",
+            "from": "-510/2",
+            "to": "510/2",
+            "labels": {
+                "en": "51 cm"
+            },
+            "visible": "variante == 'barstuhl' && ruckenlehne ==  'rund'"
+        },
+        {
+            "level": 1,
+            "type": "x",
+            "from": "-425/2",
+            "to": "425/2",
+            "labels": {
+                "en": "42.5 cm"
+            },
+            "visible": "variante == 'barstuhl' && ruckenlehne ==  'rund'"
+        },
+        {
+            "level": 2,
+            "type": "z",
+            "from": "0",
+            "to": "790",
+            "labels": {
+                "en": "79 cm"
+            },
+            "visible": "variante == 'barstuhl' && ruckenlehne ==  'eckig'"
+        },
+        {
+            "level": 1,
+            "type": "z",
+            "from": "0",
+            "to": "1130",
+            "labels": {
+                "en": "113 cm"
+            },
+            "visible": "variante == 'barstuhl' && ruckenlehne ==  'eckig'"
+        },
+        {
+            "level": 1,
+            "type": "y",
+            "from": "-485/2",
+            "to": "485/2",
+            "labels": {
+                "en": "48.5 cm"
+            },
+            "visible": "variante == 'barstuhl' && ruckenlehne ==  'eckig'"
+        },
+        {
+            "level": 1,
+            "type": "x",
+            "from": "-220",
+            "to": "220",
+            "labels": {
+                "en": "44 cm"
+            },
+            "visible": "variante == 'barstuhl' && ruckenlehne ==  'eckig'"
+        },
+        {
+            "level": 2,
+            "type": "z",
+            "from": "0",
+            "to": "630",
+            "labels": {
+                "en": "63 cm"
+            },
+            "visible": "variante == 'medium' && ruckenlehne ==  'rund'"
+        },
+        {
+            "level": 1,
+            "type": "z",
+            "from": "0",
+            "to": "995",
+            "labels": {
+                "en": "99.5 cm"
+            },
+            "visible": "variante == 'medium' && ruckenlehne ==  'rund'"
+        },
+        {
+            "level": 1,
+            "type": "y",
+            "from": "-510/2",
+            "to": "510/2",
+            "labels": {
+                "en": "51 cm"
+            },
+            "visible": "variante == 'medium' && ruckenlehne ==  'rund'"
+        },
+        {
+            "level": 1,
+            "type": "x",
+            "from": "-425/2",
+            "to": "425/2",
+            "labels": {
+                "en": "42.5 cm"
+            },
+            "visible": "variante == 'medium' && ruckenlehne ==  'rund'"
+        },
+        {
+            "level": 2,
+            "type": "z",
+            "from": "0",
+            "to": "630",
+            "labels": {
+                "en": "63 cm"
+            },
+            "visible": "variante == 'medium' && ruckenlehne ==  'eckig'"
+        },
+        {
+            "level": 1,
+            "type": "z",
+            "from": "0",
+            "to": "970",
+            "labels": {
+                "en": "97 cm"
+            },
+            "visible": "variante == 'medium' && ruckenlehne ==  'eckig'"
+        },
+        {
+            "level": 1,
+            "type": "y",
+            "from": "-485/2",
+            "to": "485/2",
+            "labels": {
+                "en": "48.5 cm"
+            },
+            "visible": "variante == 'medium' && ruckenlehne ==  'eckig'"
+        },
+        {
+            "level": 1,
+            "type": "x",
+            "from": "-440/2",
+            "to": "440/2",
+            "labels": {
+                "en": "44 cm"
+            },
+            "visible": "variante == 'medium' && ruckenlehne ==  'eckig'"
+        },
+        {
+            "level": 1,
+            "type": "z",
+            "from": "0",
+            "to": "790",
+            "labels": {
+                "en": "79 cm"
+            },
+            "visible": "variante == 'barhocker'"
+        },
+        {
+            "level": 1,
+            "type": "y",
+            "from": "-200",
+            "to": "200",
+            "labels": {
+                "en": "40 cm"
+            },
+            "visible": "variante == 'barhocker'"
+        },
+        {
+            "level": 1,
+            "type": "x",
+            "from": "-200",
+            "to": "200",
+            "labels": {
+                "en": "40 cm"
+            },
+            "visible": "variante == 'barhocker'"
+        },
+        {
+            "level": 1,
+            "type": "z",
+            "from": "0",
+            "to": "465",
+            "labels": {
+                "en": "46.5 cm"
+            },
+            "visible": "variante == 'hocker'"
+        },
+        {
+            "level": 1,
+            "type": "y",
+            "from": "-372/2",
+            "to": "372/2",
+            "labels": {
+                "en": "37.2 cm"
+            },
+            "visible": "variante == 'hocker'"
+        },
+        {
+            "level": 1,
+            "type": "x",
+            "from": "-372/2",
+            "to": "372/2",
+            "labels": {
+                "en": "37.2 cm"
+            },
+            "visible": "variante == 'hocker'"
+        },
+        {
+            "level": 1,
+            "type": "z",
+            "from": "0",
+            "to": "350",
+            "labels": {
+                "en": "35 cm"
+            },
+            "visible": "variante == 'hocker_Junior'"
+        },
+        {
+            "level": 1,
+            "type": "y",
+            "from": "-275/2",
+            "to": "275/2",
+            "labels": {
+                "en": "27.5 cm"
+            },
+            "visible": "variante == 'hocker_Junior'"
+        },
+        {
+            "level": 1,
+            "type": "x",
+            "from": "-275/2",
+            "to": "275/2",
+            "labels": {
+                "en": "27.5 cm"
+            },
+            "visible": "variante == 'hocker_Junior'"
+        },
+        {
+            "level": 1,
+            "type": "z",
+            "from": "0",
+            "to": "465",
+            "labels": {
+                "en": "46.5 cm"
+            },
+            "visible": "variante == 'bank'"
+        },
+        {
+            "level": 1,
+            "type": "y",
+            "from": "-450/2",
+            "to": "450/2",
+            "labels": {
+                "en": "45 cm"
+            },
+            "visible": "variante == 'bank'"
+        },
+        {
+            "level": 1,
+            "type": "x",
+            "from": "-1200/2",
+            "to": "1200/2",
+            "labels": {
+                "en": "120 cm"
+            },
+            "visible": "variante == 'bank'"
+        },
+        {
+            "level": 1,
+            "type": "z",
+            "from": "0",
+            "to": "630",
+            "labels": {
+                "en": "63 cm"
+            },
+            "visible": "variante == 'medium_hocker'"
+        },
+        {
+            "level": 1,
+            "type": "y",
+            "from": "-400/2",
+            "to": "400/2",
+            "labels": {
+                "en": "40 cm"
+            },
+            "visible": "variante == 'medium_hocker'"
+        },
+        {
+            "level": 1,
+            "type": "x",
+            "from": "-400/2",
+            "to": "400/2",
+            "labels": {
+                "en": "40 cm"
+            },
+            "visible": "variante == 'medium_hocker'"
+        }
+    ],
+    "geometry": "
+        if (variante == 'stuhl') {
+            if (ruckenlehne == 'rund') {
+                AddExternalMesh('hussl:ST6N_10_sitting_and_back', Vector3f{388.7, 471.2, 409}, Vector3f{ -194.5, -237, 428.1});
+                 SetObjSurface(material_Ruckenlehne);
+
+                AddExternalMesh('hussl:ST6N_10_screws', Vector3f{328.1, 10.3, 14}, Vector3f{ -164.1, -156.3, 440.1});
+                 SetObjSurface('hussl:aluminium');
+
+                AddExternalMesh('hussl:ST6N_10_legs', Vector3f{401.4, 434, 466.6}, Vector3f{ -200.7, -197, 0.1});
+                 SetObjSurface(gestell);
+
+                if (sitzpolster == 'mit') {
+                    AddExternalMesh('hussl:ST6N_10_pillow', Vector3f{389.7, 393.4, 20.1}, Vector3f{ -195, -158.7, 458.5});
+                     SetObjSurface(materialSitzpolster);
+
+                }
+            }
+
+
+            if (ruckenlehne == 'eckig') {
+                AddExternalMesh('hussl:ST6N_20_legs', Vector3f{423.6, 421.9, 464.7}, Vector3f{ -211.8, -194.1, 0});
+                 SetObjSurface(gestell);
+
+                AddExternalMesh('hussl:ST6N_20_screws', Vector3f{365.2, 11.4, 13.8}, Vector3f{ -182.6, -153.7, 441.2});
+                 SetObjSurface('hussl:aluminium');
+
+                AddExternalMesh('hussl:ST6N_20_sitting_and_back', Vector3f{392.8, 446.8, 378.4}, Vector3f{ -196.4, -222.5, 427.1});
+                 SetObjSurface(material_Ruckenlehne);
+
+                if (sitzpolster == 'mit') {
+                    AddExternalMesh('hussl:ST6N_20_pillow', Vector3f{393.8, 384.3, 26.5}, Vector3f{ -196.9, -159.5, 449.1});
+                     SetObjSurface(materialSitzpolster);
+                }
+            }
+        }
+
+
+        if (variante == 'junior') {
+            if (ruckenlehne == 'eckig') {
+                AddExternalMesh('hussl:ST6J_20_junior_legs', Vector3f{307.6, 313.1, 346.5}, Vector3f{ -153.8, -148.3, -1.6});
+                 SetObjSurface(gestell);
+
+                AddExternalMesh('hussl:ST6J_20_junior_screws', Vector3f{266, 6.9, 13.7}, Vector3f{ -133, -125, 323.7});
+                 SetObjSurface('hussl:aluminium');
+
+                AddExternalMesh('hussl:ST6J_20_junior_sitting_and_back', Vector3f{287.4, 319.7, 278.8}, Vector3f{ -143.7, -164.8, 316.6});
+                 SetObjSurface(material_Ruckenlehne);
+            }
+        }
+
+
+        if (variante == 'barhocker') {
+            AddExternalMesh('hussl:ST6H_00_sitting', Vector3f{366.6, 366.4, 2.1}, Vector3f{ -183.3, -183.2, 787.1});
+             SetObjSurface(gestell);
+
+            AddExternalMesh('hussl:ST6H_00_legs', Vector3f{397, 393.4, 787.1}, Vector3f{ -198.5, -196.1, 0.2});
+             SetObjSurface(gestell);
+
+            AddExternalMesh('hussl:ST6H_00_aluminium', Vector3f{368.6, 367, 31.2}, Vector3f{ -184.3, -182.9, 295.1});
+             SetObjSurface(fussring);
+
+            if (sitzpolster == 'mit') {
+                AddExternalMesh('hussl:ST6H_00_pillow', Vector3f{368.2, 368.2, 15.2}, Vector3f{ -184.1, -184.1, 784.1});
+                 SetObjSurface(materialSitzpolster);
+            }
+        }
+
+
+        if (variante == 'barstuhl') {
+            if (ruckenlehne == 'rund') {
+                AddExternalMesh('hussl:ST6H_10_sitting_and_back', Vector3f{388.7, 471.2, 409}, Vector3f{ -194.5, -237, 754});
+                 SetObjSurface(material_Ruckenlehne);
+
+                AddExternalMesh('hussl:ST6H_10_screws', Vector3f{331.8, 10.9, 13.8}, Vector3f{ -165.9, -156.4, 768.6});
+                 SetObjSurface('hussl:aluminium');
+
+                AddExternalMesh('hussl:ST6H_10_legs', Vector3f{405.8, 468.8, 793}, Vector3f{ -202.9, -227.5, -0.4});
+                 SetObjSurface(gestell);
+
+                AddExternalMesh('hussl:ST6H_10_aluminium', Vector3f{366.4, 447.8, 30.7}, Vector3f{ -183.2, -183.8, 295.3});
+                 SetObjSurface(fussring);
+
+                if (sitzpolster == 'mit') {
+                    AddExternalMesh('hussl:ST6H_10_pillow', Vector3f{389.7, 393.4, 20.1}, Vector3f{ -195, -158.7, 784.5});
+                     SetObjSurface(materialSitzpolster);
+                }
+            }
+
+
+            if (ruckenlehne == 'eckig') {
+                AddExternalMesh('hussl:ST6H_20_legs', Vector3f{441, 458.8, 793.2}, Vector3f{ -220.5, -223.8, -1.2});
+                 SetObjSurface(gestell);
+
+                AddExternalMesh('hussl:ST6H_20_screws', Vector3f{328.1, 9.8, 14.1}, Vector3f{ -164.1, -157.4, 766});
+                 SetObjSurface('hussl:aluminium');
+
+                AddExternalMesh('hussl:ST6H_20_sitting_and_back', Vector3f{392.8, 446.8, 378.5}, Vector3f{ -196.4, -222.5, 754.4});
+                 SetObjSurface(material_Ruckenlehne);
+
+                AddExternalMesh('hussl:ST6H_20_aluminium', Vector3f{405.8, 402.7, 30.3}, Vector3f{ -202.9, -175.4, 295.2});
+                 SetObjSurface(fussring);
+
+                if (sitzpolster == 'mit') {
+                    AddExternalMesh('hussl:ST6H_20_pillow', Vector3f{393.8, 384.3, 26.5}, Vector3f{ -196.9, -159.5, 776.5});
+                     SetObjSurface(materialSitzpolster);
+                }
+            }
+        }
+
+
+        if (variante == 'hocker') {
+            AddExternalMesh('hussl:ST6N_00_sitting', Vector3f{366.6, 366.4, 2.1}, Vector3f{ -183.3, -183.2, 460.9});
+             SetObjSurface(gestell);
+
+            AddExternalMesh('hussl:ST6N_00_legs', Vector3f{379.8, 379.8, 461}, Vector3f{ -189.9, -189.9, 0});
+             SetObjSurface(gestell);
+
+            if (sitzpolster == 'mit') {
+                AddExternalMesh('hussl:ST6N_00_pillow', Vector3f{368.2, 368.2, 15.2}, Vector3f{ -184.1, -184.1, 457.8});
+                 SetObjSurface(materialSitzpolster);
+            }
+        }
+
+
+        if (variante == 'hocker_Junior') {
+            AddExternalMesh('hussl:ST6J_00_junior_sitting', Vector3f{268.6, 268.6, 1}, Vector3f{ -134.3, -134.3, 285.7});
+             SetObjSurface(gestell);
+
+            AddExternalMesh('hussl:ST6J_00_junior_legs', Vector3f{274.8, 274.8, 285.7}, Vector3f{ -137.4, -137.4, 0});
+             SetObjSurface(gestell);
+        }
+
+
+        if (variante == 'bank') {
+            AddExternalMesh('hussl:ST6_B0_sitting', Vector3f{1193.4, 443.8, 1.5}, Vector3f{ -596.7, -221.9, 465});
+             SetObjSurface(gestell);
+
+            AddExternalMesh('hussl:ST6_B0_legs', Vector3f{1202, 452.2, 464.9}, Vector3f{ -601, -226.1, 0.1});
+             SetObjSurface(gestell);
+        }
+
+
+        if (variante == 'medium_hocker') {
+            AddExternalMesh('hussl:ST6M_00_sitting', Vector3f{366.6, 366.4, 2.1}, Vector3f{ -183.3, -183.2, 631.4});
+             SetObjSurface(gestell);
+
+            AddExternalMesh('hussl:ST6M_00_legs', Vector3f{387.2, 384, 631.2}, Vector3f{ -193.6, -191.6, 0.3});
+             SetObjSurface(gestell);
+
+            AddExternalMesh('hussl:ST6M_00_aluminium', Vector3f{368.6, 367.5, 31.2}, Vector3f{ -184.3, -183.4, 139.2});
+             SetObjSurface(fussring);
+
+            if (sitzpolster == 'mit') {
+                AddExternalMesh('hussl:ST6M_00_pillow', Vector3f{368.2, 368.2, 15.2}, Vector3f{ -184.1, -184.1, 628.4});
+                 SetObjSurface(materialSitzpolster);
+            }
+        }
+
+
+        if (variante == 'medium') {
+            if (ruckenlehne == 'rund') {
+                AddExternalMesh('hussl:ST6M_10_sitting_and_back', Vector3f{388.7, 471.3, 409}, Vector3f{ -194.5, -250.5, 598});
+                 SetObjSurface(material_Ruckenlehne);
+
+                AddExternalMesh('hussl:ST6M_10_screws', Vector3f{328.1, 10.2, 14.1}, Vector3f{ -164.1, -169.4, 612.4});
+                 SetObjSurface('hussl:aluminium');
+
+                AddExternalMesh('hussl:ST6M_10_legs', Vector3f{396.8, 447.3, 637}, Vector3f{ -198.4, -223.7, -0.4});
+                 SetObjSurface(gestell);
+
+                AddExternalMesh('hussl:ST6M_10_aluminium', Vector3f{366.4, 447.8, 30.7}, Vector3f{ -183.2, -197.2, 139.3});
+                 SetObjSurface(fussring);
+
+                if (sitzpolster == 'mit') {
+                    AddExternalMesh('hussl:ST6M_10_pillow', Vector3f{389.7, 393.4, 20.1}, Vector3f{ -195, -172.1, 628.5});
+                     SetObjSurface(materialSitzpolster);
+                }
+            }
+
+
+            if (ruckenlehne == 'eckig') {
+                AddExternalMesh('hussl:ST6M_20_legs', Vector3f{430.8, 436.9, 636.3}, Vector3f{ -215.4, -210.8, -3});
+                 SetObjSurface(gestell);
+
+                AddExternalMesh('hussl:ST6M_20_screws', Vector3f{365.2, 11.5, 13.9}, Vector3f{ -182.6, -157.6, 609.8});
+                 SetObjSurface('hussl:aluminium');
+
+                AddExternalMesh('hussl:ST6M_20_sitting_and_back', Vector3f{392.8, 446.7, 378.5}, Vector3f{ -196.4, -226.2, 595.7});
+                 SetObjSurface(material_Ruckenlehne);
+
+                AddExternalMesh('hussl:ST6M_20_aluminium', Vector3f{405.8, 402.6, 30}, Vector3f{ -202.9, -179.5, 137});
+                 SetObjSurface(fussring);
+
+                if (sitzpolster == 'mit') {
+                    AddExternalMesh('hussl:ST6M_20_pillow', Vector3f{393.8, 384.2, 26.6}, Vector3f{ -196.9, -163.2, 617.7});
+                     SetObjSurface(materialSitzpolster);
+                }
+            }
+        }
+
+
+        if (variante == 'barstuhl') {
+            AddCylinder(5, 5, 35, 10, Vector2f{1, 1}, 90, Vector2f{0, 0});
+             RotateMatrixBy(Vector3f{1, 0, 0}, Vector3f{0, 0, 0}, 90);
+             RotateMatrixBy(Vector3f{0, 0, 1}, Vector3f{0, 0, 0}, -15);
+             MoveMatrixBy(Vector3f{ -165, -159, 313});
+             SetObjSurface('hussl:grey41585');
+
+            AddCylinder(5, 5, 35, 10, Vector2f{1, 1}, 90, Vector2f{0, 0});
+             RotateMatrixBy(Vector3f{1, 0, 0}, Vector3f{0, 0, 0}, 90);
+             RotateMatrixBy(Vector3f{0, 0, 1}, Vector3f{0, 0, 0}, 15);
+             MoveMatrixBy(Vector3f{165, -159, 313});
+             SetObjSurface('hussl:grey41585');
+
+            AddCylinder(5, 5, 35, 10, Vector2f{1, 1}, 90, Vector2f{0, 0});
+             RotateMatrixBy(Vector3f{1, 0, 0}, Vector3f{0, 0, 0}, 90);
+             RotateMatrixBy(Vector3f{0, 0, 1}, Vector3f{0, 0, 0}, 45);
+             MoveMatrixBy(Vector3f{ -185, 223, 313});
+             SetObjSurface('hussl:grey41585');
+
+            AddCylinder(5, 5, 35, 10, Vector2f{1, 1}, 90, Vector2f{0, 0});
+             RotateMatrixBy(Vector3f{1, 0, 0}, Vector3f{0, 0, 0}, 90);
+             RotateMatrixBy(Vector3f{0, 0, 1}, Vector3f{0, 0, 0}, -45);
+             MoveMatrixBy(Vector3f{185, 223, 313});
+             SetObjSurface('hussl:grey41585');
+        }
+
+
+        if (variante == 'medium') {
+            AddCylinder(5, 5, 35, 10, Vector2f{1, 1}, 90, Vector2f{0, 0});
+             RotateMatrixBy(Vector3f{1, 0, 0}, Vector3f{0, 0, 0}, 90);
+             RotateMatrixBy(Vector3f{0, 0, 1}, Vector3f{0, 0, 0}, -15);
+             MoveMatrixBy(Vector3f{ -165, -173, 158});
+             SetObjSurface('hussl:grey41585');
+
+            AddCylinder(5, 5, 35, 10, Vector2f{1, 1}, 90, Vector2f{0, 0});
+             RotateMatrixBy(Vector3f{1, 0, 0}, Vector3f{0, 0, 0}, 90);
+             RotateMatrixBy(Vector3f{0, 0, 1}, Vector3f{0, 0, 0}, 15);
+             MoveMatrixBy(Vector3f{165, -173, 158});
+             SetObjSurface('hussl:grey41585');
+
+            AddCylinder(5, 5, 35, 10, Vector2f{1, 1}, 90, Vector2f{0, 0});
+             RotateMatrixBy(Vector3f{1, 0, 0}, Vector3f{0, 0, 0}, 90);
+             RotateMatrixBy(Vector3f{0, 0, 1}, Vector3f{0, 0, 0}, 45);
+             MoveMatrixBy(Vector3f{ -185, 210, 158});
+             SetObjSurface('hussl:grey41585');
+
+            AddCylinder(5, 5, 35, 10, Vector2f{1, 1}, 90, Vector2f{0, 0});
+             RotateMatrixBy(Vector3f{1, 0, 0}, Vector3f{0, 0, 0}, 90);
+             RotateMatrixBy(Vector3f{0, 0, 1}, Vector3f{0, 0, 0}, -45);
+             MoveMatrixBy(Vector3f{185, 210, 158});
+             SetObjSurface('hussl:grey41585');
+        }
+
+
+        if (variante == 'barhocker') {
+            AddCylinder(5, 5, 35, 10, Vector2f{1, 1}, 90, Vector2f{0, 0});
+             RotateMatrixBy(Vector3f{1, 0, 0}, Vector3f{0, 0, 0}, 90);
+             RotateMatrixBy(Vector3f{0, 0, 1}, Vector3f{0, 0, 0}, -45);
+             MoveMatrixBy(Vector3f{ -155, -153, 313});
+             SetObjSurface('hussl:grey41585');
+
+            AddCylinder(5, 5, 35, 10, Vector2f{1, 1}, 90, Vector2f{0, 0});
+             RotateMatrixBy(Vector3f{1, 0, 0}, Vector3f{0, 0, 0}, 90);
+             RotateMatrixBy(Vector3f{0, 0, 1}, Vector3f{0, 0, 0}, 45);
+             MoveMatrixBy(Vector3f{155, -153, 313});
+             SetObjSurface('hussl:grey41585');
+
+            AddCylinder(5, 5, 35, 10, Vector2f{1, 1}, 90, Vector2f{0, 0});
+             RotateMatrixBy(Vector3f{1, 0, 0}, Vector3f{0, 0, 0}, 90);
+             RotateMatrixBy(Vector3f{0, 0, 1}, Vector3f{0, 0, 0}, 45);
+             MoveMatrixBy(Vector3f{ -180, 179, 313});
+             SetObjSurface('hussl:grey41585');
+
+            AddCylinder(5, 5, 35, 10, Vector2f{1, 1}, 90, Vector2f{0, 0});
+             RotateMatrixBy(Vector3f{1, 0, 0}, Vector3f{0, 0, 0}, 90);
+             RotateMatrixBy(Vector3f{0, 0, 1}, Vector3f{0, 0, 0}, -45);
+             MoveMatrixBy(Vector3f{180, 179, 313});
+             SetObjSurface('hussl:grey41585');
+        }
+
+
+        if (variante == 'medium_hocker') {
+            AddCylinder(5, 5, 35, 10, Vector2f{1, 1}, 90, Vector2f{0, 0});
+             RotateMatrixBy(Vector3f{1, 0, 0}, Vector3f{0, 0, 0}, 90);
+             RotateMatrixBy(Vector3f{0, 0, 1}, Vector3f{0, 0, 0}, -45);
+             MoveMatrixBy(Vector3f{ -155, -153, 158});
+             SetObjSurface('hussl:grey41585');
+
+            AddCylinder(5, 5, 35, 10, Vector2f{1, 1}, 90, Vector2f{0, 0});
+             RotateMatrixBy(Vector3f{1, 0, 0}, Vector3f{0, 0, 0}, 90);
+             RotateMatrixBy(Vector3f{0, 0, 1}, Vector3f{0, 0, 0}, 45);
+             MoveMatrixBy(Vector3f{155, -153, 158});
+             SetObjSurface('hussl:grey41585');
+
+            AddCylinder(5, 5, 35, 10, Vector2f{1, 1}, 90, Vector2f{0, 0});
+             RotateMatrixBy(Vector3f{1, 0, 0}, Vector3f{0, 0, 0}, 90);
+             RotateMatrixBy(Vector3f{0, 0, 1}, Vector3f{0, 0, 0}, 45);
+             MoveMatrixBy(Vector3f{ -180, 180, 158});
+             SetObjSurface('hussl:grey41585');
+
+            AddCylinder(5, 5, 35, 10, Vector2f{1, 1}, 90, Vector2f{0, 0});
+             RotateMatrixBy(Vector3f{1, 0, 0}, Vector3f{0, 0, 0}, 90);
+             RotateMatrixBy(Vector3f{0, 0, 1}, Vector3f{0, 0, 0}, -45);
+             MoveMatrixBy(Vector3f{180, 180, 158});
+             SetObjSurface('hussl:grey41585');
+        }
+    ",
+    "articleNr": "
+        if (variante == 'stuhl') {
+            if (ruckenlehne == 'rund') {
+                if (sitzpolster == 'ohne') { articleNr = 'ST6N10'; }
+                if (sitzpolster == 'mit') { articleNr = 'ST6N1P'; }
+            }
+            if (ruckenlehne == 'eckig') {
+                if (sitzpolster == 'ohne') { articleNr = 'ST6N20'; }
+                if (sitzpolster == 'mit') { articleNr = 'ST6N2P'; }
+            }
+        }
+
+        if (variante == 'junior') { articleNr = 'ST6J20'; }
+
+        if (variante == 'barhocker') {
+            if (sitzpolster == 'ohne') { articleNr = 'ST6H00'; }
+            if (sitzpolster == 'mit') { articleNr = 'ST6H0P'; }
+        }
+
+        if (variante == 'barstuhl') {
+            if (ruckenlehne == 'eckig') {
+                if (sitzpolster == 'ohne') { articleNr = 'ST6H10'; }
+                if (sitzpolster == 'mit') { articleNr = 'ST6H1P'; }
+            }
+            if (ruckenlehne == 'rund') {
+                if (sitzpolster == 'ohne') { articleNr = 'ST6H20'; }
+                if (sitzpolster == 'mit') { articleNr = 'ST6H2P'; }
+            }
+        }
+
+        if (variante == 'medium') {
+            if (ruckenlehne == 'eckig') {
+                if (sitzpolster == 'ohne') { articleNr = 'ST6M10'; }
+                if (sitzpolster == 'mit') { articleNr = 'ST6M1P'; }
+            }
+            if (ruckenlehne == 'rund') {
+                if (sitzpolster == 'ohne') { articleNr = 'ST6M20'; }
+                if (sitzpolster == 'mit') { articleNr = 'ST6M2P'; }
+            }
+        }
+
+        if (variante == 'hocker') {
+            if (sitzpolster == 'ohne') { articleNr = 'ST6N00'; }
+            if (sitzpolster == 'mit') { articleNr = 'ST6N0P'; }
+        }
+
+        if (variante == 'medium_hocker') {
+            if (sitzpolster == 'ohne') { articleNr = 'ST6M00'; }
+            if (sitzpolster == 'mit') { articleNr = 'ST6M0P'; }
+        }
+
+        if (variante == 'hocker_Junior') { articleNr = 'ST6J00 JUNIOR'; }
+
+        if (variante == 'bank') { articleNr = 'ST6B00'; }
+
+
+        if (gestell == 'hussl:buche_natur_lackiert') { articleNr = articleNr | '-BN'; }
+        if (gestell == 'hussl:buche_schwarz_gebeizt') { articleNr = articleNr | '-BD'; }
+        if (gestell == 'hussl:hussl:esche_natur_lackiert_90_rot') { articleNr = articleNr | '-EN'; }
+        if (gestell == 'hussl:esche_schwarz_gebeizt_90_rot') { articleNr = articleNr | '-ED'; }
+        if (gestell == 'hussl:eiche_natur_lackiert_90_rot') { articleNr = articleNr | '-ON'; }
+        if (gestell == 'hussl:ahorn_natur_lackiert_90_rot') { articleNr = articleNr | '-AN'; }
+
+
+        if (in(material_Ruckenlehne, 'hussl:black18', 'hussl:eggplant18', 'hussl:ice11', 'hussl:lime11', 'hussl:olive18', 'hussl:paras11', 'hussl:plum', 'hussl:rose11', 'hussl:sand18', 'hussl:titan18', 'hussl:vincent18', 'hussl:white18')) { articleNr = articleNr | '-L'; }
+        if (material_Ruckenlehne == 'hussl:hussl:esche_natur_lackiert_90_rot') { articleNr = articleNr | '-EN'; }
+        if (material_Ruckenlehne == 'hussl:esche_schwarz_gebeizt_90_rot') { articleNr = articleNr | '-ED'; }
+        if (material_Ruckenlehne == 'hussl:eiche_natur_lackiert_90_rot') { articleNr = articleNr | '-ON'; }
+
+
+        if (sitzpolster == 'mit') {
+            if (in(materialSitzpolster, 'hussl:ak004', 'hussl:ak017', 'hussl:ak18', 'hussl:ak020')) { articleNr = articleNr | '-A'; }
+            if (in(materialSitzpolster, 'hussl:czu1r_hr', 'hussl:cuz1w_hr', 'hussl:cuz2q_hr', 'hussl:cuz2t_hr', 'hussl:cuz12_hr', 'hussl:cuz28_hr', 'hussl:cuz31_hr', 'hussl:cuz35_hr', 'hussl:cuz58_hr', 'hussl:cuz67_hr', 'hussl:cuz86_hr', 'hussl:capri', 'hussl:ebene', 'hussl:lava', 'hussl:nero', 'hussl:perle')) { articleNr = articleNr | '-B'; }
+            if (in(materialSitzpolster, 'hussl:anthrazite41580', 'hussl:black41599', 'hussl:black_brown41590', 'hussl:brick41579', 'hussl:coffee41597', 'hussl:grey41585')) { articleNr = articleNr | '-C'; }
+            if (in(materialSitzpolster, 'hussl:anthrazite21003', 'hussl:camel21004', 'hussl:cognac21000', 'hussl:dark_brown21001', 'hussl:grey21007', 'hussl:racing_green21005', 'hussl:rust21002')) { articleNr = articleNr | '-D'; }
+        }
+
+
+        if (sitzpolster == 'ohne') { articleNr = articleNr | '-0'; }
+
+        if (bodengleiter == 'filz') { articleNr = articleNr | '-0'; }
+
+        if (in(variante, 'barhocker', 'barstuhl', 'medium', 'medium_hocker')) {
+            if (fussring == 'hussl:grey41585') { articleNr = articleNr | '-N'; }
+            if (fussring == 'hussl:black') { articleNr = articleNr | '-S'; }
+        }
+    "
+}

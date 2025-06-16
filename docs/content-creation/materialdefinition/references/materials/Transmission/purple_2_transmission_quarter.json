@@ -1,0 +1,11 @@
+{
+    "shading": {
+        "basecolor": {
+            "b": 1,
+            "g": 0,
+            "r": 1
+        },
+        "roughness": 0,
+        "transmission": 0.25
+    }
+}

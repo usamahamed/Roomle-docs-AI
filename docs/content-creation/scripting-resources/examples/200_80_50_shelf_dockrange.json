@@ -1,0 +1,304 @@
+{
+    "id": "demoCatalogId:example_shelf",
+    "label": "label = 'Grid Shelf ' | substring(string(fieldsX), 0, 1) | 'x' | substring(string(fieldsZ), 0, 1);",
+    "parameters": [
+        {
+            "key": "width",
+            "labels": {
+                "en": "Width"
+            },
+            "type": "Decimal",
+            "unitType": "length",
+            "defaultValue": 800,
+            "valueObjects": [
+                {
+                    "value": 430,
+                    "condition": "true"
+                },
+                {
+                    "value": 800,
+                    "condition": "true"
+                },
+                {
+                    "value": 1170,
+                    "condition": "true"
+                },
+                {
+                    "value": 1540,
+                    "condition": "true"
+                },
+                {
+                    "value": 1910,
+                    "condition": "true"
+                }
+            ],
+            "enabled": true,
+            "visible": true,
+            "visibleInPartList": true,
+            "onValueChange": "
+                if (width == 430) { fieldsX = 1; }
+                if (width == 800) { fieldsX = 2; }
+                if (width == 1170) { fieldsX = 3; }
+                if (width == 1540) { fieldsX = 4; }
+                if (width == 1910) { fieldsX = 5; }
+            "
+        },
+        {
+            "key": "height",
+            "labels": {
+                "en": "Height"
+            },
+            "type": "Decimal",
+            "unitType": "length",
+            "defaultValue": 1000,
+            "valueObjects": [
+                {
+                    "value": 430,
+                    "condition": "in(width, 430, 800)"
+                },
+                {
+                    "value": 800,
+                    "condition": "width == 800"
+                },
+                {
+                    "value": 1540,
+                    "condition": "in(width, 800, 1170, 1540)"
+                },
+                {
+                    "value": 1910,
+                    "condition": "in(width, 1540, 1910)"
+                }
+            ],
+            "enabled": true,
+            "visible": true,
+            "visibleInPartList": true,
+            "onValueChange": "
+                if (height == 430) { fieldsZ = 1; }
+                if (height == 800) { fieldsZ = 2; }
+                if (height == 1540) { fieldsZ = 4; }
+                if (height == 1910) { fieldsZ = 5; }
+            "
+        },
+        {
+            "key": "material",
+            "labels": {
+                "en": "Colour"
+            },
+            "type": "Material",
+            "defaultValue": "value",
+            "validValues": [
+                "isdt:surface_oak",
+                "isdt:surface_cremewhite",
+                "isdt:surface_nut",
+                "isdt:surface_gray"
+            ],
+            "visible": true,
+            "visibleInPartList": true
+        },
+        {
+            "key": "hasLeftWall",
+            "type": "Boolean",
+            "defaultValue": true,
+            "visible": false,
+            "visibleInPartList": false
+        },
+        {
+            "key": "hasRightWall",
+            "type": "Boolean",
+            "defaultValue": true,
+            "visible": false,
+            "visibleInPartList": false
+        }
+    ],
+    "subComponents": [
+        {
+            "internalId": "backreference",
+            "componentId": "demoCatalogId:example_shelf",
+            "numberInPartList": 1
+        },
+        {
+            "internalId": "pin",
+            "componentId": "demoCatalogId:example_pin",
+            "numberInPartList": "(fieldsX + 1) * (fieldsZ + 1) * 2"
+        },
+        {
+            "internalId": "screw",
+            "componentId": "demoCatalogId:example_screw",
+            "numberInPartList": 8
+        }
+    ],
+    "onUpdate": "
+        if (ifnull(inited, false) == false) {
+            inited = true;
+            outerThickness = 40;
+            innerThickness = 20;
+            sizeFieldX = 350;
+            sizeFieldZ = 350;
+            depth = 400;
+            fieldsX = 0;
+            fieldsZ = 0;
+
+            isShelfLeftChild = false;
+            isShelfRightChild = false;
+
+            heightFromLeft = 0;
+            heightFromRight = 0;
+
+            hasLeftWall = true;
+            hasRightWall = true;
+        }
+
+        hasLeftWall = height > heightFromLeft;
+        hasRightWall = height >= heightFromRight;
+
+        pinsInPartList = (fieldsX + 1) * (fieldsZ + 1) * 2;
+    ",
+    "geometry": "
+        /* left, right wall */
+        if (hasLeftWall) {
+            AddCube(Vector3f{outerThickness, depth, height}, Vector2f{1, 1}, 90, Vector2f{0, 0});
+             SetObjSurface(material);
+        }
+        if (hasRightWall) {
+            AddCube(Vector3f{outerThickness, depth, height}, Vector2f{1, 1}, 90, Vector2f{0, 0});
+             SetObjSurface(material);
+             MoveMatrixBy(Vector3f{width - outerThickness, 0, 0});
+        }
+
+        /* bottom, top walls */
+        AddCube(Vector3f{width - 2 * outerThickness, depth, outerThickness});
+         SetObjSurface(material);
+         MoveMatrixBy(Vector3f{outerThickness, 0, 0});
+        Copy();
+         MoveMatrixBy(Vector3f{0, 0, height - outerThickness});
+
+        /* horizontal dividers */
+        if (fieldsZ > 1) {
+            AddCube(Vector3f{width - 2 * outerThickness, depth, innerThickness});
+             SetObjSurface(material);
+             MoveMatrixBy(Vector3f{outerThickness, 0, outerThickness + sizeFieldZ});
+            for (_.i = 2; _.i < fieldsZ; _.i++) {
+                Copy();
+                 MoveMatrixBy(Vector3f{0, 0, innerThickness + sizeFieldZ});
+            }
+        }
+
+        /* vertical dividers */
+        if (fieldsX > 1) {
+            BeginObjGroup('VERTICAL_DIVIDERS');
+                /* will divide one row into more columns */
+                AddCube(Vector3f{innerThickness, depth, sizeFieldZ}, Vector2f{1, 1}, 90, Vector2f{0, 0});
+                 SetObjSurface(material);
+                 MoveMatrixBy(Vector3f{outerThickness + sizeFieldX, 0, outerThickness});
+                for (i = 2; i < fieldsX; i++) {
+                    Copy();
+                     MoveMatrixBy(Vector3f{innerThickness + sizeFieldX, 0, 0});
+                }
+            EndObjGroup('VERTICAL_DIVIDERS');
+            /* copy into upper rows */
+            for (i = 1; i < fieldsZ; i++) {
+                Copy();
+                 MoveMatrixBy(Vector3f{0, 0, innerThickness + sizeFieldZ});
+            }
+        }
+    ",
+    "articleNr": "'2973.' | substring(string(width), 0, 3) | '.' | substring(string(height), 0, 3)",
+    "parentDockings": {
+        "points": [
+            {
+                "mask": "shelfLeft",
+                "position": "{outerThickness * hasLeftWall, 0, 0}",
+                "rotation": "{0, 0, 0}",
+                "condition": "!isShelfRightChild",
+                "assignmentsOnDock": {
+                    "hasRightWall": false
+                },
+                "assignmentsOnUpdate": {
+                    "heightFromRight": "height"
+                },
+                "assignmentsOnUnDock": {
+                    "heightFromRight": 0
+                }
+            },
+            {
+                "mask": "shelfRight",
+                "position": "{width - outerThickness * hasRightWall, 0, 0}",
+                "rotation": "{0, 0, 0}",
+                "condition": "!isShelfLeftChild",
+                "assignmentsOnDock": {
+                    "hasLeftWall": false
+                },
+                "assignmentsOnUpdate": {
+                    "heightFromLeft": "height"
+                },
+                "assignmentsOnUnDock": {
+                    "heightFromLeft": 0
+                }
+            }
+        ],
+        "ranges": [
+            {
+                "mask": "shelf",
+                "position": "{outerThickness + sizeFieldX / 2, 0, outerThickness}",
+                "stepEnd": "{width, 0, height - outerThickness}",
+                "rotation": "{0, 0, 0}",
+                "condition": "true",
+                "stepX": "sizeFieldX + innerThickness",
+                "stepY": 0,
+                "stepZ": "sizeFieldX + innerThickness"
+            }
+        ]
+    },
+    "childDockings": {
+        "points": [
+            {
+                "mask": "shelfLeft",
+                "position": "{width - outerThickness * hasRightWall, 0, 0}",
+                "rotation": "{0, 0, 0}",
+                "condition": "true",
+                "assignmentsOnUpdate": {
+                    "heightFromLeft": "height"
+                },
+                "assignmentsOnUnDock": {
+                    "heightFromLeft": 0
+                },
+                "selfAssignments": {
+                    "onDock": {
+                        "isShelfLeftChild": true
+                    },
+                    "onUnDock": {
+                        "isShelfLeftChild": false
+                    }
+                }
+            },
+            {
+                "mask": "shelfRight",
+                "position": "{outerThickness * hasLeftWall, 0, 0}",
+                "rotation": "{0, 0, 0}",
+                "condition": "true",
+                "assignmentsOnUpdate": {
+                    "heightFromRight": "height"
+                },
+                "assignmentsOnUnDock": {
+                    "heightFromRight": 0
+                },
+                "selfAssignments": {
+                    "onDock": {
+                        "isShelfRightChild": true
+                    },
+                    "onUnDock": {
+                        "isShelfRightChild": false
+                    }
+                }
+            }
+        ]
+    },
+    "possibleChildren": [
+        {
+            "componentId": "demoCatalogId:example_shelf"
+        },
+        {
+            "componentId": "demoCatalogId:example_shelf_addon"
+        }
+    ]
+}
