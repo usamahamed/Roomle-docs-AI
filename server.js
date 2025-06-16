@@ -82,7 +82,8 @@ app.post('/api/prompt', async (req, res) => {
     res.status(500).json({ error: 'Failed to process prompt.' });
   }
 });
-app.get('*', (req, res) => {
+
+app.get('/{*any}', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
