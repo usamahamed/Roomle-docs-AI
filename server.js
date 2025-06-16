@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 const cors = require('cors');
 const { FaissStore } = require('@langchain/community/vectorstores/faiss');
 const {
