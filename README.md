@@ -1,6 +1,6 @@
 # AI-Powered Documentation Assistant
 
-This project provides a "smart prompts" UI and a robust backend that leverages Google's Gemini models to create a custom AI assistant trained on your company's documentation. It uses a Retrieval-Augmented Generation (RAG) architecture to provide accurate, context-aware answers based on a corpus of Markdown files.
+This project provides a "smart prompts" UI and a robust backend that leverages Google's Gemini models to create a custom AI assistant trained on Roomle documentation. It uses a Retrieval-Augmented Generation (RAG) architecture to provide accurate, context-aware answers based on a corpus of Markdown files.
 
 ---
 
@@ -129,7 +129,7 @@ The application follows a modern Retrieval-Augmented Generation (RAG) workflow o
     ```
 
 4.  **Add Your Documentation:**
-    Place all your company's Markdown documentation files and folders into the `docs/` directory.
+    Place all Roomle Markdown documentation files and folders into the `docs/` directory.
 
 5.  **Vectorize Your Documents:**
     Run the vectorization script. This will read all files in the `docs/` folder, chunk them, and create a `faiss_index` directory containing the vector database.

@@ -22,7 +22,7 @@
         max-width: 75%;
       }
       .user-bubble {
-        background-color: #3b82f6; /* blue-500 */
+        background-color: #da0000; /* blue-500 */
         color: white;
         align-self: flex-end;
         border-bottom-right-radius: 0.25rem;
@@ -49,7 +49,7 @@
       }
       .loader {
         border: 4px solid #f3f3f3;
-        border-top: 4px solid #3498db;
+        border-top: 4px solid #da0000;
         border-radius: 50%;
         width: 24px;
         height: 24px;
@@ -93,13 +93,16 @@
     >
       <!-- Header -->
       <header
+        style="background-color: #da0000"
         class="bg-gray-800 text-white p-4 rounded-t-2xl flex items-center justify-between shadow-md"
       >
         <div>
           <h1 class="text-2xl font-bold tracking-tight">
-            AI Documentation Assistant
+            Roomle Documentation Assistant
           </h1>
-          <p class="text-sm text-gray-400">Powered by Gemini & Your Docs</p>
+          <p style="background-color: #fff" class="text-sm text-gray-400">
+            Powered by Roomle
+          </p>
         </div>
         <div class="flex items-center space-x-2">
           <span
@@ -144,6 +147,7 @@
           <button
             type="submit"
             id="submit-button"
+            style="background-color: #da0000"
             class="bg-blue-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition flex items-center justify-center disabled:bg-blue-300 disabled:cursor-not-allowed"
           >
             <span>Send</span>
