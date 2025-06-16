@@ -11,10 +11,7 @@ const {
   createStuffDocumentsChain,
 } = require('langchain/chains/combine_documents');
 const { createRetrievalChain } = require('langchain/chains/retrieval');
-const {
-  createHistoryAwareRetriever,
-} = require('langchain/chains/history_aware_retriever');
-const { MessagesPlaceholder } = require('@langchain/core/prompts');
+const { MultiQueryRetriever } = require('langchain/retrievers/multi_query');
 
 require('dotenv/config');
 
@@ -61,14 +58,8 @@ app.post('/api/prompt', async (req, res) => {
   try {
     console.log(`\n--- New Prompt Received: "${prompt}" ---`);
 
-    // We don't have chat history in this simple app, so we pass an empty array.
-    const chatHistory = [];
-
-    // The retrieval chain now internally handles query rewriting and document fetching.
-    const result = await retrievalChain.invoke({
-      chat_history: chatHistory,
-      input: prompt,
-    });
+    // This chain now uses the multi-query retriever internally
+    const result = await retrievalChain.invoke({ input: prompt });
 
     console.log('[DEBUG] LLM Answer:', result.answer);
     console.log(`[DEBUG] Found ${result.context.length} context documents.`);
@@ -88,61 +79,50 @@ app.get('/{*any}', (req, res) => {
 });
 
 // --- SERVER INITIALIZATION ---
-
-/**
- * Loads the vector store and builds the question-answering chain.
- */
 const initializeChain = async () => {
   try {
     console.log('Loading vector store...');
     const vectorStore = await FaissStore.load('faiss_index', embeddings);
     console.log('Vector store loaded successfully.');
 
-    const retriever = vectorStore.asRetriever({ k: 8 }); // Increase k for more comprehensive context
+    // 1. Create a base retriever
+    const baseRetriever = vectorStore.asRetriever({ k: 10 });
 
-    // This prompt is for the first step: rewriting the user's query.
-    // It takes the user's question and a (currently empty) chat history
-    // to produce a better standalone search query.
-    const historyAwarePrompt = ChatPromptTemplate.fromMessages([
-      new MessagesPlaceholder('chat_history'),
-      ['user', '{input}'],
-      [
-        'user',
-        'Given the above conversation, generate a search query to look up in order to get information relevant to the conversation. Only return the query and nothing else.',
-      ],
-    ]);
-
-    // This chain creates the smarter, rewritten query.
-    const historyAwareRetrieverChain = await createHistoryAwareRetriever({
+    // 2. Create the Multi-Query Retriever from the base retriever
+    const retriever = MultiQueryRetriever.fromLLM({
       llm: chatModel,
-      retriever,
-      rephrasePrompt: historyAwarePrompt,
+      retriever: baseRetriever,
+      verbose: true, // Set to true to see the generated queries in your console
     });
 
-    // This is the prompt for the second step: answering the question.
-    // It uses the retrieved documents as context.
-    const qaPrompt = ChatPromptTemplate.fromMessages([
-      [
-        'system',
-        `You are a helpful and expert AI assistant for our company. Your task is to answer the user's question using the provided documentation context. Synthesize a clear and comprehensive answer from the context below. If the context contains relevant functions, parameters, or code snippets, be sure to include them in your answer. If the exact answer isn't in the context, explain what you did find and suggest how the user might find their answer based on the available information. Do not invent information that is not present in the context.\n\nContext:\n{context}`,
-      ],
-      new MessagesPlaceholder('chat_history'),
-      ['user', '{input}'],
-    ]);
+    // 3. Define the final prompt for answering the question
+    const qaPrompt = ChatPromptTemplate.fromTemplate(`
+You are a helpful and expert AI assistant for our company. Your task is to answer the user's question using the provided documentation context.
+Synthesize a clear and comprehensive answer from the context below.
+If the user asks for an example, construct a complete, runnable code block by piecing together information from the context. Explain what each part of the example does.
+If the exact answer isn't in the context, explain what you did find and suggest how the user might find their answer based on the available information.
 
-    // This chain "stuffs" the documents into the final prompt.
+Context:
+{context}
+
+Question:
+{input}
+
+Answer:`);
+
+    // 4. Create the document chain for "stuffing" the context into the prompt
     const ragChain = await createStuffDocumentsChain({
       llm: chatModel,
       prompt: qaPrompt,
     });
 
-    // This is the final, complete chain that orchestrates the whole process.
+    // 5. Create the final retrieval chain that combines the multi-query retriever and the doc chain
     retrievalChain = await createRetrievalChain({
-      retriever: historyAwareRetrieverChain,
+      retriever,
       combineDocsChain: ragChain,
     });
 
-    console.log('Smarter Question-Answering chain initialized successfully.');
+    console.log('Advanced Multi-Query RAG chain initialized successfully.');
   } catch (error) {
     console.error('Fatal error during chain initialization:', error);
   }
